@@ -23,7 +23,7 @@ import java.util.List;
 public class BuserController {
 
     @Autowired
-    BuserServiceImpl buserService;
+    private BuserServiceImpl buserService;
     @ApiOperation("司机列表")
     @PostMapping("/all")
     public JSON allBuser(){

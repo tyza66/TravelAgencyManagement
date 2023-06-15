@@ -29,7 +29,7 @@ import java.io.IOException;
 @RequestMapping("/user")
 public class UserController {
     @Autowired
-    UserServiceImpl userService;
+    private UserServiceImpl userService;
 
     @ApiOperation("用户登录")
     @PostMapping("/login")
