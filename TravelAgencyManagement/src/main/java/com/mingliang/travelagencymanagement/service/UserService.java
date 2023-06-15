@@ -7,4 +7,6 @@ package com.mingliang.travelagencymanagement.service;
  **/
 
 public interface UserService {
+
+    public boolean login(String username,String password);
 }

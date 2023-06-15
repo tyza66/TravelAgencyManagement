@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.mingliang.travelagencymanagement.entity.User;
 import com.mingliang.travelagencymanagement.mapper.UserMapper;
 import com.mingliang.travelagencymanagement.service.UserService;
+import org.springframework.stereotype.Service;
 
 /**
  * Author: tyza66
@@ -11,6 +12,11 @@ import com.mingliang.travelagencymanagement.service.UserService;
  * Github: https://github.com/tyza66
  **/
 
+@Service
 public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements UserService {
 
+    @Override
+    public boolean login(String username, String password) {
+        return false;
+    }
 }
