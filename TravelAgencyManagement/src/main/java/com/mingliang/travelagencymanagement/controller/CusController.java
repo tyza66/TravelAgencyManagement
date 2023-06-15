@@ -35,10 +35,13 @@ public class CusController {
         JSONObject end = JSONUtil.createObj();
         if (StpUtil.isLogin()) {
             List<Cus> list = cusService.list();
+            end.set("code", 200);
+            end.set("data", list);
         } else {
             end.set("code", 201);
             end.set("msg", "请先登录");
         }
         return end;
     }
+    
 }

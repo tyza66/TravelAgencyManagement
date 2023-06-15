@@ -91,7 +91,7 @@ public class UserController {
 
     @ApiOperation("用户注册")
     @PostMapping("/register")
-    public JSON register(@RequestBody User user,@RequestParam String qr,HttpSession session) {
+    public JSON register(@RequestBody User user, @RequestParam String qr, HttpSession session) {
         JSONObject end = JSONUtil.createObj();
         if (qr.equals(session.getAttribute("qr"))) {
             boolean register = userService.save(user);
@@ -102,7 +102,7 @@ public class UserController {
                 end.put("code", 201);
                 end.put("msg", "账号已存在");
             }
-        }else {
+        } else {
             end.put("code", 202);
             end.put("msg", "验证码错误");
         }
