@@ -3,6 +3,8 @@
 ##### 说明
 - 课堂小练习
 - SpringBoot全栈项目
+- 使用Sa-Token实现后台登录鉴权
+- 实现旅行社出行管理、导游管理、大巴管理、乘客管理
 
 ##### 使用技术
 - 后端：Spring、SpringBoot、MyBatis、Mybatis Plus、Lombok、Knife4j、Sa-Token、Hutool
