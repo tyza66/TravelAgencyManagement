@@ -24,7 +24,6 @@ public class SaConfig implements StpInterface {
         List<String> list = new ArrayList<String>();
         switch ((String) loginId) {
             case "0":
-                list.add("super-admin");
                 list.add("all");
                 break;
             case "1":
