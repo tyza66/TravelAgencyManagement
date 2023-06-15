@@ -47,8 +47,6 @@ public class UserController {
         return end;
     }
 
-
-
     @ApiOperation("获取验证码")
     @GetMapping("/qr")
     public void getQr(HttpServletRequest request, HttpServletResponse response) {
