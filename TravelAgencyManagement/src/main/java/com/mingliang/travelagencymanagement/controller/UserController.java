@@ -30,24 +30,23 @@ import java.io.IOException;
 public class UserController {
     @Autowired
     UserServiceImpl userService;
+
     @ApiOperation("用户登录")
     @PostMapping("/login")
-    public JSON login(@RequestBody User user, HttpSession session){
+    public JSON login(@RequestBody User user, HttpSession session) {
         JSONObject end = JSONUtil.createObj();
         boolean login = userService.login(user.getUid(), user.getUpw());
-        if (login){
-            session.setAttribute("user",user);
+        if (login) {
+            session.setAttribute("user", user);
             StpUtil.login(0);
-            end.set("code",200);
-            end.set("msg","登陆成功");
-        }else {
-            end.set("code",201);
-            end.set("msg","用户不存在");
+            end.set("code", 200);
+            end.set("msg", "登陆成功");
+        } else {
+            end.set("code", 201);
+            end.set("msg", "用户不存在");
         }
         return end;
     }
-
-
 
     @ApiOperation("获取验证码")
     @GetMapping("/qr")
@@ -72,7 +71,7 @@ public class UserController {
         if (StpUtil.isLogin()) {
             end.put("code", 200);
             end.put("msg", "已登录");
-            end.put("user", (User)session.getAttribute("user"));
+            end.put("user", (User) session.getAttribute("user"));
         } else {
             end.put("code", 201);
             end.put("msg", "未登录");
@@ -87,6 +86,26 @@ public class UserController {
         StpUtil.logout();
         end.put("code", 200);
         end.put("msg", "注销成功");
+        return end;
+    }
+
+    @ApiOperation("用户注册")
+    @PostMapping("/register")
+    public JSON register(@RequestBody User user,@RequestParam String qr,HttpSession session) {
+        JSONObject end = JSONUtil.createObj();
+        if (qr.equals(session.getAttribute("qr"))) {
+            boolean register = userService.save(user);
+            if (register) {
+                end.put("code", 200);
+                end.put("msg", "注册成功");
+            } else {
+                end.put("code", 201);
+                end.put("msg", "账号已存在");
+            }
+        }else {
+            end.put("code", 202);
+            end.put("msg", "验证码错误");
+        }
         return end;
     }
 }
