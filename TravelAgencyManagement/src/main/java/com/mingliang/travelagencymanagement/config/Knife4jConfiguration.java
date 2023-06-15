@@ -19,9 +19,9 @@ public class Knife4jConfiguration {
         Docket docket=new Docket(DocumentationType.SWAGGER_2)
                 .apiInfo(new ApiInfoBuilder()
                         //描述字段支持Markdown语法
-                        .description("# Knife4j RESTful APIs")
-                        .termsOfServiceUrl("https://doc.xiaominfo.com/")
-                        .contact("xiaoymin@foxmail.com")
+                        .description("# 旅行社管理系统")
+                        .termsOfServiceUrl("https://github.com/tyza66/TravelAgencyManagement")
+                        .contact("tyza66、morsite")
                         .version("1.0")
                         .build())
                 //分组名称
