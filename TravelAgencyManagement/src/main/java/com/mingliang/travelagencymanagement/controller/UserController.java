@@ -47,6 +47,8 @@ public class UserController {
         return end;
     }
 
+
+
     @ApiOperation("获取验证码")
     @GetMapping("/qr")
     public void getQr(HttpServletRequest request, HttpServletResponse response) {
@@ -75,6 +77,16 @@ public class UserController {
             end.put("code", 201);
             end.put("msg", "未登录");
         }
+        return end;
+    }
+
+    @ApiOperation("用户注销")
+    @GetMapping("/logoff")
+    public JSON logoff() {
+        JSONObject end = JSONUtil.createObj();
+        StpUtil.logout();
+        end.put("code", 200);
+        end.put("msg", "注销成功");
         return end;
     }
 }
