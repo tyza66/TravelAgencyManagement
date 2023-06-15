@@ -22,7 +22,7 @@ import java.util.List;
  * Github: https://github.com/tyza66
  **/
 
-@Api("游客管理")
+@Api(tags = "游客管理")
 @RestController
 @RequestMapping("/customer")
 public class CusController {

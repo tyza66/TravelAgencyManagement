@@ -1,5 +1,9 @@
 # TravelAgencyManagement
 ### 旅行社管理系统
+<details><summary>后端接口思维导图</summary>
+<img src="./文档/思维导图/旅行社管理系统.png"/>
+</details>
+
 ##### 说明
 - 课堂小练习
 - SpringBoot全栈项目
