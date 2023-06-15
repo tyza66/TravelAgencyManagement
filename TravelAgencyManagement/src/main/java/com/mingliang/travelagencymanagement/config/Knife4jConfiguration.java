@@ -28,7 +28,7 @@ public class Knife4jConfiguration {
                 .groupName("用户服务")
                 .select()
                 //这里指定Controller扫描包路径
-                .apis(RequestHandlerSelectors.basePackage("com.tyza66.toforum.controller"))
+                .apis(RequestHandlerSelectors.basePackage("com.mingliang.travelagencymanagement.controller"))
                 .paths(PathSelectors.any())
                 .build();
         return docket;
