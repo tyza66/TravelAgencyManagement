@@ -1,6 +1,7 @@
 package com.mingliang.travelagencymanagement.entity;
 
 import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -15,7 +16,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Cus {
-    @TableField
+    @TableId
     Integer cid;
     String cname;
     Integer bid;

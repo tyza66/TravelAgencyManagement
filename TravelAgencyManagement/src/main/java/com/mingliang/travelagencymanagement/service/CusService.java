@@ -17,4 +17,6 @@ public interface CusService {
     public IPage<Cus> selectByPage(Integer page, Integer limit);
 
     public List<Cus> searchCusByName(String name);
+
+    public boolean deleteById(Integer id);
 }

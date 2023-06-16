@@ -107,6 +107,13 @@
                                     message: '删除成功!'
                                 });
                             }
+                            axios.get("../customer/page?limit=10000&page=1").then(function (res) {
+                                if (res.data.code == 200) {
+                                    that.tableData = res.data.dataWithInfo
+                                }
+                            }).catch(function (error) {
+                                console.log(error);
+                            })
                         }).catch(function (error) {
                             console.log(error);
                         })

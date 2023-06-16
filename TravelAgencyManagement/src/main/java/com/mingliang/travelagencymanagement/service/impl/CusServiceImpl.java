@@ -31,4 +31,9 @@ public class CusServiceImpl extends ServiceImpl<CusMapper, Cus> implements CusSe
         List<Cus> posts = baseMapper.selectList(queryWrapper);
         return posts;
     }
+
+    @Override
+    public boolean deleteById(Integer id) {
+        return baseMapper.deleteById(id) > 0;
+    }
 }
