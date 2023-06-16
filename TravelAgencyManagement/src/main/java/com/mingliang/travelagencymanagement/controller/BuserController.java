@@ -11,10 +11,7 @@ import com.mingliang.travelagencymanagement.service.impl.BuserServiceImpl;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 import java.sql.Timestamp;
@@ -29,7 +26,7 @@ public class BuserController {
     private BuserServiceImpl buserService;
 
     @ApiOperation("司机列表")
-    @PostMapping("/all")
+    @GetMapping("/all")
     public JSON allBuser() {
         JSONObject obj = JSONUtil.createObj();
         if (StpUtil.isLogin()) {

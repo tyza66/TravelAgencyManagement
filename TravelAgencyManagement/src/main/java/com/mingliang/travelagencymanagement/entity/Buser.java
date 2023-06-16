@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class Buser {
     @TableId
-    Integer bid;
+    String bid;
     String Bname;
     String Btel;
     Integer Bnum;
