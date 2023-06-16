@@ -1,26 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>manager</title>
-    <link rel="stylesheet" href="./css/eindex.css">
-    <script src="./js/vue.js"></script>
-    <script src="./js/eindex.js"></script>
-</head>
-<body>
-<div id="app">
-    <el-button type="primary">主要按钮</el-button>
-</div>
-<script>
-    new Vue({
-        el: '#app',
-        data: function() {
-            return {
-
-            }
+    <link rel="stylesheet" href="../css/eindex.css">
+    <script src="../js/vue.js"></script>
+    <script src="../js/eindex.js"></script>
+    <style>
+        .tac{
+            height: 100vh;
         }
-    })
-</script>
+        .tac .row{
+            height: 100vh;
+        }
+        
+    </style>
+</head>
+
+<body>
+    <div class="container" id="app">
+        <el-row class="tac">
+            <el-col :span="4" class="row">
+                <h5 align="center">旅行社管理</h5>
+                <el-menu default-active="1" class="el-menu-vertical-demo">
+                    <el-menu-item index="1">
+                        <i class="el-icon-menu"></i>
+                        <span slot="title">游客管理</span>
+                    </el-menu-item>
+                    <el-menu-item index="2">
+                        <i class="el-icon-menu"></i>
+                        <span slot="title">司机管理</span>
+                    </el-menu-item>
+                    <el-menu-item index="3">
+                        <i class="el-icon-menu"></i>
+                        <span slot="title">大巴管理</span>
+                    </el-menu-item>
+                    <el-menu-item index="4">
+                        <i class="el-icon-menu"></i>
+                        <span slot="title">导游管理</span>
+                    </el-menu-item>
+                    <el-menu-item index="5">
+                        <i class="el-icon-menu"></i>
+                        <span slot="title">出游管理</span>
+                    </el-menu-item>
+                </el-menu>
+            </el-col>
+            <el-col :span="20" class="row">
+                <iframe :src="now" style="border: medium none;width: 100%;height: 100%;"></iframe>
+            </el-col>
+        </el-row>
+    </div>
+    <script>
+        new Vue({
+            el: '#app',
+            data: function () {
+                return {
+                    now:"./driverManager.html"
+                }
+            }
+        })
+    </script>
 
 </body>
+
 </html>
