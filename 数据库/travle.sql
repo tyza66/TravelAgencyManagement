@@ -11,7 +11,7 @@
  Target Server Version : 80033
  File Encoding         : 65001
 
- Date: 15/06/2023 09:43:21
+ Date: 16/06/2023 13:21:08
 */
 
 SET NAMES utf8mb4;
@@ -33,6 +33,8 @@ CREATE TABLE `buser`  (
 -- ----------------------------
 -- Records of buser
 -- ----------------------------
+INSERT INTO `buser` VALUES (1, '张三', '123', 23, '1');
+INSERT INTO `buser` VALUES (2, '李四', '234', 2, '1');
 
 -- ----------------------------
 -- Table structure for cus
@@ -46,7 +48,7 @@ CREATE TABLE `cus`  (
   `oid` int NULL DEFAULT NULL,
   PRIMARY KEY (`cid`) USING BTREE,
   INDEX `oid`(`oid`) USING BTREE,
-  CONSTRAINT `oid` FOREIGN KEY (`oid`) REFERENCES `out` (`oid`) ON DELETE CASCADE ON UPDATE CASCADE
+  CONSTRAINT `oid` FOREIGN KEY (`oid`) REFERENCES `out1` (`oid`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
@@ -62,6 +64,8 @@ CREATE TABLE `guide`  (
   `gname` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `gstate` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `gtel` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `gotime` datetime NULL DEFAULT NULL,
+  `willdays` int NULL DEFAULT NULL,
   PRIMARY KEY (`gid`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
@@ -70,12 +74,28 @@ CREATE TABLE `guide`  (
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for out
+-- Table structure for massage
 -- ----------------------------
-DROP TABLE IF EXISTS `out`;
-CREATE TABLE `out`  (
+DROP TABLE IF EXISTS `massage`;
+CREATE TABLE `massage`  (
+  `massage_id` int NOT NULL,
+  `massage` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `oid` int NULL DEFAULT NULL,
+  PRIMARY KEY (`massage_id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of massage
+-- ----------------------------
+INSERT INTO `massage` VALUES (1, '上海到南京', 1);
+
+-- ----------------------------
+-- Table structure for out1
+-- ----------------------------
+DROP TABLE IF EXISTS `out1`;
+CREATE TABLE `out1`  (
   `oid` int NOT NULL,
-  `out` datetime NULL DEFAULT NULL,
+  `out1` datetime NULL DEFAULT NULL,
   `back` datetime NULL DEFAULT NULL,
   `gid` int NULL DEFAULT NULL,
   `bid` int NULL DEFAULT NULL,
@@ -83,15 +103,18 @@ CREATE TABLE `out`  (
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
--- Records of out
+-- Records of out1
 -- ----------------------------
+INSERT INTO `out1` VALUES (1, '2023-06-15 10:11:43', '2023-06-30 10:11:49', 1, 1);
+INSERT INTO `out1` VALUES (2, '2023-07-05 09:12:11', '2023-07-13 10:12:19', 1, 1);
+INSERT INTO `out1` VALUES (3, '2023-06-16 10:12:39', '2023-06-22 10:12:42', 2, 2);
 
 -- ----------------------------
 -- Table structure for user
 -- ----------------------------
 DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user`  (
-  `uid` int NOT NULL,
+  `uid` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `upw` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   PRIMARY KEY (`uid`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
@@ -99,5 +122,6 @@ CREATE TABLE `user`  (
 -- ----------------------------
 -- Records of user
 -- ----------------------------
+INSERT INTO `user` VALUES ('admin', 'admin');
 
 SET FOREIGN_KEY_CHECKS = 1;
