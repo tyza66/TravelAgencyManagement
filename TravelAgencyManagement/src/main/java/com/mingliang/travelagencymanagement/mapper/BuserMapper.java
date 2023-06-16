@@ -10,4 +10,6 @@ import java.util.List;
 public interface BuserMapper extends BaseMapper<Buser> {
     @Select("select * from (SELECT o.out from `out` o,buser b where b.bid=o.bid  and b.bid=#{bid} ORDER BY o.out) e where e.out>SYSDATE()")
     public Timestamp selectOut(int bid);
+    @Select("select m.massage from massage m,out1 o,buser b where b.bid=#{bid} and b.bid=o.bid and o.oid=m.oid")
+    public String selectMassage(int bid);
 }

@@ -4,6 +4,7 @@ import cn.dev33.satoken.stp.StpUtil;
 import cn.hutool.json.JSON;
 import cn.hutool.json.JSONObject;
 import cn.hutool.json.JSONUtil;
+import com.mingliang.travelagencymanagement.entity.BusWithInfo;
 import com.mingliang.travelagencymanagement.entity.Buser;
 import com.mingliang.travelagencymanagement.entity.User;
 import com.mingliang.travelagencymanagement.service.impl.BuserServiceImpl;
@@ -32,7 +33,7 @@ public class BuserController {
     public JSON allBuser() {
         JSONObject obj = JSONUtil.createObj();
         if (StpUtil.isLogin()) {
-            List<Buser> busers = buserService.selectAllBuser();
+            List<BusWithInfo> busers = buserService.selectAllBuser();
             if (busers.size() > 0) {
                 obj.set("code", "200");
                 obj.set("msg", busers);
