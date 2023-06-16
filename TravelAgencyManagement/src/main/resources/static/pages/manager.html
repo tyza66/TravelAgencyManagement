@@ -9,14 +9,15 @@
     <link rel="stylesheet" href="../css/eindex.css">
     <script src="../js/vue.js"></script>
     <script src="../js/eindex.js"></script>
+    <script src="../js/axios.min.js"></script>
     <style>
-        .tac{
+        .tac {
             height: 100vh;
         }
-        .tac .row{
+
+        .tac .row {
             height: 100vh;
         }
-        
     </style>
 </head>
 
@@ -34,11 +35,11 @@
                         <i class="el-icon-menu"></i>
                         <span slot="title">司机管理</span>
                     </el-menu-item>
-                    <el-menu-item index="3"  @click="change(3)">
+                    <el-menu-item index="3" @click="change(3)">
                         <i class="el-icon-menu"></i>
                         <span slot="title">大巴管理</span>
                     </el-menu-item>
-                    <el-menu-item index="4"  @click="change(4)">
+                    <el-menu-item index="4" @click="change(4)">
                         <i class="el-icon-menu"></i>
                         <span slot="title">导游管理</span>
                     </el-menu-item>
@@ -58,25 +59,35 @@
             el: '#app',
             data: function () {
                 return {
-                    now:"./customerManager.html"
+                    now: "./customerManager.html"
                 }
-            },methods:{
-                change(now){
-                    switch(now){
+            },
+            created() {
+                var that = this
+                axios.get("./user/check").then(function (response) {
+                    if (response.data.code != 200) {
+                        window.location.href = "./login.html";
+                    }
+                }).catch(function (error) {
+                    console.log(error);
+                })
+            }, methods: {
+                change(now) {
+                    switch (now) {
                         case 1:
-                            this.now="./customerManager.html";
+                            this.now = "./customerManager.html";
                             break;
                         case 2:
-                            this.now="./driverManager.html";
+                            this.now = "./driverManager.html";
                             break;
                         case 3:
-                            this.now="./busManager.html";
+                            this.now = "./busManager.html";
                             break;
                         case 4:
-                            this.now="./guideManager.html";
+                            this.now = "./guideManager.html";
                             break;
                         case 5:
-                            this.now="./outManager.html";
+                            this.now = "./outManager.html";
                             break;
                     }
                 }
