@@ -1,11 +1,8 @@
 package com.mingliang.travelagencymanagement.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.mingliang.travelagencymanagement.entity.Out;
-import org.apache.ibatis.annotations.Select;
+import com.mingliang.travelagencymanagement.entity.Out1;
 
-import java.sql.Timestamp;
-
-public interface OutMapper extends BaseMapper<Out> {
+public interface OutMapper extends BaseMapper<Out1> {
 
 }

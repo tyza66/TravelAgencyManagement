@@ -4,8 +4,7 @@ import cn.dev33.satoken.stp.StpUtil;
 import cn.hutool.json.JSON;
 import cn.hutool.json.JSONObject;
 import cn.hutool.json.JSONUtil;
-import com.mingliang.travelagencymanagement.entity.Buser;
-import com.mingliang.travelagencymanagement.entity.Out;
+import com.mingliang.travelagencymanagement.entity.Out1;
 import com.mingliang.travelagencymanagement.service.impl.OutServiceImpl;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -28,7 +27,7 @@ public class OutController {
     public JSON allOut() {
         JSONObject obj = JSONUtil.createObj();
         if (StpUtil.isLogin()) {
-            List<Out> out = outService.selectAll();
+            List<Out1> out = outService.selectAll();
             if (out.size() > 0) {
                 obj.set("code", "200");
                 obj.set("msg", out);
@@ -44,10 +43,10 @@ public class OutController {
     }
     @ApiOperation("添加计划")
     @PostMapping("/add")
-    public JSON addOut(@RequestBody Out out){
+    public JSON addOut(@RequestBody Out1 out){
         JSONObject obj = JSONUtil.createObj();
-        Boolean guide = outService.guideTimeConflict(out.getGid(), out.getOut(), out.getBack());
-        Boolean bus = outService.buserTimeConflict(out.getBid(), out.getOut(), out.getBack());
+        Boolean guide = outService.guideTimeConflict(out.getGid(), out.getOut1(), out.getBack());
+        Boolean bus = outService.buserTimeConflict(out.getBid(), out.getOut1(), out.getBack());
         if (StpUtil.isLogin()){
             boolean save = outService.save(out);
             if (guide){
@@ -76,10 +75,10 @@ public class OutController {
     }
     @ApiOperation("修改计划")
     @PostMapping("/up")
-    public JSON updateOut(@RequestBody Out out){
+    public JSON updateOut(@RequestBody Out1 out){
         JSONObject obj = JSONUtil.createObj();
-        Boolean guide = outService.guideTimeConflict(out.getGid(), out.getOut(), out.getBack());
-        Boolean bus = outService.buserTimeConflict(out.getBid(), out.getOut(), out.getBack());
+        Boolean guide = outService.guideTimeConflict(out.getGid(), out.getOut1(), out.getBack());
+        Boolean bus = outService.buserTimeConflict(out.getBid(), out.getOut1(), out.getBack());
         if (StpUtil.isLogin()){
             boolean save = outService.updateById(out);
             if (guide){
@@ -107,7 +106,7 @@ public class OutController {
     }
     @ApiOperation("删除计划")
     @PostMapping("/del")
-    public JSON deleteOut(@RequestBody Out out){
+    public JSON deleteOut(@RequestBody Out1 out){
         JSONObject obj = JSONUtil.createObj();
         if (StpUtil.isLogin()){
             boolean save = outService.removeById(out);

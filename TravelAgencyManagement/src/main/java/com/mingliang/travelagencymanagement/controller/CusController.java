@@ -6,12 +6,15 @@ import cn.hutool.json.JSONObject;
 import cn.hutool.json.JSONUtil;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.mingliang.travelagencymanagement.entity.Cus;
+import com.mingliang.travelagencymanagement.entity.CusWithInfo;
 import com.mingliang.travelagencymanagement.service.impl.CusServiceImpl;
+import com.mingliang.travelagencymanagement.service.impl.OutServiceImpl;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -26,6 +29,8 @@ import java.util.List;
 public class CusController {
     @Autowired
     private CusServiceImpl cusService;
+    @Autowired
+    private OutServiceImpl outService;
 
     @ApiOperation("获取所有游客信息")
     @GetMapping("/all")
@@ -48,8 +53,14 @@ public class CusController {
         JSONObject end = JSONUtil.createObj();
         if (StpUtil.isLogin()) {
             IPage<Cus> list = cusService.selectByPage(page, limit);
+            List<Cus> records = list.getRecords();
+            List<CusWithInfo> infoList= new ArrayList<>();
+            for(Cus one:records){
+                infoList.add(new CusWithInfo(one,outService.getById(one.getOid()).getOut1(),"giao"));
+            }
             end.set("code", 200);
             end.set("data", list);
+            end.set("dataWithInfo",infoList);
         } else {
             end.set("code", 201);
             end.set("msg", "请先登录");
