@@ -108,4 +108,18 @@ public class CusController {
         return end;
     }
 
+    @ApiOperation("按游客名搜索游客信息")
+    @GetMapping("/search")
+    public JSON searchCusByName(@RequestParam("name") String name) {
+        JSONObject end = JSONUtil.createObj();
+        if (StpUtil.isLogin()) {
+            List<Cus> list = cusService.searchCusByName(name);
+            end.set("code", 200);
+            end.set("data", list);
+        } else {
+            end.set("code", 201);
+            end.set("msg", "请先登录");
+        }
+        return end;
+    }
 }

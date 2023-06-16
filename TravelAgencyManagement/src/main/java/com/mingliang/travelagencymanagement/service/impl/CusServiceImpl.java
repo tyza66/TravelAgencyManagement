@@ -1,5 +1,6 @@
 package com.mingliang.travelagencymanagement.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
@@ -21,5 +22,13 @@ public class CusServiceImpl extends ServiceImpl<CusMapper, Cus> implements CusSe
     @Override
     public IPage<Cus> selectByPage(Integer page, Integer limit) {
         return baseMapper.selectPage(new Page<>(page, limit), null);
+    }
+
+    @Override
+    public List<Cus> selectAllCus(String name) {
+        QueryWrapper<Cus> queryWrapper = new QueryWrapper<>();
+        queryWrapper.like("cname", name);
+        List<Cus> posts = baseMapper.selectList(queryWrapper);
+        return posts;
     }
 }
