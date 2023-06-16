@@ -5,7 +5,6 @@ import cn.hutool.json.JSON;
 import cn.hutool.json.JSONObject;
 import cn.hutool.json.JSONUtil;
 import com.mingliang.travelagencymanagement.entity.Cus;
-import com.mingliang.travelagencymanagement.service.CusService;
 import com.mingliang.travelagencymanagement.service.impl.CusServiceImpl;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -54,6 +53,26 @@ public class CusController {
             } else {
                 end.set("code", 201);
                 end.set("msg", "删除失败");
+            }
+        } else {
+            end.set("code", 201);
+            end.set("msg", "请先登录");
+        }
+        return end;
+    }
+
+    @ApiOperation("编辑用户信息")
+    @PostMapping("/edit")
+    public JSON editCus(@RequestBody Cus cus) {
+        JSONObject end = JSONUtil.createObj();
+        if (StpUtil.isLogin()) {
+            boolean b = cusService.updateById(cus);
+            if (b) {
+                end.set("code", 200);
+                end.set("msg", "修改成功");
+            } else {
+                end.set("code", 201);
+                end.set("msg", "修改失败");
             }
         } else {
             end.set("code", 201);
