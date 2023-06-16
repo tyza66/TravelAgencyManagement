@@ -94,14 +94,17 @@ public class UserController {
     public JSON register(@RequestBody User user, @RequestParam String qr, HttpSession session) {
         JSONObject end = JSONUtil.createObj();
         if (qr.equals(session.getAttribute("qr"))) {
-            boolean register = userService.save(user);
-            if (register) {
-                end.put("code", 200);
-                end.put("msg", "注册成功");
-            } else {
+            try {
+                boolean register = userService.save(user);
+                if (register) {
+                    end.put("code", 200);
+                    end.put("msg", "注册成功");
+                }
+            }catch (Exception e){
                 end.put("code", 201);
                 end.put("msg", "账号已存在");
             }
+
         } else {
             end.put("code", 202);
             end.put("msg", "验证码错误");
