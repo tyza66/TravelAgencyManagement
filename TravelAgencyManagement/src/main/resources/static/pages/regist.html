@@ -2,83 +2,113 @@
 <html lang="zh-CN">
 
 <head>
-    <meta charset="UTF-8">
-    <title>后台管理员登录</title>
-    <link rel="stylesheet" href="../css/eindex.css">
-    <script src="../js/vue.js"></script>
-    <script src="../js/eindex.js"></script>
-    <script src="../js/axios.min.js"></script>
-    <style>
-        .boxout {
-            width: 100%;
-            height: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
+  <meta charset="UTF-8">
+  <title>后台管理员登录</title>
+  <link rel="stylesheet" href="../css/eindex.css">
+  <script src="../js/vue.js"></script>
+  <script src="../js/eindex.js"></script>
+  <script src="../js/axios.min.js"></script>
+  <style>
+    .boxout {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
 
-        .out {
-            width: 300px;
-        }
+    .out {
+      width: 300px;
+    }
 
-        .in {
-            width: 300px;
-        }
+    .in {
+      width: 300px;
+    }
 
-        .el-form-item__content {
-            margin-left: 0px !important;
-        }
-    </style>
+    .el-form-item__content {
+      margin-left: 0px !important;
+    }
+  </style>
 </head>
 
 <body>
-    <div id="app">
-        <el-container>
-            <el-header>
-                <h2 style="text-align: center;">旅行社管理系统</h3>
-            </el-header>
-            <el-main>
-                <h3 style="text-align: center;">管理员注册</h3>
-                <div class="boxout">
-                    <el-form class="out" align="center" :model="form" status-icon label-width="100px"
-                        class="demo-ruleForm">
-                        <el-form-item prop="uid">
-                            <el-input class="in" type="text" v-model="form.username" autocomplete="off"
-                                placeholder="账号"></el-input>
-                        </el-form-item>
-                        <el-form-item prop="pass">
-                            <el-input class="in" type="password" v-model="form.password" autocomplete="off"
-                                placeholder="账号"></el-input>
-                        </el-form-item>
-                        <el-form-item>
-                            <el-button type="primary" @click="regist()">注册</el-button>
-                            <el-button @click="login()">登录</el-button>
-                        </el-form-item>
-                    </el-form>
-            </el-main>
-        </el-container>
-    </div>
-    </div>
-    <script>
-        new Vue({
-            el: '#app',
-            data: function () {
-                return {
-                    form: {
-                        username: '',
-                        password: ''
-                    }
-                }
-            }, methods: {
-                login() {
-                  window.location.href = "./login.html";
-                },
-                regist() {
-                    window.location.href = "./regist.html";
-                }
+  <div id="app">
+    <el-container>
+      <el-header>
+        <h2 style="text-align: center;">旅行社管理系统</h3>
+      </el-header>
+      <el-main>
+        <h3 style="text-align: center;">管理员注册</h3>
+        <div class="boxout">
+          <el-form class="out" align="center" :model="form" status-icon label-width="100px" class="demo-ruleForm">
+            <el-form-item prop="username">
+              <el-input class="in" type="text" v-model="form.username" autocomplete="off" placeholder="账号"></el-input>
+            </el-form-item>
+            <el-form-item prop="password">
+              <el-input class="in" type="text" v-model="form.password" autocomplete="off" placeholder="密码"></el-input>
+            </el-form-item>
+            <el-form-item prop="qr">
+              <el-input class="in" type="text" v-model="form.qr" autocomplete="off" placeholder="验证码"></el-input>
+            </el-form-item>
+            <img :src="qr" alt="验证码" @click="changeQr()"><br>
+            <el-form-item>
+              <el-button type="primary" @click="regist()">注册</el-button>
+              <el-button @click="login()">登录</el-button>
+            </el-form-item>
+          </el-form>
+      </el-main>
+    </el-container>
+  </div>
+  </div>
+  <script>
+    new Vue({
+      el: '#app',
+      data: function () {
+        return {
+          form: {
+            username: '',
+            password: '',
+            qr: ''
+          },
+          qr:"../user/qr"
+        }
+      }, methods: {
+        login() {
+          window.location.href = "./login.html";
+        },
+        regist() {
+          var that = this
+          axios.post('/user/register?qr='+that.form.qr, {
+            "uid": that.form.username,
+            "upw":that.form.password
+          }).then(res => {
+            if (res.data.code == 200) {
+              that.$message({
+                                message: '注册成功',
+                                type: 'success'
+                            });
+              window.location.href = "./login.html";
+            } else if(res.data.code == 201) {
+              that.$message({
+                                message: '用户名已存在',
+                                type: 'warning'
+                            });
+            }else if(res.data.code == 202) {
+              that.$message({
+                                message: '验证码错误',
+                                type: 'warning'
+                            });
             }
-        })
-    </script>
+          }).catch(err => {
+            console.log(err);
+          })
+        },
+        changeQr(){
+          this.qr="../user/qr?"+new Date().getTime()
+        }
+      }
+    })
+  </script>
 
 </body>
 
