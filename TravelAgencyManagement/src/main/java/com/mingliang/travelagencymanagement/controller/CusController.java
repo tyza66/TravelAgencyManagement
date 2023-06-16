@@ -14,6 +14,7 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -116,7 +117,7 @@ public class CusController {
             List<Cus>  list= cusService.searchCusByName(name);
             List<CusWithInfo> infoList= new ArrayList<>();
             for(Cus one:list){
-                infoList.add(new CusWithInfo(one,outService.getById(one.getOid()).getOut1(),"giao"));
+                infoList.add(new CusWithInfo(one,outService.getById(one.getOid()).getOut1()==null?new Timestamp(0) :outService.getById(one.getOid()).getOut1(),"giao"));
             }
             end.set("code", 200);
             end.set("data", infoList);

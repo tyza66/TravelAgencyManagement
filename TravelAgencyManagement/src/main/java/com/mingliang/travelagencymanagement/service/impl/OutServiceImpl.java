@@ -34,8 +34,9 @@ public class OutServiceImpl extends ServiceImpl<OutMapper, Out1> implements OutS
         }return true;
     }
 
+
     @Override
-    public Boolean buserTimeConflict(int id, Timestamp outtime, Timestamp backtime) {
+    public Boolean buserTimeConflict(String id, Timestamp outtime, Timestamp backtime) {
         QueryWrapper<Out1> outQueryWrapper = new QueryWrapper<>();
         outQueryWrapper.eq("bid",id);
         List<Out1> outs = baseMapper.selectList(outQueryWrapper);

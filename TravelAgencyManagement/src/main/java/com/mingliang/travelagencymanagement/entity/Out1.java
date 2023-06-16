@@ -13,7 +13,7 @@ import java.sql.Timestamp;
 public class Out1 {
     @TableId
     Integer oid;
-    Integer bid;
+    String bid;
     Integer gid;
     Timestamp out1;
     Timestamp back;

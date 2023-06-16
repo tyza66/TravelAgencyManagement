@@ -19,7 +19,7 @@
         <el-row>
             <el-input v-model="search" placeholder="人员名字" style="display: inline-block;width: 150px;"></el-input>
             <el-button @click="search1()">搜索</el-button>
-            <el-button style="margin-left: 1%;">添加游客</el-button>
+            <el-button style="margin-left: 1%;" @click="addDialogVisible = true">添加游客</el-button>
         </el-row>
         <el-row style="margin-top: 5px;">
             <el-table :data="tableData" border style="width: 100%">
@@ -39,12 +39,32 @@
                 </el-table-column>
                 <el-table-column fixed="right" label="操作" width="150">
                     <template slot-scope="scope">
-                        <el-button size="small">编辑</el-button>
+                        <el-button size="small" >编辑</el-button>
                         <el-button size="small" @click="deleteById(scope.row)">删除</el-button>
                     </template>
                 </el-table-column>
             </el-table>
         </el-row>
+        <el-dialog title="添加游客" :visible.sync="addDialogVisible" width="45%" :before-close="handleClose">
+            <el-form :label-position="top" label-width="80px" :model="formLabelAlign">
+                <el-form-item label="姓名">
+                  <el-input v-model=""></el-input>
+                </el-form-item>
+                <el-form-item label="大巴车号">
+                  <el-input v-model=""></el-input>
+                </el-form-item>
+                <el-form-item label="导游编号">
+                  <el-input v-model=""></el-input>
+                </el-form-item>
+                <el-form-item label="导游编号">
+                    <el-input v-model=""></el-input>
+                  </el-form-item>
+              </el-form>
+            <span slot="footer" class="dialog-footer">
+                <el-button @click="addDialogVisible = false">取 消</el-button>
+                <el-button type="primary" @click="addDialogVisible = false">确 定</el-button>
+            </span>
+        </el-dialog>
     </div>
     <script>
         new Vue({
@@ -60,7 +80,8 @@
                         schedule: "2023-06-16",
                         info: "从客厅到卧室"
                     }],
-                    search: ""
+                    search: "",
+                    addDialogVisible:false
                 }
             }, created() {
                 var that = this
@@ -123,8 +144,16 @@
                             message: '已取消删除'
                         });
                     });
+                },
+                handleClose(done) {
+                    this.$confirm('确认关闭？')
+                        .then(_ => {
+                            done();
+                        })
+                        .catch(_ => { });
                 }
             }
+
         })
     </script>
 </body>
