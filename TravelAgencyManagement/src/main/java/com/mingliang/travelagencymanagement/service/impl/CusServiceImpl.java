@@ -1,10 +1,14 @@
 package com.mingliang.travelagencymanagement.service.impl;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.mingliang.travelagencymanagement.entity.Cus;
 import com.mingliang.travelagencymanagement.mapper.CusMapper;
 import com.mingliang.travelagencymanagement.service.CusService;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * Author: tyza66
@@ -14,4 +18,8 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class CusServiceImpl extends ServiceImpl<CusMapper, Cus> implements CusService {
+    @Override
+    public IPage<Cus> selectByPage(Integer page, Integer limit) {
+        return baseMapper.selectPage(new Page<>(page, limit), null);
+    }
 }

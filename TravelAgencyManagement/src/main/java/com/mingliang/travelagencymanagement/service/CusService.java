@@ -1,8 +1,11 @@
 package com.mingliang.travelagencymanagement.service;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.mingliang.travelagencymanagement.entity.Cus;
 import com.mingliang.travelagencymanagement.mapper.CusMapper;
+
+import java.util.List;
 
 /**
  * Author: tyza66
@@ -11,4 +14,5 @@ import com.mingliang.travelagencymanagement.mapper.CusMapper;
  **/
 
 public interface CusService {
+    public IPage<Cus> selectByPage(Integer page, Integer limit);
 }

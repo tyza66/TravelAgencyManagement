@@ -4,6 +4,7 @@ import cn.dev33.satoken.stp.StpUtil;
 import cn.hutool.json.JSON;
 import cn.hutool.json.JSONObject;
 import cn.hutool.json.JSONUtil;
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.mingliang.travelagencymanagement.entity.Cus;
 import com.mingliang.travelagencymanagement.service.impl.CusServiceImpl;
 import io.swagger.annotations.Api;
@@ -32,6 +33,21 @@ public class CusController {
         JSONObject end = JSONUtil.createObj();
         if (StpUtil.isLogin()) {
             List<Cus> list = cusService.list();
+            end.set("code", 200);
+            end.set("data", list);
+        } else {
+            end.set("code", 201);
+            end.set("msg", "请先登录");
+        }
+        return end;
+    }
+
+    @ApiOperation("分页查询游客信息")
+    @GetMapping("/page")
+    public JSON getCusByPage(@RequestParam("page") Integer page, @RequestParam("limit") Integer limit) {
+        JSONObject end = JSONUtil.createObj();
+        if (StpUtil.isLogin()) {
+            IPage<Cus> cusIPage = cusService.selectByPage(page, limit);
             end.set("code", 200);
             end.set("data", list);
         } else {
