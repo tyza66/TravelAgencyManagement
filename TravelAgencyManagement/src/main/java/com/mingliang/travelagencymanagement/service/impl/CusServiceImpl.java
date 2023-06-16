@@ -25,7 +25,7 @@ public class CusServiceImpl extends ServiceImpl<CusMapper, Cus> implements CusSe
     }
 
     @Override
-    public List<Cus> selectAllCus(String name) {
+    public List<Cus> searchCusByName(String name) {
         QueryWrapper<Cus> queryWrapper = new QueryWrapper<>();
         queryWrapper.like("cname", name);
         List<Cus> posts = baseMapper.selectList(queryWrapper);

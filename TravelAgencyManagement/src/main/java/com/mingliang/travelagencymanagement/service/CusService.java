@@ -16,5 +16,5 @@ import java.util.List;
 public interface CusService {
     public IPage<Cus> selectByPage(Integer page, Integer limit);
 
-    public List<Cus> selectAllCus(String name);
+    public List<Cus> searchCusByName(String name);
 }

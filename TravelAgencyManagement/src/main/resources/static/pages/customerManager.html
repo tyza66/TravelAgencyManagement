@@ -17,7 +17,7 @@
             <h3 style="text-align: center;">游客管理</h3>
         </el-row>
         <el-row>
-            <el-input placeholder="人员名字" style="display: inline-block;width: 150px;"></el-input>
+            <el-input v-model="search" placeholder="人员名字" style="display: inline-block;width: 150px;"></el-input>
             <el-button>搜索</el-button>
             <el-button style="margin-left: 1%;">添加游客</el-button>
         </el-row>
@@ -60,7 +60,8 @@
                         oid: '游玩',
                         schedule: "2023-06-16",
                         info:"从客厅到卧室"
-                    }]
+                    }],
+                    search:""
                 }
             }, created() {
                 var that = this
@@ -72,7 +73,7 @@
                     console.log(error);
                 })
 
-                axios.get("../customer/page?limit=10&page=1").then(function(res){
+                axios.get("../customer/page?limit=10000&page=1").then(function(res){
                     if(res.data.code == 200){
                         that.tableData = res.data.dataWithInfo
                     }
@@ -80,7 +81,9 @@
                     console.log(error);
                 })
             },methods:{
-                
+                search(){
+                    
+                }
             }
         })
     </script>
