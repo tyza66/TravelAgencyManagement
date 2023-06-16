@@ -18,7 +18,7 @@
         </el-row>
         <el-row>
             <el-input v-model="search" placeholder="人员名字" style="display: inline-block;width: 150px;"></el-input>
-            <el-button>搜索</el-button>
+            <el-button @click="search1()">搜索</el-button>
             <el-button style="margin-left: 1%;">添加游客</el-button>
         </el-row>
         <el-row style="margin-top: 5px;">
@@ -37,11 +37,10 @@
                 </el-table-column>
                 <el-table-column prop="info" label="信息" width="150">
                 </el-table-column>
-                <el-table-column fixed="right" label="操作" width="216">
+                <el-table-column fixed="right" label="操作" width="150">
                     <template slot-scope="scope">
-                        <el-button size="small">查看</el-button>
                         <el-button size="small">编辑</el-button>
-                        <el-button size="small">删除</el-button>
+                        <el-button size="small" @click="deleteById(scope.row)">删除</el-button>
                     </template>
                 </el-table-column>
             </el-table>
@@ -59,9 +58,9 @@
                         gid: '李小亮',
                         oid: '游玩',
                         schedule: "2023-06-16",
-                        info:"从客厅到卧室"
+                        info: "从客厅到卧室"
                     }],
-                    search:""
+                    search: ""
                 }
             }, created() {
                 var that = this
@@ -73,17 +72,50 @@
                     console.log(error);
                 })
 
-                axios.get("../customer/page?limit=10000&page=1").then(function(res){
-                    if(res.data.code == 200){
+                axios.get("../customer/page?limit=10000&page=1").then(function (res) {
+                    if (res.data.code == 200) {
                         that.tableData = res.data.dataWithInfo
                     }
                 }).catch(function (error) {
                     console.log(error);
                 })
-            },methods:{
-                search(){
+            }, methods: {
+                search1() {
                     var that = this
-                    axios.get
+                    axios.get("../customer/search?name=" + that.search).then(function (res) {
+                        if (res.data.code == 200) {
+                            that.tableData = res.data.data
+                            that.search = ""
+                        }
+                    }).catch(function (error) {
+                        console.log(error);
+                    })
+                },
+                deleteById(one) {
+                    var that = this
+                    this.$confirm('此操作将永久删除本条记录?', '提示', {
+                        confirmButtonText: '确定',
+                        cancelButtonText: '取消',
+                        type: 'warning'
+                    }).then(() => {
+                        axios.post("../customer/delete", {
+                            "cid": one.cid
+                        }).then(function (res) {
+                            if (res.data.code == 200) {
+                                this.$message({
+                                    type: 'success',
+                                    message: '删除成功!'
+                                });
+                            }
+                        }).catch(function (error) {
+                            console.log(error);
+                        })
+                    }).catch(() => {
+                        this.$message({
+                            type: 'info',
+                            message: '已取消删除'
+                        });
+                    });
                 }
             }
         })

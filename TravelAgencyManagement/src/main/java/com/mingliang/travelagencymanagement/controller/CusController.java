@@ -113,9 +113,13 @@ public class CusController {
     public JSON searchCusByName(@RequestParam("name") String name) {
         JSONObject end = JSONUtil.createObj();
         if (StpUtil.isLogin()) {
-            List<Cus> list = cusService.searchCusByName(name);
+            List<Cus>  list= cusService.searchCusByName(name);
+            List<CusWithInfo> infoList= new ArrayList<>();
+            for(Cus one:list){
+                infoList.add(new CusWithInfo(one,outService.getById(one.getOid()).getOut1(),"giao"));
+            }
             end.set("code", 200);
-            end.set("data", list);
+            end.set("data", infoList);
         } else {
             end.set("code", 201);
             end.set("msg", "请先登录");
