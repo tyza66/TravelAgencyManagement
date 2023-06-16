@@ -9,4 +9,5 @@ import java.util.List;
 public interface BuserService {
     public List<Buser> selectAllBuser();
     public Timestamp recentTime(int id);
+
 }

@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpSession;
+import java.sql.Timestamp;
 import java.util.List;
 
 @Api(tags = "司机管理")
@@ -51,6 +52,7 @@ public class BuserController {
     public JSON addBuser(@RequestBody Buser buser) {
         JSONObject obj = JSONUtil.createObj();
         if (StpUtil.isLogin()) {
+
             boolean save = buserService.save(buser);
             if (save) {
                 obj.set("code", "200");
