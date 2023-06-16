@@ -23,17 +23,17 @@
         </el-row>
         <el-row style="margin-top: 5px;">
             <el-table :data="tableData" border style="width: 100%">
-                <el-table-column fixed prop="id" label="乘客ID" width="120">
+                <el-table-column fixed prop="cid" label="乘客ID" width="120">
                 </el-table-column>
-                <el-table-column prop="name" label="姓名" width="120">
+                <el-table-column prop="cname" label="姓名" width="120">
                 </el-table-column>
-                <el-table-column prop="bus" label="大巴" width="150">
+                <el-table-column prop="bid" label="大巴ID" width="120">
                 </el-table-column>
-                <el-table-column prop="guide" label="导游" width="150">
+                <el-table-column prop="gid" label="导游ID" width="120">
                 </el-table-column>
-                <el-table-column prop="plan" label="旅行计划" width="150">
+                <el-table-column prop="oid" label="旅行计划ID" width="120">
                 </el-table-column>
-                <el-table-column prop="schedule" label="出行时间" width="150">
+                <el-table-column prop="schedule" label="出行时间" width="300">
                 </el-table-column>
                 <el-table-column prop="info" label="信息" width="150">
                 </el-table-column>
@@ -73,7 +73,11 @@
                 })
 
                 axios.get("../customer/page?limit=10&page=1").then(function(res){
-                    console.log(res)
+                    if(res.data.code == 200){
+                        that.tableData = res.data.dataWithInfo
+                    }
+                }).catch(function (error) {
+                    console.log(error);
                 })
             },methods:{
                 
