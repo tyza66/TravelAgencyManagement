@@ -12,24 +12,59 @@
 </head>
 
 <body>
-    <div id="app">
-        <el-row style="width: 100%;">
-            <h3 style="text-align: center;">大巴管理</h3>
-        </el-row>
-        <el-row>
-            
-        </el-row>
-    </div>
-    <script>
-        new Vue({
-            el: '#app',
-            data: function () {
-                return {
-
-                }
+<div id="app">
+    <el-row style="width: 100%;">
+        <h3 style="text-align: center;">大巴管理</h3>
+    </el-row>
+    <el-row>
+        <el-input placeholder="大巴号" style="display: inline-block;width: 150px;"></el-input>
+        <el-button>搜索</el-button>
+        <el-button style="margin-left: 1%;">添加车辆</el-button>
+    </el-row>
+    <el-row style="margin-top: 5px;">
+        <el-table :data="tableData" border style="width: 100%">
+            <el-table-column fixed prop="id" label="车牌号" width="120">
+            </el-table-column>
+            <el-table-column prop="name" label="司机姓名" width="120">
+            </el-table-column>
+            <el-table-column prop="tel" label="司机电话" width="150">
+            </el-table-column>
+            <el-table-column prop="people" label="最多载员" width="150">
+            </el-table-column>
+            <el-table-column prop="sta" label="司机状态" width="150">
+            </el-table-column>
+            <el-table-column prop="schedule" label="最新出行时间" width="150">
+            </el-table-column>
+            <el-table-column prop="info" label="信息" width="150">
+            </el-table-column>
+            <el-table-column fixed="right" label="操作" width="216">
+                <template slot-scope="scope">
+                    <el-button size="small">查看</el-button>
+                    <el-button size="small">编辑</el-button>
+                    <el-button size="small">删除</el-button>
+                </template>
+            </el-table-column>
+        </el-table>
+    </el-row>
+</div>
+<script>
+    new Vue({
+        el: '#app',
+        data: function () {
+            return {
+                tableData: [{
+                    id: '辽B-123yui',
+                    name: '张三',
+                    tel: '13467898765',
+                    people: '47',
+                    sta: '出行中',
+                    schedule: '2023/6/16',
+                    info:"从大连到山东"
+                }]
             }
-        })
-    </script>
+        }
+    })
+</script>
 </body>
 
 </html>
