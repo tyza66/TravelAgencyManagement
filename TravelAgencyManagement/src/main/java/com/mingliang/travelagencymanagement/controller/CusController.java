@@ -47,7 +47,7 @@ public class CusController {
     public JSON getCusByPage(@RequestParam("page") Integer page, @RequestParam("limit") Integer limit) {
         JSONObject end = JSONUtil.createObj();
         if (StpUtil.isLogin()) {
-            IPage<Cus> cusIPage = cusService.selectByPage(page, limit);
+            IPage<Cus> list = cusService.selectByPage(page, limit);
             end.set("code", 200);
             end.set("data", list);
         } else {

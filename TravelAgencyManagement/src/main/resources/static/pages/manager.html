@@ -64,7 +64,7 @@
             },
             created() {
                 var that = this
-                axios.get("./user/check").then(function (response) {
+                axios.get("../user/check").then(function (response) {
                     if (response.data.code != 200) {
                         window.location.href = "./login.html";
                     }

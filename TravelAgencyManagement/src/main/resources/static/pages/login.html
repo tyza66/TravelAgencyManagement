@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
+
 <head>
     <meta charset="UTF-8">
     <title>后台管理员登录</title>
@@ -7,45 +8,93 @@
     <script src="../js/vue.js"></script>
     <script src="../js/eindex.js"></script>
     <script src="../js/axios.min.js"></script>
+    <style>
+        .boxout {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .out {
+            width: 300px;
+        }
+
+        .in {
+            width: 300px;
+        }
+
+        .el-form-item__content {
+            margin-left: 0px !important;
+        }
+    </style>
 </head>
+
 <body>
-<div id="app">
-    <el-form :model="form" status-icon  label-width="100px" class="demo-ruleForm">
-        <el-form-item label="账号" prop="uid">
-            <el-input type="text" v-model="form.username" autocomplete="off"></el-input>
-        </el-form-item>
-        <el-form-item label="密码" prop="pass">
-            <el-input type="password" v-model="form.password" autocomplete="off"></el-input>
-        </el-form-item>
-        <el-form-item>
-            <el-button type="primary" @click="">登录</el-button>
-            <el-button @click="go()">注册</el-button>
-        </el-form-item>
-    </el-form>
-</div>
-<script>
-    new Vue({
-        el: '#app',
-        data: function () {
-            return {
-                form: {
-                    username: '',
-                    password: ''
+    <div id="app">
+        <el-container>
+            <el-header>
+                <h2 style="text-align: center;">旅行社管理系统</h3>
+            </el-header>
+            <el-main>
+                <h3 style="text-align: center;">管理员登录</h3>
+                <div class="boxout">
+                    <el-form class="out" align="center" :model="form" status-icon label-width="100px"
+                        class="demo-ruleForm">
+                        <el-form-item prop="uid">
+                            <el-input class="in" type="text" v-model="form.username" autocomplete="off"
+                                placeholder="账号"></el-input>
+                        </el-form-item>
+                        <el-form-item prop="pass">
+                            <el-input class="in" type="password" v-model="form.password" autocomplete="off"
+                                placeholder="账号"></el-input>
+                        </el-form-item>
+                        <el-form-item>
+                            <el-button type="primary" @click="login()">登录</el-button>
+                            <el-button @click="regist()">注册</el-button>
+                        </el-form-item>
+                    </el-form>
+            </el-main>
+        </el-container>
+    </div>
+    </div>
+    <script>
+        new Vue({
+            el: '#app',
+            data: function () {
+                return {
+                    form: {
+                        username: '',
+                        password: ''
+                    }
+                }
+            }, methods: {
+                login() {
+                    var that = this;
+                    axios.post("../user/login", {
+                        "uid": this.form.username,
+                        "upw": this.form.password
+                    }).then(function (res) {
+                        if (res.data.code == 200) {
+                            window.location.href = "./manager.html";
+                        } else {
+                            that.$message({
+                                message: '登录失败',
+                                type: 'warning'
+                            });
+                        }
+                    }).catch(function (err) {
+                        console.log(err);
+                    })
+                },
+                regist() {
+                    window.location.href = "./regist.html";
                 }
             }
-        },methods:{
-            go(){
-                axios.get("http://www.baidu.com",{}).then(function (res){
-
-                }).error(function (){
-
-                }).finally(function (){
-
-                })
-            }
-        }
-    })
-</script>
+        })
+    </script>
 
 </body>
+
 </html>
