@@ -46,18 +46,18 @@
             </el-table>
         </el-row>
         <el-dialog title="添加游客" :visible.sync="addDialogVisible" width="45%" :before-close="handleClose">
-            <el-form :label-position="top" label-width="80px" :model="formLabelAlign">
+            <el-form label-position="top" label-width="80px">
                 <el-form-item label="姓名">
-                  <el-input v-model=""></el-input>
+                  <el-input v-model="subForm.name"></el-input>
                 </el-form-item>
                 <el-form-item label="大巴车号">
-                  <el-input v-model=""></el-input>
+                  <el-input v-model="subForm.bid"></el-input>
                 </el-form-item>
                 <el-form-item label="导游编号">
-                  <el-input v-model=""></el-input>
+                  <el-input v-model="subForm.gid"></el-input>
                 </el-form-item>
-                <el-form-item label="导游编号">
-                    <el-input v-model=""></el-input>
+                <el-form-item label="计划编号">
+                    <el-input v-model="subForm.oid"></el-input>
                   </el-form-item>
               </el-form>
             <span slot="footer" class="dialog-footer">
@@ -81,7 +81,13 @@
                         info: "从客厅到卧室"
                     }],
                     search: "",
-                    addDialogVisible:false
+                    addDialogVisible:false,
+                    subForm:{
+                        name:"",
+                        bid:"",
+                        gid:"",
+                        oid:""
+                    }
                 }
             }, created() {
                 var that = this
