@@ -31,13 +31,8 @@ public class BuserController {
         JSONObject obj = JSONUtil.createObj();
         if (StpUtil.isLogin()) {
             List<BusWithInfo> busers = buserService.selectAllBuser();
-            if (busers.size() > 0) {
                 obj.set("code", "200");
                 obj.set("msg", busers);
-            } else {
-                obj.set("code", "400");
-                obj.set("msg", "列表为空");
-            }
         } else {
             obj.set("code", "201");
             obj.set("msg", "请先登录");
