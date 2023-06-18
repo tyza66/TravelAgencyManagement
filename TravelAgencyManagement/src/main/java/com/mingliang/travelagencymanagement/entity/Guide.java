@@ -15,7 +15,7 @@ public class Guide {
     Integer gid;
     String gname;
     String gstate;
-    Integer gtel;
+    String gtel;
     Timestamp gotime;
     Integer willdays;
 }

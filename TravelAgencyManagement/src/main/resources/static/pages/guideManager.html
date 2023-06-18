@@ -97,27 +97,27 @@
             data: function () {
                 return {
                     tableData: [{
-                        gid:"",
-                        gname:"",
-                        gstate:"",
-                        gtel:"",
-                        gotime:"",
-                        willdays:""
+                        gid: "",
+                        gname: "",
+                        gstate: "",
+                        gtel: "",
+                        gotime: "",
+                        willdays: ""
                     }],
                     search: "",
                     subForm: {
-                        gname:"",
-                        gstate:"",
-                        gtel:"",
-                        gotime:"",
-                        willdays:""
+                        gname: "",
+                        gstate: "",
+                        gtel: "",
+                        gotime: "",
+                        willdays: ""
                     }, editForm: {
-                        gid:"",
-                        gname:"",
-                        gstate:"",
-                        gtel:"",
-                        gotime:"",
-                        willdays:""
+                        gid: "",
+                        gname: "",
+                        gstate: "",
+                        gtel: "",
+                        gotime: "",
+                        willdays: ""
                     },
                     addDialogVisible: false,
                     editDialogVisible: false
@@ -178,11 +178,11 @@
                 add() {
                     var that = this
                     axios.post("../buser/add", {
-                        "bid": this.subForm.bid,
-                        "bname": this.subForm.bname,
-                        "bnum": this.subForm.bnum,
-                        "bstate": this.subForm.bstate,
-                        "btel": this.subForm.btel
+                        "gname": this.subForm.gname,
+                        "gotime": this.subForm.gotime,
+                        "gstate": this.subForm.gstate,
+                        "gtel": this.subForm.gtel,
+                        "willdays": this.subForm.willdays
                     }).then(function (res) {
                         if (res.data.code == 200) {
                             that.$message({

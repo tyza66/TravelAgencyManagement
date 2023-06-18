@@ -20,27 +20,25 @@ import java.util.List;
 public class GuideController {
     @Autowired
     GuideServiceImpl guideService;
+
     @ApiOperation("导游列表")
     @GetMapping("/all")
-    public JSON allGuide(){
+    public JSON allGuide() {
         JSONObject obj = JSONUtil.createObj();
-        if (StpUtil.isLogin()){
-        List<Guide> guides = guideService.selectAll();
-        if(guides.size()>0){
-            obj.set("code","200");
-            obj.set("msg",guides);
-        }else{
-            obj.set("code","400");
-            obj.set("msg","列表为空");
-        }}else{
-        obj.set("code", "201");
-        obj.set("msg", "请先登录");
-    }
+        if (StpUtil.isLogin()) {
+            List<Guide> guides = guideService.selectAll();
+            obj.set("code", "200");
+            obj.set("msg", guides);
+        } else {
+            obj.set("code", "201");
+            obj.set("msg", "请先登录");
+        }
         return obj;
     }
+
     @ApiOperation("增加导游")
     @PostMapping("/add")
-    public JSON addGuide(@RequestBody Guide guide){
+    public JSON addGuide(@RequestBody Guide guide) {
         JSONObject obj = JSONUtil.createObj();
         if (StpUtil.isLogin()) {
             boolean save = guideService.save(guide);
@@ -57,9 +55,10 @@ public class GuideController {
         }
         return obj;
     }
+
     @ApiOperation("修改信息")
     @PostMapping("/up")
-    public JSON updateGuide(@RequestBody Guide guide){
+    public JSON updateGuide(@RequestBody Guide guide) {
         JSONObject obj = JSONUtil.createObj();
         if (StpUtil.isLogin()) {
             boolean b = guideService.updateById(guide);
@@ -76,6 +75,7 @@ public class GuideController {
         }
         return obj;
     }
+
     @ApiOperation("删除导游")
     @PostMapping("/del")
     public JSON deleteGuide(@RequestBody Guide guide) {
