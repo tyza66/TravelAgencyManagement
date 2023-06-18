@@ -39,7 +39,7 @@
                 </el-table-column>
                 <el-table-column fixed="right" label="操作" width="150">
                     <template slot-scope="scope">
-                        <el-button size="small" >编辑</el-button>
+                        <el-button size="small">编辑</el-button>
                         <el-button size="small" @click="deleteById(scope.row)">删除</el-button>
                     </template>
                 </el-table-column>
@@ -48,18 +48,18 @@
         <el-dialog title="添加游客" :visible.sync="addDialogVisible" width="45%" :before-close="handleClose">
             <el-form label-position="top" label-width="80px">
                 <el-form-item label="姓名">
-                  <el-input v-model="subForm.name"></el-input>
+                    <el-input v-model="subForm.name"></el-input>
                 </el-form-item>
                 <el-form-item label="大巴车号">
-                  <el-input v-model="subForm.bid"></el-input>
+                    <el-input v-model="subForm.bid"></el-input>
                 </el-form-item>
                 <el-form-item label="导游编号">
-                  <el-input v-model="subForm.gid"></el-input>
+                    <el-input v-model="subForm.gid"></el-input>
                 </el-form-item>
                 <el-form-item label="计划编号">
                     <el-input v-model="subForm.oid"></el-input>
-                  </el-form-item>
-              </el-form>
+                </el-form-item>
+            </el-form>
             <span slot="footer" class="dialog-footer">
                 <el-button @click="addDialogVisible = false">取 消</el-button>
                 <el-button type="primary" @click="add()">确 定</el-button>
@@ -81,12 +81,12 @@
                         info: "从客厅到卧室"
                     }],
                     search: "",
-                    addDialogVisible:false,
-                    subForm:{
-                        name:"",
-                        bid:"",
-                        gid:"",
-                        oid:""
+                    addDialogVisible: false,
+                    subForm: {
+                        name: "",
+                        bid: "",
+                        gid: "",
+                        oid: ""
                     }
                 }
             }, created() {
@@ -158,8 +158,17 @@
                         })
                         .catch(_ => { });
                 },
-                add(){
-                    axios.post("../")
+                add() {
+                    axios.post("../customer/add", {
+                        "bid": subForm.bid,
+                        "cname": subForm.cname,
+                        "gid": subForm.gid,
+                        "oid": subForm.oid
+                    }).then(function(res){
+                        
+                    }).catch(function(err){
+                        console.log(err)
+                    })
                     this.addDialogVisible = false
                 }
             }
