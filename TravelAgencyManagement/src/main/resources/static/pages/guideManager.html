@@ -25,13 +25,15 @@
             <el-table :data="tableData" border style="width: 100%">
                 <el-table-column fixed prop="gid" label="导游ID" width="120">
                 </el-table-column>
-                <el-table-column prop="gname" label="司机姓名" width="120">
+                <el-table-column prop="gname" label="导游姓名" width="120">
                 </el-table-column>
-                <el-table-column prop="buser.btel" label="司机电话" width="150">
+                <el-table-column prop="gstate" label="导游状态" width="150">
                 </el-table-column>
-                <el-table-column prop="buser.bnum" label="最多载员" width="150">
+                <el-table-column prop="gtel" label="导游电话" width="150">
                 </el-table-column>
-                <el-table-column prop="buser.bstate" label="司机状态" width="150">
+                <el-table-column prop="gotime" label="出发时间" width="150">
+                </el-table-column>
+                <el-table-column prop="willdays" label="出去时长" width="150">
                 </el-table-column>
                 <el-table-column fixed="right" label="操作" width="150">
                     <template slot-scope="scope">
@@ -41,22 +43,22 @@
                 </el-table-column>
             </el-table>
         </el-row>
-        <el-dialog title="添加大巴" :visible.sync="addDialogVisible" width="45%" :before-close="handleClose">
+        <el-dialog title="添加导游" :visible.sync="addDialogVisible" width="45%" :before-close="handleClose">
             <el-form label-position="top" label-width="80px">
-                <el-form-item label="车牌号">
-                    <el-input v-model="subForm.bid"></el-input>
+                <el-form-item label="导游姓名">
+                    <el-input v-model="subForm.gname"></el-input>
                 </el-form-item>
-                <el-form-item label="司机姓名">
-                    <el-input v-model="subForm.bname"></el-input>
+                <el-form-item label="导游状态">
+                    <el-input v-model="subForm.gstate"></el-input>
                 </el-form-item>
-                <el-form-item label="司机电话">
-                    <el-input v-model="subForm.btel"></el-input>
+                <el-form-item label="导游电话">
+                    <el-input v-model="subForm.gtel"></el-input>
                 </el-form-item>
-                <el-form-item label="载荷人数">
-                    <el-input v-model="subForm.bnum"></el-input>
+                <el-form-item label="出发时间">
+                    <el-input v-model="subForm.gotime"></el-input>
                 </el-form-item>
-                <el-form-item label="大巴状态">
-                    <el-input v-model="subForm.bstate"></el-input>
+                <el-form-item label="出去时长">
+                    <el-input v-model="subForm.willdays"></el-input>
                 </el-form-item>
             </el-form>
             <span slot="footer" class="dialog-footer">
@@ -67,20 +69,20 @@
 
         <el-dialog title="编辑大巴" :visible.sync="editDialogVisible" width="45%" :before-close="handleClose">
             <el-form label-position="top" label-width="80px">
-                <el-form-item label="车牌号">
-                    <el-input v-model="editForm.bid" disabled></el-input>
+                <el-form-item label="导游姓名">
+                    <el-input v-model="editForm.gname"></el-input>
                 </el-form-item>
-                <el-form-item label="司机姓名">
-                    <el-input v-model="editForm.bname"></el-input>
+                <el-form-item label="导游状态">
+                    <el-input v-model="editForm.gstate"></el-input>
                 </el-form-item>
-                <el-form-item label="司机电话">
-                    <el-input v-model="editForm.btel"></el-input>
+                <el-form-item label="导游电话">
+                    <el-input v-model="editForm.gtel"></el-input>
                 </el-form-item>
-                <el-form-item label="载荷人数">
-                    <el-input v-model="editForm.bnum"></el-input>
+                <el-form-item label="出发时间">
+                    <el-input v-model="editForm.gotime"></el-input>
                 </el-form-item>
-                <el-form-item label="大巴状态">
-                    <el-input v-model="editForm.bstate"></el-input>
+                <el-form-item label="出去时长">
+                    <el-input v-model="editForm.willdays"></el-input>
                 </el-form-item>
             </el-form>
             <span slot="footer" class="dialog-footer">
@@ -95,32 +97,30 @@
             data: function () {
                 return {
                     tableData: [{
-                        buser: {
-                            bid: '辽B-123yui',
-                            bname: '张三',
-                            btel: '13467898765',
-                            bnum: '47',
-                            bstate: '出行中'
-                        },
-                        schedule: '2023/6/16',
-                        info: "从大连到山东"
+                        gid:"",
+                        gname:"",
+                        gstate:"",
+                        gtel:"",
+                        gotime:"",
+                        willdays:""
                     }],
                     search: "",
                     subForm: {
-                        bid: "",
-                        bname: "",
-                        btel: "",
-                        bnum: "",
-                        bstate: ""
+                        gname:"",
+                        gstate:"",
+                        gtel:"",
+                        gotime:"",
+                        willdays:""
                     }, editForm: {
-                        bid: "",
-                        bname: "",
-                        btel: "",
-                        bnum: "",
-                        bstate: ""
+                        gid:"",
+                        gname:"",
+                        gstate:"",
+                        gtel:"",
+                        gotime:"",
+                        willdays:""
                     },
                     addDialogVisible: false,
-                    editDialogVisible: false,
+                    editDialogVisible: false
                 }
             }, created() {
                 var that = this
