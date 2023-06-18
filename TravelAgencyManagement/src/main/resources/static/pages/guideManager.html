@@ -17,7 +17,7 @@
             <h3 style="text-align: center;">导游管理</h3>
         </el-row>
         <el-row>
-            <el-input v-model="search" placeholder="大巴号" style="display: inline-block;width: 150px;"></el-input>
+            <el-input v-model="search" placeholder="导游姓名" style="display: inline-block;width: 150px;"></el-input>
             <el-button @click="search1()">搜索</el-button>
             <el-button style="margin-left: 1%;" @click="addDialogVisible=true">添加导游</el-button>
         </el-row>
@@ -132,7 +132,8 @@
                     console.log(error);
                 })
 
-                axios.get("../buser/all").then(function (res) {
+                axios.get("../guide/all").then(function (res) {
+                    console.log(res)
                     if (res.data.code == 200) {
                         that.tableData = res.data.msg
                     }
@@ -157,7 +158,7 @@
                                     message: '删除成功!'
                                 });
                             }
-                            axios.get("../buser/all").then(function (res) {
+                            axios.get("../guide/all").then(function (res) {
                                 if (res.data.code == 200) {
                                     that.tableData = res.data.msg
                                 }
@@ -199,7 +200,7 @@
                                 message: '添加失败!'
                             });
                         }
-                        axios.get("../buser/all").then(function (res) {
+                        axios.get("../guide/all").then(function (res) {
                             if (res.data.code == 200) {
                                 that.tableData = res.data.msg
                             }
@@ -288,7 +289,7 @@
                                 message: '修改失败!'
                             });
                         }
-                        axios.get("../buser/all").then(function (res) {
+                        axios.get("../guide/all").then(function (res) {
                             if (res.data.code == 200) {
                                 that.tableData = res.data.msg
                             }

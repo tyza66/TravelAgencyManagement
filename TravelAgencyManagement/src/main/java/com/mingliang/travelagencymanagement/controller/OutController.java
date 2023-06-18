@@ -9,10 +9,7 @@ import com.mingliang.travelagencymanagement.service.impl.OutServiceImpl;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -24,7 +21,7 @@ public class OutController {
     OutServiceImpl outService;
 
     @ApiOperation("计划列表")
-    @PostMapping("/all")
+    @GetMapping("/all")
     public JSON allOut() {
         JSONObject obj = JSONUtil.createObj();
         if (StpUtil.isLogin()) {
