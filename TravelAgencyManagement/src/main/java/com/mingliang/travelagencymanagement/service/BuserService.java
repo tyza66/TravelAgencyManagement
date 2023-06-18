@@ -9,6 +9,6 @@ import java.util.List;
 
 public interface BuserService {
     public List<BusWithInfo> selectAllBuser();
-
+    public List<BusWithInfo> selectBuserById(String id);
 
 }
