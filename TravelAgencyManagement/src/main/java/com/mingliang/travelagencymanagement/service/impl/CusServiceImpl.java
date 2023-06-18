@@ -49,7 +49,7 @@ public class CusServiceImpl extends ServiceImpl<CusMapper, Cus> implements CusSe
         int end = 1;
         Out1 out1 = outMapper.selectById(cus.getOid());
         if(out1!=null){
-            int insert = baseMapper.insert(cus);
+            int insert = baseMapper.insertAndUp(cus);
             if(insert>=1){
                 //插入成功
                 end = 0;

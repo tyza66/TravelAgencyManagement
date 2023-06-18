@@ -39,7 +39,7 @@
                 </el-table-column>
                 <el-table-column fixed="right" label="操作" width="150">
                     <template slot-scope="scope">
-                        <el-button size="small">编辑</el-button>
+                        <el-button size="small" @click="edit(scope.row)">编辑</el-button>
                         <el-button size="small" @click="deleteById(scope.row)">删除</el-button>
                     </template>
                 </el-table-column>
@@ -61,8 +61,28 @@
                 </el-form-item>
             </el-form>
             <span slot="footer" class="dialog-footer">
-                <el-button @click="addDialogVisible = false">取 消</el-button>
+                <el-button @click="closeAdd()">取 消</el-button>
                 <el-button type="primary" @click="add()">确 定</el-button>
+            </span>
+        </el-dialog>
+        <el-dialog title="编辑游客" :visible.sync="editDialogVisible" width="45%" :before-close="handleClose">
+            <el-form label-position="top" label-width="80px">
+                <el-form-item label="姓名">
+                    <el-input v-model="editForm.name"></el-input>
+                </el-form-item>
+                <el-form-item label="大巴车号">
+                    <el-input v-model="editForm.bid"></el-input>
+                </el-form-item>
+                <el-form-item label="导游编号">
+                    <el-input v-model="editForm.gid"></el-input>
+                </el-form-item>
+                <el-form-item label="计划编号">
+                    <el-input v-model="editForm.oid"></el-input>
+                </el-form-item>
+            </el-form>
+            <span slot="footer" class="dialog-footer">
+                <el-button @click="closeEdit()">取 消</el-button>
+                <el-button type="primary" @click="update()">确 定</el-button>
             </span>
         </el-dialog>
     </div>
@@ -83,6 +103,13 @@
                     search: "",
                     addDialogVisible: false,
                     subForm: {
+                        name: "",
+                        bid: "",
+                        gid: "",
+                        oid: ""
+                    },
+                    editForm: {
+                        id: "",
                         name: "",
                         bid: "",
                         gid: "",
@@ -154,22 +181,79 @@
                 handleClose(done) {
                     this.$confirm('确认关闭？')
                         .then(_ => {
+                            this.subForm.name = ""
+                            this.subForm.bid = ""
+                            this.subForm.gid = ""
+                            this.subForm.oid = ""
+                            this.editForm.name = ""
+                            this.editForm.bid = ""
+                            this.editForm.gid = ""
+                            this.editForm.oid = ""
                             done();
                         })
                         .catch(_ => { });
                 },
                 add() {
+                    var that = this
                     axios.post("../customer/add", {
-                        "bid": subForm.bid,
-                        "cname": subForm.cname,
-                        "gid": subForm.gid,
-                        "oid": subForm.oid
-                    }).then(function(res){
-                        
-                    }).catch(function(err){
+                        "bid": this.subForm.bid,
+                        "cname": this.subForm.name,
+                        "gid": this.subForm.gid,
+                        "oid": this.subForm.oid
+                    }).then(function (res) {
+                        if (res.data.code == 200) {
+                            that.$message({
+                                type: 'success',
+                                message: '添加成功!'
+                            });
+                        } else if (res.data.code == 201) {
+                            that.$message({
+                                type: 'error',
+                                message: '添加失败!'
+                            });
+                        } else if (res.data.code == 202) {
+                            that.$message({
+                                type: 'error',
+                                message: '出行计划不存在!'
+                            });
+                        }
+                        axios.get("../customer/page?limit=10000&page=1").then(function (res) {
+                            if (res.data.code == 200) {
+                                that.tableData = res.data.dataWithInfo
+                                that.subForm.name = ""
+                                that.subForm.bid = ""
+                                that.subForm.gid = ""
+                                that.subForm.oid = ""
+                            }
+                        }).catch(function (error) {
+                            console.log(error);
+                        })
+                    }).catch(function (err) {
                         console.log(err)
                     })
                     this.addDialogVisible = false
+                },
+                closeAdd() {
+                    this.addDialogVisible = false
+                    this.subForm.name = ""
+                    this.subForm.bid = ""
+                    this.subForm.gid = ""
+                    this.subForm.oid = ""
+                }, closeEdit() {
+                    this.editDialogVisible = false
+                    this.editForm.name = ""
+                    this.editForm.bid = ""
+                    this.editForm.gid = ""
+                    this.editForm.oid = ""
+                },edit(row){
+                    this.editDialogVisible = true
+                    this.editForm.name = row.cname
+                    this.editForm.bid = row.bid
+                    this.editForm.gid = row.gid
+                    this.editForm.oid = row.oid
+                    this.editForm.id = row.cid
+                },update(){
+                    
                 }
             }
 
