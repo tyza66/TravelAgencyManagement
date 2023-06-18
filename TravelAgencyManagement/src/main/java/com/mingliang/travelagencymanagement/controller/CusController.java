@@ -127,4 +127,27 @@ public class CusController {
         }
         return end;
     }
+
+    @ApiOperation("添加游客信息")
+    @PostMapping("/add")
+    public JSON addCus(@RequestBody Cus cus) {
+        JSONObject end = JSONUtil.createObj();
+        if (StpUtil.isLogin()) {
+           int b = cusService.addAndCheckOid(cus);
+            if (b==0) {
+                end.set("code", 200);
+                end.set("msg", "添加成功");
+            } else if(b==1){
+                end.set("code", 201);
+                end.set("msg", "添加失败");
+            }else if (b==2) {
+                end.set("code", 202);
+                end.set("msg", "oid不存在");
+            }
+        } else {
+            end.set("code", 201);
+            end.set("msg", "请先登录");
+        }
+        return end;
+    }
 }

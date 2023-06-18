@@ -5,10 +5,13 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.mingliang.travelagencymanagement.entity.Cus;
+import com.mingliang.travelagencymanagement.entity.Out1;
 import com.mingliang.travelagencymanagement.mapper.CusMapper;
+import com.mingliang.travelagencymanagement.mapper.OutMapper;
 import com.mingliang.travelagencymanagement.service.CusService;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 /**
@@ -19,6 +22,10 @@ import java.util.List;
 
 @Service
 public class CusServiceImpl extends ServiceImpl<CusMapper, Cus> implements CusService {
+
+    @Resource
+    private OutMapper outMapper;
+
     @Override
     public IPage<Cus> selectByPage(Integer page, Integer limit) {
         return baseMapper.selectPage(new Page<>(page, limit), null);
@@ -35,5 +42,25 @@ public class CusServiceImpl extends ServiceImpl<CusMapper, Cus> implements CusSe
     @Override
     public boolean deleteById(Integer id) {
         return baseMapper.deleteById(id) > 0;
+    }
+
+    @Override
+    public int addAndCheckOid(Cus cus) {
+        int end = 1;
+        Out1 out1 = outMapper.selectById(cus.getOid());
+        if(out1!=null){
+            int insert = baseMapper.insert(cus);
+            if(insert>=1){
+                //插入成功
+                end = 0;
+            }else{
+                //插入失败
+                end = 1;
+            }
+        }else{
+            //oid不存在
+            end = 2;
+        }
+        return end;
     }
 }
