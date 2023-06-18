@@ -63,4 +63,26 @@ public class CusServiceImpl extends ServiceImpl<CusMapper, Cus> implements CusSe
         }
         return end;
     }
+
+    @Override
+    public int updateAndCheckOid(Cus cus) {
+        int end = 1;
+        Out1 out1 = outMapper.selectById(cus.getOid());
+        if(out1!=null){
+            int insert = baseMapper.updateById(cus);
+            if(insert>=1){
+                //插入成功
+                end = 0;
+            }else{
+                //插入失败
+                end = 1;
+            }
+        }else{
+            //oid不存在
+            end = 2;
+        }
+        return end;
+    }
+
+
 }

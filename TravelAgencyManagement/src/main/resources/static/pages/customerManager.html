@@ -102,6 +102,7 @@
                     }],
                     search: "",
                     addDialogVisible: false,
+                    editDialogVisible: false,
                     subForm: {
                         name: "",
                         bid: "",
@@ -245,15 +246,53 @@
                     this.editForm.bid = ""
                     this.editForm.gid = ""
                     this.editForm.oid = ""
-                },edit(row){
+                }, edit(row) {
                     this.editDialogVisible = true
                     this.editForm.name = row.cname
                     this.editForm.bid = row.bid
                     this.editForm.gid = row.gid
                     this.editForm.oid = row.oid
                     this.editForm.id = row.cid
-                },update(){
-                    
+                }, update() {
+                    var that = this
+                    axios.post("../customer/update", {
+                        "bid": this.editForm.bid,
+                        "cid": this.editForm.id,
+                        "cname": this.editForm.name,
+                        "gid": this.editForm.gid,
+                        "oid": this.editForm.oid
+                    }).then(function (res) {
+                        if (res.data.code == 200) {
+                            that.$message({
+                                type: 'success',
+                                message: '修改成功!'
+                            });
+                        } else if (res.data.code == 201) {
+                            that.$message({
+                                type: 'error',
+                                message: '修改失败!'
+                            });
+                        } else if (res.data.code == 202) {
+                            that.$message({
+                                type: 'error',
+                                message: '出行计划不存在!'
+                            });
+                        }
+                        axios.get("../customer/page?limit=10000&page=1").then(function (res) {
+                            if (res.data.code == 200) {
+                                that.tableData = res.data.dataWithInfo
+                                that.editForm.name = ""
+                                that.editForm.bid = ""
+                                that.editForm.gid = ""
+                                that.editForm.oid = ""
+                            }
+                        }).catch(function (error) {
+                            console.log(error);
+                        })
+                    }).catch(function (err) {
+                        console.log(err)
+                    })
+                    this.editDialogVisible = false
                 }
             }
 

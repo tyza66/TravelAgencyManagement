@@ -22,4 +22,6 @@ public interface CusService {
 
     //检查并添加oid 这里使用情况表示 0为添加成功 1为添加失败 2oid不存在
     public int addAndCheckOid(Cus cus);
+
+    public int updateAndCheckOid(Cus cus);
 }

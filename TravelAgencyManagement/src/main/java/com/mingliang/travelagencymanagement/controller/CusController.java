@@ -89,26 +89,6 @@ public class CusController {
         return end;
     }
 
-    @ApiOperation("编辑用户信息")
-    @PostMapping("/edit")
-    public JSON editCus(@RequestBody Cus cus) {
-        JSONObject end = JSONUtil.createObj();
-        if (StpUtil.isLogin()) {
-            boolean b = cusService.updateById(cus);
-            if (b) {
-                end.set("code", 200);
-                end.set("msg", "修改成功");
-            } else {
-                end.set("code", 201);
-                end.set("msg", "修改失败");
-            }
-        } else {
-            end.set("code", 201);
-            end.set("msg", "请先登录");
-        }
-        return end;
-    }
-
     @ApiOperation("按游客名搜索游客信息")
     @GetMapping("/search")
     public JSON searchCusByName(@RequestParam("name") String name) {
@@ -140,6 +120,29 @@ public class CusController {
             } else if(b==1){
                 end.set("code", 201);
                 end.set("msg", "添加失败");
+            }else if (b==2) {
+                end.set("code", 202);
+                end.set("msg", "oid不存在");
+            }
+        } else {
+            end.set("code", 201);
+            end.set("msg", "请先登录");
+        }
+        return end;
+    }
+
+    @ApiOperation("修改游客信息")
+    @PostMapping("/update")
+    public JSON updateCus(@RequestBody Cus cus) {
+        JSONObject end = JSONUtil.createObj();
+        if (StpUtil.isLogin()) {
+            int b = cusService.updateAndCheckOid(cus);
+            if (b==0) {
+                end.set("code", 200);
+                end.set("msg", "修改成功");
+            } else if(b==1){
+                end.set("code", 201);
+                end.set("msg", "修改失败");
             }else if (b==2) {
                 end.set("code", 202);
                 end.set("msg", "oid不存在");
