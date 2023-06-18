@@ -19,7 +19,7 @@
         <el-row>
             <el-input v-model="search" placeholder="大巴号" style="display: inline-block;width: 150px;"></el-input>
             <el-button @click="search1()">搜索</el-button>
-            <el-button style="margin-left: 1%;" @click="add">添加车辆</el-button>
+            <el-button style="margin-left: 1%;" @click="addDialogVisible=true">添加车辆</el-button>
         </el-row>
         <el-row style="margin-top: 5px;">
             <el-table :data="tableData" border style="width: 100%">
@@ -35,7 +35,7 @@
                 </el-table-column>
                 <el-table-column fixed="right" label="操作" width="150">
                     <template slot-scope="scope">
-                        <el-button size="small" @click="up">编辑</el-button>
+                        <el-button size="small" @click="up(scope.row)">编辑</el-button>
                         <el-button size="small" @click="del(scope.row)">删除</el-button>
                     </template>
                 </el-table-column>
@@ -68,7 +68,7 @@
         <el-dialog title="编辑游客" :visible.sync="editDialogVisible" width="45%" :before-close="handleClose">
             <el-form label-position="top" label-width="80px">
                 <el-form-item label="车牌号">
-                    <el-input v-model="editForm.bid"></el-input>
+                    <el-input v-model="editForm.bid" disabled></el-input>
                 </el-form-item>
                 <el-form-item label="司机姓名">
                     <el-input v-model="editForm.bname"></el-input>
@@ -158,7 +158,6 @@
                                 });
                             }
                             axios.get("../buser/all").then(function (res) {
-                                console.log(res)
                                 if (res.data.code == 200) {
                                     that.tableData = res.data.msg
                                 }
@@ -176,22 +175,55 @@
                     });
                 },
                 add() {
-                    axios.get("../buser/add").then(function (res) {
+                    var that = this
+                    axios.post("../buser/add", {
+                        "bid": this.subForm.bid,
+                        "bname": this.subForm.bname,
+                        "bnum": this.subForm.bnum,
+                        "bstate": this.subForm.bstate,
+                        "btel": this.subForm.btel
+                    }).then(function (res) {
                         if (res.data.code == 200) {
-                            that.tableData = res.data.msg
+                            that.$message({
+                                type: 'success',
+                                message: '添加成功!'
+                            });
+                        } else if (res.data.code == 201) {
+                            that.$message({
+                                type: 'error',
+                                message: '请先登录'
+                            });
+                        } else if (res.data.code == 400) {
+                            that.$message({
+                                type: 'error',
+                                message: '添加失败!'
+                            });
                         }
-                    }).catch(function (error) {
-                        console.log(error);
+                        axios.get("../buser/all").then(function (res) {
+                            if (res.data.code == 200) {
+                                that.tableData = res.data.msg
+                            }
+                        }).catch(function (error) {
+                            console.log(error);
+                        })
+                        that.subForm.bid = ""
+                        that.subForm.bname = ""
+                        that.subForm.btel = ""
+                        that.subForm.bnum = ""
+                        that.subForm.bstate = ""
+                    }).catch(function (err) {
+                        console.log(err)
                     })
+                    this.addDialogVisible = false
                 },
-                up() {
-                    axios.get("../buser/up").then(function (res) {
-                        if (res.data.code == 200) {
-                            that.tableData = res.data.msg
-                        }
-                    }).catch(function (error) {
-                        console.log(error);
-                    })
+                up(now) {
+                    var that = this
+                    this.editDialogVisible = true
+                    this.editForm.bid = now.buser.bid
+                    this.editForm.bname = now.buser.bname
+                    this.editForm.btel = now.buser.btel
+                    this.editForm.bnum = now.buser.bnum
+                    this.editForm.bstate = now.buser.bstate
                 }, search1() {
                     var that = this
                     axios.get("../buser/selectByid?id=" + this.search).then(function (res) {
@@ -231,6 +263,47 @@
                     this.editForm.btel = ""
                     this.editForm.bnum = ""
                     this.editForm.bstate = ""
+                }, update() {
+                    var that = this
+                    axios.post("../buser/up", {
+                        "bid": this.editForm.bid,
+                        "bname": this.editForm.bname,
+                        "bnum": this.editForm.bnum,
+                        "bstate": this.editForm.bstate,
+                        "btel": this.editForm.btel
+                    }).then(function (res) {
+                        if (res.data.code == 200) {
+                            that.$message({
+                                type: 'success',
+                                message: '修改成功!'
+                            });
+                        } else if (res.data.code == 201) {
+                            that.$message({
+                                type: 'error',
+                                message: '请先登录'
+                            });
+                        } else if (res.data.code == 400) {
+                            that.$message({
+                                type: 'error',
+                                message: '修改失败!'
+                            });
+                        }
+                        axios.get("../buser/all").then(function (res) {
+                            if (res.data.code == 200) {
+                                that.tableData = res.data.msg
+                            }
+                        }).catch(function (error) {
+                            console.log(error);
+                        })
+                        that.editForm.bid = ""
+                        that.editForm.bname = ""
+                        that.editForm.btel = ""
+                        that.editForm.bnum = ""
+                        that.editForm.bstate = ""
+                    }).catch(function (err) {
+                        console.log(err)
+                    })
+                    this.editDialogVisible = false
                 }
             }
         })

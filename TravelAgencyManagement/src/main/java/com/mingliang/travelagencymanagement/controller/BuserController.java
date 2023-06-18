@@ -45,7 +45,6 @@ public class BuserController {
     public JSON addBuser(@RequestBody Buser buser) {
         JSONObject obj = JSONUtil.createObj();
         if (StpUtil.isLogin()) {
-
             boolean save = buserService.save(buser);
             if (save) {
                 obj.set("code", "200");
