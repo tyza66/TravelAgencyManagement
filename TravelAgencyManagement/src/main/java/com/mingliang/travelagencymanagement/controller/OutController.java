@@ -22,6 +22,7 @@ import java.util.List;
 public class OutController {
     @Autowired
     OutServiceImpl outService;
+
     @ApiOperation("计划列表")
     @PostMapping("/all")
     public JSON allOut() {
@@ -41,48 +42,50 @@ public class OutController {
         }
         return obj;
     }
+
     @ApiOperation("添加计划")
     @PostMapping("/add")
-    public JSON addOut(@RequestBody Out1 out){
+    public JSON addOut(@RequestBody Out1 out) {
         JSONObject obj = JSONUtil.createObj();
         Boolean guide = outService.guideTimeConflict(out.getGid(), out.getOut1(), out.getBack());
         Boolean bus = outService.buserTimeConflict(out.getBid(), out.getOut1(), out.getBack());
-        if (StpUtil.isLogin()){
+        if (StpUtil.isLogin()) {
             boolean save = outService.save(out);
-            if (guide){
-                if(bus){
-                if (save) {
-                obj.set("code", "200");
-                obj.set("msg", out);
-                 } else {
-                obj.set("code", "400");
-                obj.set("msg", "列表为空");
-                }
-                }else {
+            if (guide) {
+                if (bus) {
+                    if (save) {
+                        obj.set("code", "200");
+                        obj.set("msg", out);
+                    } else {
+                        obj.set("code", "400");
+                        obj.set("msg", "列表为空");
+                    }
+                } else {
                     obj.set("code", "222");
                     obj.set("msg", "大巴时间冲突");
                 }
-            }else {
+            } else {
                 obj.set("code", "222");
                 obj.set("msg", "导游时间冲突");
             }
-        }else {
+        } else {
             obj.set("code", "201");
             obj.set("msg", "请先登录");
         }
         return obj;
 
     }
+
     @ApiOperation("修改计划")
     @PostMapping("/up")
-    public JSON updateOut(@RequestBody Out1 out){
+    public JSON updateOut(@RequestBody Out1 out) {
         JSONObject obj = JSONUtil.createObj();
         Boolean guide = outService.guideTimeConflict(out.getGid(), out.getOut1(), out.getBack());
         Boolean bus = outService.buserTimeConflict(out.getBid(), out.getOut1(), out.getBack());
-        if (StpUtil.isLogin()){
+        if (StpUtil.isLogin()) {
             boolean save = outService.updateById(out);
-            if (guide){
-                if(bus){
+            if (guide) {
+                if (bus) {
                     if (save) {
                         obj.set("code", "200");
                         obj.set("msg", save);
@@ -90,25 +93,26 @@ public class OutController {
                         obj.set("code", "400");
                         obj.set("msg", "计划添加失败");
                     }
-                }else {
+                } else {
                     obj.set("code", "222");
                     obj.set("msg", "大巴时间冲突");
                 }
-            }else {
+            } else {
                 obj.set("code", "222");
                 obj.set("msg", "导游时间冲突");
             }
-        }else {
+        } else {
             obj.set("code", "201");
             obj.set("msg", "请先登录");
         }
         return obj;
     }
+
     @ApiOperation("删除计划")
     @PostMapping("/del")
-    public JSON deleteOut(@RequestBody Out1 out){
+    public JSON deleteOut(@RequestBody Out1 out) {
         JSONObject obj = JSONUtil.createObj();
-        if (StpUtil.isLogin()){
+        if (StpUtil.isLogin()) {
             boolean save = outService.removeById(out);
             if (save) {
                 obj.set("code", "200");
@@ -117,7 +121,7 @@ public class OutController {
                 obj.set("code", "400");
                 obj.set("msg", "列表为空");
             }
-        }else {
+        } else {
             obj.set("code", "201");
             obj.set("msg", "请先登录");
         }

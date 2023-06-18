@@ -17,15 +17,293 @@
             <h3 style="text-align: center;">导游管理</h3>
         </el-row>
         <el-row>
-            
+            <el-input v-model="search" placeholder="大巴号" style="display: inline-block;width: 150px;"></el-input>
+            <el-button @click="search1()">搜索</el-button>
+            <el-button style="margin-left: 1%;" @click="addDialogVisible=true">添加导游</el-button>
         </el-row>
+        <el-row style="margin-top: 5px;">
+            <el-table :data="tableData" border style="width: 100%">
+                <el-table-column fixed prop="gid" label="导游ID" width="120">
+                </el-table-column>
+                <el-table-column prop="gname" label="司机姓名" width="120">
+                </el-table-column>
+                <el-table-column prop="buser.btel" label="司机电话" width="150">
+                </el-table-column>
+                <el-table-column prop="buser.bnum" label="最多载员" width="150">
+                </el-table-column>
+                <el-table-column prop="buser.bstate" label="司机状态" width="150">
+                </el-table-column>
+                <el-table-column fixed="right" label="操作" width="150">
+                    <template slot-scope="scope">
+                        <el-button size="small" @click="up(scope.row)">编辑</el-button>
+                        <el-button size="small" @click="del(scope.row)">删除</el-button>
+                    </template>
+                </el-table-column>
+            </el-table>
+        </el-row>
+        <el-dialog title="添加大巴" :visible.sync="addDialogVisible" width="45%" :before-close="handleClose">
+            <el-form label-position="top" label-width="80px">
+                <el-form-item label="车牌号">
+                    <el-input v-model="subForm.bid"></el-input>
+                </el-form-item>
+                <el-form-item label="司机姓名">
+                    <el-input v-model="subForm.bname"></el-input>
+                </el-form-item>
+                <el-form-item label="司机电话">
+                    <el-input v-model="subForm.btel"></el-input>
+                </el-form-item>
+                <el-form-item label="载荷人数">
+                    <el-input v-model="subForm.bnum"></el-input>
+                </el-form-item>
+                <el-form-item label="大巴状态">
+                    <el-input v-model="subForm.bstate"></el-input>
+                </el-form-item>
+            </el-form>
+            <span slot="footer" class="dialog-footer">
+                <el-button @click="closeAdd()">取 消</el-button>
+                <el-button type="primary" @click="add()">确 定</el-button>
+            </span>
+        </el-dialog>
+
+        <el-dialog title="编辑大巴" :visible.sync="editDialogVisible" width="45%" :before-close="handleClose">
+            <el-form label-position="top" label-width="80px">
+                <el-form-item label="车牌号">
+                    <el-input v-model="editForm.bid" disabled></el-input>
+                </el-form-item>
+                <el-form-item label="司机姓名">
+                    <el-input v-model="editForm.bname"></el-input>
+                </el-form-item>
+                <el-form-item label="司机电话">
+                    <el-input v-model="editForm.btel"></el-input>
+                </el-form-item>
+                <el-form-item label="载荷人数">
+                    <el-input v-model="editForm.bnum"></el-input>
+                </el-form-item>
+                <el-form-item label="大巴状态">
+                    <el-input v-model="editForm.bstate"></el-input>
+                </el-form-item>
+            </el-form>
+            <span slot="footer" class="dialog-footer">
+                <el-button @click="closeEdit()">取 消</el-button>
+                <el-button type="primary" @click="update()">确 定</el-button>
+            </span>
+        </el-dialog>
     </div>
     <script>
         new Vue({
             el: '#app',
             data: function () {
                 return {
+                    tableData: [{
+                        buser: {
+                            bid: '辽B-123yui',
+                            bname: '张三',
+                            btel: '13467898765',
+                            bnum: '47',
+                            bstate: '出行中'
+                        },
+                        schedule: '2023/6/16',
+                        info: "从大连到山东"
+                    }],
+                    search: "",
+                    subForm: {
+                        bid: "",
+                        bname: "",
+                        btel: "",
+                        bnum: "",
+                        bstate: ""
+                    }, editForm: {
+                        bid: "",
+                        bname: "",
+                        btel: "",
+                        bnum: "",
+                        bstate: ""
+                    },
+                    addDialogVisible: false,
+                    editDialogVisible: false,
+                }
+            }, created() {
+                var that = this
+                axios.get("../user/check").then(function (response) {
+                    if (response.data.code != 200) {
+                        window.location.href = "./login.html";
+                    }
+                }).catch(function (error) {
+                    console.log(error);
+                })
 
+                axios.get("../buser/all").then(function (res) {
+                    if (res.data.code == 200) {
+                        that.tableData = res.data.msg
+                    }
+                }).catch(function (error) {
+                    console.log(error);
+                })
+
+            }, methods: {
+                del(row) {
+                    var that = this
+                    this.$confirm('此操作将永久删除本条记录?', '提示', {
+                        confirmButtonText: '确定',
+                        cancelButtonText: '取消',
+                        type: 'warning'
+                    }).then(() => {
+                        axios.post("../buser/del", {
+                            "bid": row.buser.bid
+                        }).then(function (res) {
+                            if (res.data.code == 200) {
+                                that.$message({
+                                    type: 'success',
+                                    message: '删除成功!'
+                                });
+                            }
+                            axios.get("../buser/all").then(function (res) {
+                                if (res.data.code == 200) {
+                                    that.tableData = res.data.msg
+                                }
+                            }).catch(function (error) {
+                                console.log(error);
+                            })
+                        }).catch(function (error) {
+                            console.log(error);
+                        })
+                    }).catch(() => {
+                        this.$message({
+                            type: 'info',
+                            message: '已取消删除'
+                        });
+                    });
+                },
+                add() {
+                    var that = this
+                    axios.post("../buser/add", {
+                        "bid": this.subForm.bid,
+                        "bname": this.subForm.bname,
+                        "bnum": this.subForm.bnum,
+                        "bstate": this.subForm.bstate,
+                        "btel": this.subForm.btel
+                    }).then(function (res) {
+                        if (res.data.code == 200) {
+                            that.$message({
+                                type: 'success',
+                                message: '添加成功!'
+                            });
+                        } else if (res.data.code == 201) {
+                            that.$message({
+                                type: 'error',
+                                message: '请先登录'
+                            });
+                        } else if (res.data.code == 400) {
+                            that.$message({
+                                type: 'error',
+                                message: '添加失败!'
+                            });
+                        }
+                        axios.get("../buser/all").then(function (res) {
+                            if (res.data.code == 200) {
+                                that.tableData = res.data.msg
+                            }
+                        }).catch(function (error) {
+                            console.log(error);
+                        })
+                        that.subForm.bid = ""
+                        that.subForm.bname = ""
+                        that.subForm.btel = ""
+                        that.subForm.bnum = ""
+                        that.subForm.bstate = ""
+                    }).catch(function (err) {
+                        console.log(err)
+                    })
+                    this.addDialogVisible = false
+                },
+                up(now) {
+                    var that = this
+                    this.editDialogVisible = true
+                    this.editForm.bid = now.buser.bid
+                    this.editForm.bname = now.buser.bname
+                    this.editForm.btel = now.buser.btel
+                    this.editForm.bnum = now.buser.bnum
+                    this.editForm.bstate = now.buser.bstate
+                }, search1() {
+                    var that = this
+                    axios.get("../buser/selectByid?id=" + this.search).then(function (res) {
+                        if (res.data.code == 200) {
+                            that.tableData = res.data.msg
+                        }
+                    }).catch(function (err) {
+                        console.log(err)
+                    })
+                }, handleClose(done) {
+                    this.$confirm('确认关闭？')
+                        .then(_ => {
+                            this.subForm.bid = ""
+                            this.subForm.bname = ""
+                            this.subForm.btel = ""
+                            this.subForm.bnum = ""
+                            this.subForm.bstate = ""
+                            this.editForm.bid = ""
+                            this.editForm.bname = ""
+                            this.editForm.btel = ""
+                            this.editForm.bnum = ""
+                            this.editForm.bstate = ""
+                            done();
+                        })
+                        .catch(_ => { });
+                }, closeAdd() {
+                    this.addDialogVisible = false
+                    this.subForm.bid = ""
+                    this.subForm.bname = ""
+                    this.subForm.btel = ""
+                    this.subForm.bnum = ""
+                    this.subForm.bstate = ""
+                }, closeEdit() {
+                    this.editDialogVisible = false
+                    this.editForm.bid = ""
+                    this.editForm.bname = ""
+                    this.editForm.btel = ""
+                    this.editForm.bnum = ""
+                    this.editForm.bstate = ""
+                }, update() {
+                    var that = this
+                    axios.post("../buser/up", {
+                        "bid": this.editForm.bid,
+                        "bname": this.editForm.bname,
+                        "bnum": this.editForm.bnum,
+                        "bstate": this.editForm.bstate,
+                        "btel": this.editForm.btel
+                    }).then(function (res) {
+                        if (res.data.code == 200) {
+                            that.$message({
+                                type: 'success',
+                                message: '修改成功!'
+                            });
+                        } else if (res.data.code == 201) {
+                            that.$message({
+                                type: 'error',
+                                message: '请先登录'
+                            });
+                        } else if (res.data.code == 400) {
+                            that.$message({
+                                type: 'error',
+                                message: '修改失败!'
+                            });
+                        }
+                        axios.get("../buser/all").then(function (res) {
+                            if (res.data.code == 200) {
+                                that.tableData = res.data.msg
+                            }
+                        }).catch(function (error) {
+                            console.log(error);
+                        })
+                        that.editForm.bid = ""
+                        that.editForm.bname = ""
+                        that.editForm.btel = ""
+                        that.editForm.bnum = ""
+                        that.editForm.bstate = ""
+                    }).catch(function (err) {
+                        console.log(err)
+                    })
+                    this.editDialogVisible = false
                 }
             }
         })
