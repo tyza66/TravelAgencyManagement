@@ -11,8 +11,8 @@ import lombok.NoArgsConstructor;
 public class Buser {
     @TableId
     String bid;
-    String Bname;
-    String Btel;
-    Integer Bnum;
-    String Bstate;
+    String bname;
+    String btel;
+    Integer bnum;
+    String bstate;
 }

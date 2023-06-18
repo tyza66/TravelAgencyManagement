@@ -11,6 +11,6 @@ import java.sql.Timestamp;
 @AllArgsConstructor
 public class BusWithInfo {
     Buser buser;
-    Timestamp recentTime;
-    String massage;
+    Timestamp schedule;
+    String info;
 }
