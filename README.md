@@ -3,6 +3,21 @@
 <details><summary>后端接口思维导图</summary>
 <img src="./文档/思维导图/旅行社管理系统.png"/>
 </details>
+<details><summary>登陆界面</summary>
+<img src="./文档/图片/登陆界面.png"/>
+</details>
+<details><summary>注册界面</summary>
+<img src="./文档/图片/注册界面.png"/>
+</details>
+<details><summary>游客管理</summary>
+<img src="./文档/图片/游客管理.png"/>
+</details>
+<details><summary>添加游客</summary>
+<img src="./文档/图片/游客管理.png"/>
+</details>
+<details><summary>编辑游客</summary>
+<img src="./文档/图片/游客管理.png"/>
+</details>
 
 ##### 说明
 - 课堂小练习

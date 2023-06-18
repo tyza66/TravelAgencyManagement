@@ -106,5 +106,20 @@ public class BuserController {
         return obj;
     }
 
+    @ApiOperation("根据id条件查询司机")
+    @GetMapping("/selectByid")
+    public JSON selectBuserById(@RequestParam("id") String id) {
+        JSONObject obj = JSONUtil.createObj();
+        if (StpUtil.isLogin()) {
+            List<BusWithInfo> busers = buserService.selectBuserById(id);
+            obj.set("code", "200");
+            obj.set("msg", busers);
+        } else {
+            obj.set("code", "201");
+            obj.set("msg", "请先登录");
+        }
+        return obj;
+    }
+
 
 }

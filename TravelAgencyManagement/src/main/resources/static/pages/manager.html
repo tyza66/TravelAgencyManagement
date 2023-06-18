@@ -43,6 +43,10 @@
                         <i class="el-icon-menu"></i>
                         <span slot="title">出游管理</span>
                     </el-menu-item>
+                    <el-menu-item index="6" @click="change(6)">
+                        <i class="el-icon-setting"></i>
+                        <span slot="title">推出登录</span>
+                    </el-menu-item>
                 </el-menu>
             </el-col>
             <el-col :span="20" class="row">
@@ -84,6 +88,15 @@
                             break;
                         case 5:
                             this.now = "./outManager.html";
+                            break;
+                        case 6:
+                            axios.get("../user/logoff").then(function (response) {
+                                if (response.data.code == 200) {
+                                    window.location.href = "./login.html";
+                                }
+                            }).catch(function (error) {
+                                console.log(error);
+                            })
                             break;
                     }
                 }
