@@ -8,6 +8,7 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.mingliang.travelagencymanagement.entity.Cus;
 import com.mingliang.travelagencymanagement.entity.CusWithInfo;
 import com.mingliang.travelagencymanagement.service.impl.CusServiceImpl;
+import com.mingliang.travelagencymanagement.service.impl.MessageServiceImpl;
 import com.mingliang.travelagencymanagement.service.impl.OutServiceImpl;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -32,6 +33,8 @@ public class CusController {
     private CusServiceImpl cusService;
     @Autowired
     private OutServiceImpl outService;
+    @Autowired
+    private MessageServiceImpl messageService;
 
     @ApiOperation("获取所有游客信息")
     @GetMapping("/all")
@@ -57,7 +60,7 @@ public class CusController {
             List<Cus> records = list.getRecords();
             List<CusWithInfo> infoList= new ArrayList<>();
             for(Cus one:records){
-                infoList.add(new CusWithInfo(one,outService.getById(one.getOid()).getOut1(),"giao"));
+                infoList.add(new CusWithInfo(one,outService.getById(one.getOid()).getOut1()==null?new Timestamp(0) :outService.getById(one.getOid()).getOut1(), messageService.SecletInfoByOid(one.getOid())==null?"":messageService.SecletInfoByOid(one.getOid())));
             }
             end.set("code", 200);
             end.set("data", list);
@@ -97,7 +100,7 @@ public class CusController {
             List<Cus>  list= cusService.searchCusByName(name);
             List<CusWithInfo> infoList= new ArrayList<>();
             for(Cus one:list){
-                infoList.add(new CusWithInfo(one,outService.getById(one.getOid()).getOut1()==null?new Timestamp(0) :outService.getById(one.getOid()).getOut1(),"giao"));
+                infoList.add(new CusWithInfo(one,outService.getById(one.getOid()).getOut1()==null?new Timestamp(0) :outService.getById(one.getOid()).getOut1(), messageService.SecletInfoByOid(one.getOid())==null?"":messageService.SecletInfoByOid(one.getOid())));
             }
             end.set("code", 200);
             end.set("data", infoList);
