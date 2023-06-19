@@ -266,12 +266,12 @@
                         "back": this.editForm.back
                     }).then(function (res) {
                         console.log(res)
-                     
-                            that.$message({
-                                type: 'success',
-                                message: '修改成功!'
-                            });
-                        
+
+                        that.$message({
+                            type: 'success',
+                            message: '修改成功!'
+                        });
+
                         axios.get("../out/all").then(function (res) {
                             if (res.data.code == 200) {
                                 that.tableData = res.data.msg
