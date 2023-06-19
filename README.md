@@ -13,13 +13,19 @@
 <img src="./文档/图片/游客管理.png"/>
 </details>
 <details><summary>添加游客</summary>
-<img src="./文档/图片/游客管理.png"/>
+<img src="./文档/图片/添加游客.png"/>
 </details>
 <details><summary>编辑游客</summary>
-<img src="./文档/图片/游客管理.png"/>
+<img src="./文档/图片/编辑游客.png"/>
 </details>
 <details><summary>大巴管理</summary>
 <img src="./文档/图片/大巴管理.png"/>
+</details>
+<details><summary>导游管理</summary>
+<img src="./文档/图片/导游管理.png"/>
+</details>
+<details><summary>出游管理</summary>
+<img src="./文档/图片/出游管理.png"/>
 </details>
 
 ##### 说明
