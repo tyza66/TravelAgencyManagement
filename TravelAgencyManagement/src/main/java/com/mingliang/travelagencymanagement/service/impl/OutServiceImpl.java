@@ -51,4 +51,12 @@ public class OutServiceImpl extends ServiceImpl<OutMapper, Out1> implements OutS
 
         }return true;
     }
+
+    @Override
+    public List<Out1> selectById(Integer id) {
+        QueryWrapper<Out1> outQueryWrapper = new QueryWrapper<>();
+        outQueryWrapper.eq("oid",id);
+        List<Out1> outs = baseMapper.selectList(outQueryWrapper);
+        return outs;
+    }
 }

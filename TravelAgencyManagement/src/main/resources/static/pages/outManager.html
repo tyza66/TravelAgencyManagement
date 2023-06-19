@@ -17,23 +17,23 @@
             <h3 style="text-align: center;">出游管理</h3>
         </el-row>
         <el-row>
-            <el-input v-model="search" placeholder="导游姓名" style="display: inline-block;width: 150px;"></el-input>
+            <el-input v-model="search" placeholder="出游ID" style="display: inline-block;width: 150px;"></el-input>
             <el-button @click="search1()">搜索</el-button>
-            <el-button style="margin-left: 1%;" @click="addDialogVisible=true">添加导游</el-button>
+            <el-button style="margin-left: 1%;" @click="addDialogVisible=true">添加出行计划</el-button>
         </el-row>
         <el-row style="margin-top: 5px;">
             <el-table :data="tableData" border style="width: 100%">
-                <el-table-column fixed prop="gid" label="导游ID" width="120">
+                <el-table-column fixed prop="oid" label="出游ID" width="120">
                 </el-table-column>
-                <el-table-column prop="gname" label="导游姓名" width="120">
+                <el-table-column prop="bid" label="公交车ID" width="120">
                 </el-table-column>
-                <el-table-column prop="gstate" label="导游状态" width="150">
+                <el-table-column prop="gid" label="导游ID" width="150">
                 </el-table-column>
-                <el-table-column prop="gtel" label="导游电话" width="150">
+                <el-table-column prop="out1" label="出行时间" width="300">
                 </el-table-column>
-                <el-table-column prop="gotime" label="出发时间" width="150">
+                <el-table-column prop="back" label="返回时间" width="300">
                 </el-table-column>
-                <el-table-column prop="willdays" label="出去时长" width="150">
+                <el-table-column prop="massage" label="信息" width="150">
                 </el-table-column>
                 <el-table-column fixed="right" label="操作" width="150">
                     <template slot-scope="scope">
@@ -43,22 +43,19 @@
                 </el-table-column>
             </el-table>
         </el-row>
-        <el-dialog title="添加导游" :visible.sync="addDialogVisible" width="45%" :before-close="handleClose">
+        <el-dialog title="添加出行计划" :visible.sync="addDialogVisible" width="45%" :before-close="handleClose">
             <el-form label-position="top" label-width="80px">
-                <el-form-item label="导游姓名">
-                    <el-input v-model="subForm.gname"></el-input>
+                <el-form-item label="公交车ID">
+                    <el-input v-model="subForm.bid"></el-input>
                 </el-form-item>
-                <el-form-item label="导游状态">
-                    <el-input v-model="subForm.gstate"></el-input>
+                <el-form-item label="导游ID">
+                    <el-input v-model="subForm.gid"></el-input>
                 </el-form-item>
-                <el-form-item label="导游电话">
-                    <el-input v-model="subForm.gtel"></el-input>
+                <el-form-item label="出行时间">
+                    <el-input type="datetime-local" v-model="subForm.out1"></el-input>
                 </el-form-item>
-                <el-form-item label="出发时间">
-                    <el-input type="datetime-local" v-model="subForm.gotime"></el-input>
-                </el-form-item>
-                <el-form-item label="出去时长">
-                    <el-input v-model="subForm.willdays"></el-input>
+                <el-form-item label="返回时间">
+                    <el-input type="datetime-local" v-model="subForm.back"></el-input>
                 </el-form-item>
             </el-form>
             <span slot="footer" class="dialog-footer">
@@ -69,20 +66,17 @@
 
         <el-dialog title="编辑大巴" :visible.sync="editDialogVisible" width="45%" :before-close="handleClose">
             <el-form label-position="top" label-width="80px">
-                <el-form-item label="导游姓名">
-                    <el-input v-model="editForm.gname"></el-input>
+                <el-form-item label="公交车ID">
+                    <el-input v-model="editForm.bid"></el-input>
                 </el-form-item>
-                <el-form-item label="导游状态">
-                    <el-input v-model="editForm.gstate"></el-input>
+                <el-form-item label="导游ID">
+                    <el-input v-model="editForm.gid"></el-input>
                 </el-form-item>
-                <el-form-item label="导游电话">
-                    <el-input v-model="editForm.gtel"></el-input>
+                <el-form-item label="出行时间">
+                    <el-input type="datetime-local" v-model="editForm.out1"></el-input>
                 </el-form-item>
-                <el-form-item label="出发时间">
-                    <el-input type="datetime-local" v-model="editForm.gotime"></el-input>
-                </el-form-item>
-                <el-form-item label="出去时长">
-                    <el-input v-model="editForm.willdays"></el-input>
+                <el-form-item label="返回时间">
+                    <el-input type="datetime-local" v-model="editForm.back"></el-input>
                 </el-form-item>
             </el-form>
             <span slot="footer" class="dialog-footer">
@@ -97,27 +91,25 @@
             data: function () {
                 return {
                     tableData: [{
+                        oid: "",
+                        bid: "",
                         gid: "",
-                        gname: "",
-                        gstate: "",
-                        gtel: "",
-                        gotime: "",
-                        willdays: ""
+                        out1: "",
+                        back: "",
+                        massage: ""
                     }],
                     search: "",
                     subForm: {
-                        gname: "",
-                        gstate: "",
-                        gtel: "",
-                        gotime: "",
-                        willdays: ""
-                    }, editForm: {
+                        bid: "",
                         gid: "",
-                        gname: "",
-                        gstate: "",
-                        gtel: "",
-                        gotime: "",
-                        willdays: ""
+                        out1: "",
+                        back: ""
+                    }, editForm: {
+                        oid: "",
+                        bid: "",
+                        gid: "",
+                        out1: "",
+                        back: ""
                     },
                     addDialogVisible: false,
                     editDialogVisible: false
@@ -132,7 +124,7 @@
                     console.log(error);
                 })
 
-                axios.get("../guide/all").then(function (res) {
+                axios.get("../out/all").then(function (res) {
                     console.log(res)
                     if (res.data.code == 200) {
                         that.tableData = res.data.msg
@@ -149,8 +141,8 @@
                         cancelButtonText: '取消',
                         type: 'warning'
                     }).then(() => {
-                        axios.post("../guide/del", {
-                            "gid": row.gid
+                        axios.post("../out/del", {
+                            "oid": row.oid
                         }).then(function (res) {
                             if (res.data.code == 200) {
                                 that.$message({
@@ -158,7 +150,7 @@
                                     message: '删除成功!'
                                 });
                             }
-                            axios.get("../guide/all").then(function (res) {
+                            axios.get("../out/all").then(function (res) {
                                 if (res.data.code == 200) {
                                     that.tableData = res.data.msg
                                 }
@@ -178,12 +170,11 @@
                 add() {
                     console.log(this.subForm.gotime)
                     var that = this
-                    axios.post("../guide/add", {
-                        "gname": this.subForm.gname,
-                        "gotime": this.subForm.gotime,
-                        "gstate": this.subForm.gstate,
-                        "gtel": this.subForm.gtel,
-                        "willdays": this.subForm.willdays
+                    axios.post("../out/add", {
+                        "back": this.subForm.back,
+                        "bid": this.subForm.bid,
+                        "gid": this.subForm.gid,
+                        "out1": this.subForm.out1
                     }).then(function (res) {
                         if (res.data.code == 200) {
                             that.$message({
@@ -201,19 +192,17 @@
                                 message: '添加失败!'
                             });
                         }
-                        axios.get("../guide/all").then(function (res) {
+                        axios.get("../out/all").then(function (res) {
                             if (res.data.code == 200) {
                                 that.tableData = res.data.msg
                             }
                         }).catch(function (error) {
                             console.log(error);
                         })
-                        that.subForm.gname = ""
-                        that.subForm.title = ""
-                        that.subForm.gstate = ""
-                        that.subForm.gtel = ""
-                        that.subForm.gotime = ""
-                        that.subForm.willdays = ""
+                        that.subForm.bid = ""
+                        that.subForm.gid = ""
+                        that.subForm.out1 = ""
+                        that.subForm.back = ""
                     }).catch(function (err) {
                         console.log(err)
                     })
@@ -222,15 +211,14 @@
                 up(now) {
                     var that = this
                     this.editDialogVisible = true
+                    this.editForm.oid = now.oid
+                    this.editForm.bid = now.bid
                     this.editForm.gid = now.gid
-                    this.editForm.gname = now.gname
-                    this.editForm.gstate = now.gstate
-                    this.editForm.gtel = now.gtel
-                    this.editForm.gotime = now.gotime
-                    this.editForm.willdays = now.willdays
+                    this.editForm.out1 = now.out1
+                    this.editForm.back = now.back
                 }, search1() {
                     var that = this
-                    axios.get("../guide/getByName?name=" + this.search).then(function (res) {
+                    axios.get("../out/selectById?id=" + this.search).then(function (res) {
                         if (res.data.code == 200) {
                             that.tableData = res.data.msg
                         }
@@ -241,74 +229,61 @@
                     var that = this
                     this.$confirm('确认关闭？')
                         .then(_ => {
-                            that.subForm.gname = ""
-                            that.subForm.gstate = ""
-                            that.subForm.gtel = ""
-                            that.subForm.gotime = ""
-                            that.subForm.willdays = ""
+                            that.subForm.bid = ""
+                            that.subForm.gid = ""
+                            that.subForm.out1 = ""
+                            that.subForm.back = ""
+                            that.editForm.oid = ""
+                            that.editForm.bid = ""
                             that.editForm.gid = ""
-                            that.editForm.gname = ""
-                            that.editForm.gstate = ""
-                            that.editForm.gtel = ""
-                            that.editForm.gotime = ""
-                            that.editForm.willdays = ""
+                            that.editForm.out1 = ""
+                            that.editForm.back = ""
                             done();
                         })
                         .catch(_ => { });
                 }, closeAdd() {
+                    var that = this
                     this.addDialogVisible = false
-                    that.subForm.gname = ""
-                    that.subForm.gstate = ""
-                    that.subForm.gtel = ""
-                    that.subForm.gotime = ""
-                    that.subForm.willdays = ""
+                    that.subForm.bid = ""
+                    that.subForm.gid = ""
+                    that.subForm.out1 = ""
+                    that.subForm.back = ""
                 }, closeEdit() {
+                    var that = this
                     this.editDialogVisible = false
+                    that.editForm.oid = ""
+                    that.editForm.bid = ""
                     that.editForm.gid = ""
-                    that.editForm.gname = ""
-                    that.editForm.gstate = ""
-                    that.editForm.gtel = ""
-                    that.editForm.gotime = ""
-                    that.editForm.willdays = ""
+                    that.editForm.out1 = ""
+                    that.editForm.back = ""
                 }, update() {
                     var that = this
-                    axios.post("../guide/up", {
-                        "gid": that.editForm.gid,
-                        "gname": this.editForm.gname,
-                        "gotime": this.editForm.gotime,
-                        "gstate": this.editForm.gstate,
-                        "gtel": this.editForm.gtel,
-                        "willdays": this.editForm.willdays
+                    axios.post("../out/up", {
+                        "oid": this.editForm.oid,
+                        "bid": this.editForm.bid,
+                        "gid": this.editForm.gid,
+                        "out1": this.editForm.out1,
+                        "back": this.editForm.back
                     }).then(function (res) {
-                        if (res.data.code == 200) {
+                        console.log(res)
+                     
                             that.$message({
                                 type: 'success',
                                 message: '修改成功!'
                             });
-                        } else if (res.data.code == 201) {
-                            that.$message({
-                                type: 'error',
-                                message: '请先登录'
-                            });
-                        } else if (res.data.code == 400) {
-                            that.$message({
-                                type: 'error',
-                                message: '修改失败!'
-                            });
-                        }
-                        axios.get("../guide/all").then(function (res) {
+                        
+                        axios.get("../out/all").then(function (res) {
                             if (res.data.code == 200) {
                                 that.tableData = res.data.msg
                             }
                         }).catch(function (error) {
                             console.log(error);
                         })
+                        that.editForm.oid = ""
+                        that.editForm.bid = ""
                         that.editForm.gid = ""
-                        that.editForm.gname = ""
-                        that.editForm.gstate = ""
-                        that.editForm.gtel = ""
-                        that.editForm.gotime = ""
-                        that.editForm.willdays = ""
+                        that.editForm.out1 = ""
+                        that.editForm.back = ""
                     }).catch(function (err) {
                         console.log(err)
                     })

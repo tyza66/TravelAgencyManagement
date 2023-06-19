@@ -23,13 +23,12 @@ public class Out1WithMassage {
     Integer massage_id;
     String massage;
 
-    public Out1WithMassage(Out1 out1,Massage massage){
+    public Out1WithMassage(Out1 out1,String massage){
         this.oid = out1.getOid();
         this.bid = out1.getBid();
         this.gid = out1.getGid();
         this.out1 = out1.getOut1();
         this.back = out1.getBack();
-        this.massage_id = massage.getMassage_id();
-        this.massage = massage.getMassage();
+        this.massage = massage;
     }
 }

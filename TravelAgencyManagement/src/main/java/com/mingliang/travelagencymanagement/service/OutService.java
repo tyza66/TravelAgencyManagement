@@ -10,4 +10,6 @@ public interface OutService {
     public Boolean guideTimeConflict(int id, Timestamp outtime,Timestamp backtime);
     public Boolean buserTimeConflict(String id, Timestamp outtime,Timestamp backtime);
 
+    public List<Out1> selectById(Integer id);
+
 }

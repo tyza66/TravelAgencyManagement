@@ -5,12 +5,16 @@ import cn.hutool.json.JSON;
 import cn.hutool.json.JSONObject;
 import cn.hutool.json.JSONUtil;
 import com.mingliang.travelagencymanagement.entity.Out1;
+import com.mingliang.travelagencymanagement.entity.Out1WithMassage;
+import com.mingliang.travelagencymanagement.service.MessageService;
+import com.mingliang.travelagencymanagement.service.impl.MessageServiceImpl;
 import com.mingliang.travelagencymanagement.service.impl.OutServiceImpl;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Api(tags = "出行表管理")
@@ -19,6 +23,8 @@ import java.util.List;
 public class OutController {
     @Autowired
     OutServiceImpl outService;
+    @Autowired
+    MessageServiceImpl messageService;
 
     @ApiOperation("计划列表")
     @GetMapping("/all")
@@ -26,9 +32,13 @@ public class OutController {
         JSONObject obj = JSONUtil.createObj();
         if (StpUtil.isLogin()) {
             List<Out1> out = outService.selectAll();
+            List<Out1WithMassage> list = new ArrayList<>();
+            for(Out1 one:out){
+                list.add(new Out1WithMassage(one,messageService.SecletInfoByOid(one.getOid())==null?"无":messageService.SecletInfoByOid(one.getOid())));
+            }
             if (out.size() > 0) {
                 obj.set("code", "200");
-                obj.set("msg", out);
+                obj.set("msg", list);
             } else {
                 obj.set("code", "400");
                 obj.set("msg", "列表为空");
@@ -43,6 +53,7 @@ public class OutController {
     @ApiOperation("添加计划")
     @PostMapping("/add")
     public JSON addOut(@RequestBody Out1 out) {
+        out.setOid((int)System.currentTimeMillis());
         JSONObject obj = JSONUtil.createObj();
         Boolean guide = outService.guideTimeConflict(out.getGid(), out.getOut1(), out.getBack());
         Boolean bus = outService.buserTimeConflict(out.getBid(), out.getOut1(), out.getBack());
@@ -118,6 +129,25 @@ public class OutController {
                 obj.set("code", "400");
                 obj.set("msg", "列表为空");
             }
+        } else {
+            obj.set("code", "201");
+            obj.set("msg", "请先登录");
+        }
+        return obj;
+    }
+
+    @ApiOperation("根据id查询出游计划")
+    @GetMapping("/selectById")
+    public JSON selectById(@RequestParam("id") int id) {
+        JSONObject obj = JSONUtil.createObj();
+        if (StpUtil.isLogin()) {
+            List<Out1> list1 = outService.selectById(id);
+            List<Out1WithMassage> list = new ArrayList<>();
+            for(Out1 one:list1){
+                list.add(new Out1WithMassage(one,messageService.SecletInfoByOid(one.getOid())==null?"无":messageService.SecletInfoByOid(one.getOid())));
+            }
+            obj.set("code", "200");
+            obj.set("msg", list);
         } else {
             obj.set("code", "201");
             obj.set("msg", "请先登录");
