@@ -55,7 +55,7 @@
                     <el-input v-model="subForm.gtel"></el-input>
                 </el-form-item>
                 <el-form-item label="出发时间">
-                    <el-input v-model="subForm.gotime"></el-input>
+                    <el-input type="datetime-local" v-model="subForm.gotime"></el-input>
                 </el-form-item>
                 <el-form-item label="出去时长">
                     <el-input v-model="subForm.willdays"></el-input>
@@ -79,7 +79,7 @@
                     <el-input v-model="editForm.gtel"></el-input>
                 </el-form-item>
                 <el-form-item label="出发时间">
-                    <el-input v-model="editForm.gotime"></el-input>
+                    <el-input type="datetime-local" v-model="editForm.gotime"></el-input>
                 </el-form-item>
                 <el-form-item label="出去时长">
                     <el-input v-model="editForm.willdays"></el-input>
@@ -149,8 +149,8 @@
                         cancelButtonText: '取消',
                         type: 'warning'
                     }).then(() => {
-                        axios.post("../buser/del", {
-                            "bid": row.buser.bid
+                        axios.post("../guide/del", {
+                            "gid": row.gid
                         }).then(function (res) {
                             if (res.data.code == 200) {
                                 that.$message({
@@ -176,8 +176,9 @@
                     });
                 },
                 add() {
+                    console.log(this.subForm.gotime)
                     var that = this
-                    axios.post("../buser/add", {
+                    axios.post("../guide/add", {
                         "gname": this.subForm.gname,
                         "gotime": this.subForm.gotime,
                         "gstate": this.subForm.gstate,
@@ -207,11 +208,12 @@
                         }).catch(function (error) {
                             console.log(error);
                         })
-                        that.subForm.bid = ""
-                        that.subForm.bname = ""
-                        that.subForm.btel = ""
-                        that.subForm.bnum = ""
-                        that.subForm.bstate = ""
+                        that.subForm.gname = ""
+                        that.subForm.title = ""
+                        that.subForm.gstate = ""
+                        that.subForm.gtel = ""
+                        that.subForm.gotime = ""
+                        that.subForm.willdays = ""
                     }).catch(function (err) {
                         console.log(err)
                     })
@@ -220,14 +222,15 @@
                 up(now) {
                     var that = this
                     this.editDialogVisible = true
-                    this.editForm.bid = now.buser.bid
-                    this.editForm.bname = now.buser.bname
-                    this.editForm.btel = now.buser.btel
-                    this.editForm.bnum = now.buser.bnum
-                    this.editForm.bstate = now.buser.bstate
+                    this.editForm.gid = now.gid
+                    this.editForm.gname = now.gname
+                    this.editForm.gstate = now.gstate
+                    this.editForm.gtel = now.gtel
+                    this.editForm.gotime = now.gotime
+                    this.editForm.willdays = now.willdays
                 }, search1() {
                     var that = this
-                    axios.get("../buser/selectByid?id=" + this.search).then(function (res) {
+                    axios.get("../guide/getByName?name=" + this.search).then(function (res) {
                         if (res.data.code == 200) {
                             that.tableData = res.data.msg
                         }
@@ -235,43 +238,47 @@
                         console.log(err)
                     })
                 }, handleClose(done) {
+                    var that = this
                     this.$confirm('确认关闭？')
                         .then(_ => {
-                            this.subForm.bid = ""
-                            this.subForm.bname = ""
-                            this.subForm.btel = ""
-                            this.subForm.bnum = ""
-                            this.subForm.bstate = ""
-                            this.editForm.bid = ""
-                            this.editForm.bname = ""
-                            this.editForm.btel = ""
-                            this.editForm.bnum = ""
-                            this.editForm.bstate = ""
+                            that.subForm.gname = ""
+                            that.subForm.gstate = ""
+                            that.subForm.gtel = ""
+                            that.subForm.gotime = ""
+                            that.subForm.willdays = ""
+                            that.editForm.gid = ""
+                            that.editForm.gname = ""
+                            that.editForm.gstate = ""
+                            that.editForm.gtel = ""
+                            that.editForm.gotime = ""
+                            that.editForm.willdays = ""
                             done();
                         })
                         .catch(_ => { });
                 }, closeAdd() {
                     this.addDialogVisible = false
-                    this.subForm.bid = ""
-                    this.subForm.bname = ""
-                    this.subForm.btel = ""
-                    this.subForm.bnum = ""
-                    this.subForm.bstate = ""
+                    that.subForm.gname = ""
+                    that.subForm.gstate = ""
+                    that.subForm.gtel = ""
+                    that.subForm.gotime = ""
+                    that.subForm.willdays = ""
                 }, closeEdit() {
                     this.editDialogVisible = false
-                    this.editForm.bid = ""
-                    this.editForm.bname = ""
-                    this.editForm.btel = ""
-                    this.editForm.bnum = ""
-                    this.editForm.bstate = ""
+                    that.editForm.gid = ""
+                    that.editForm.gname = ""
+                    that.editForm.gstate = ""
+                    that.editForm.gtel = ""
+                    that.editForm.gotime = ""
+                    that.editForm.willdays = ""
                 }, update() {
                     var that = this
-                    axios.post("../buser/up", {
-                        "bid": this.editForm.bid,
-                        "bname": this.editForm.bname,
-                        "bnum": this.editForm.bnum,
-                        "bstate": this.editForm.bstate,
-                        "btel": this.editForm.btel
+                    axios.post("../guide/up", {
+                        "gid": that.editForm.gid,
+                        "gname": this.editForm.gname,
+                        "gotime": this.editForm.gotime,
+                        "gstate": this.editForm.gstate,
+                        "gtel": this.editForm.gtel,
+                        "willdays": this.editForm.willdays
                     }).then(function (res) {
                         if (res.data.code == 200) {
                             that.$message({
@@ -296,11 +303,12 @@
                         }).catch(function (error) {
                             console.log(error);
                         })
-                        that.editForm.bid = ""
-                        that.editForm.bname = ""
-                        that.editForm.btel = ""
-                        that.editForm.bnum = ""
-                        that.editForm.bstate = ""
+                        that.editForm.gid = ""
+                        that.editForm.gname = ""
+                        that.editForm.gstate = ""
+                        that.editForm.gtel = ""
+                        that.editForm.gotime = ""
+                        that.editForm.willdays = ""
                     }).catch(function (err) {
                         console.log(err)
                     })

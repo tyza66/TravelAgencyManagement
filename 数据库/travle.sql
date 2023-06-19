@@ -11,7 +11,7 @@
  Target Server Version : 80033
  File Encoding         : 65001
 
- Date: 16/06/2023 13:21:08
+ Date: 19/06/2023 08:15:04
 */
 
 SET NAMES utf8mb4;
@@ -22,26 +22,28 @@ SET FOREIGN_KEY_CHECKS = 0;
 -- ----------------------------
 DROP TABLE IF EXISTS `buser`;
 CREATE TABLE `buser`  (
-  `bid` int NOT NULL,
+  `bid` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `bname` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `btel` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `bnum` int NOT NULL,
   `bstate` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   PRIMARY KEY (`bid`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of buser
 -- ----------------------------
-INSERT INTO `buser` VALUES (1, '张三', '123', 23, '1');
-INSERT INTO `buser` VALUES (2, '李四', '234', 2, '1');
+INSERT INTO `buser` VALUES ('1', '2', '3', 1, '1');
+INSERT INTO `buser` VALUES ('2', '23qwewq', '2', 2, '2');
+INSERT INTO `buser` VALUES ('3', '3', '3', 3, '3');
+INSERT INTO `buser` VALUES ('4', '4', '4', 4, '4');
 
 -- ----------------------------
 -- Table structure for cus
 -- ----------------------------
 DROP TABLE IF EXISTS `cus`;
 CREATE TABLE `cus`  (
-  `cid` int NOT NULL,
+  `cid` int NOT NULL AUTO_INCREMENT,
   `cname` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `bid` int NULL DEFAULT NULL,
   `gid` int NULL DEFAULT NULL,
@@ -49,40 +51,50 @@ CREATE TABLE `cus`  (
   PRIMARY KEY (`cid`) USING BTREE,
   INDEX `oid`(`oid`) USING BTREE,
   CONSTRAINT `oid` FOREIGN KEY (`oid`) REFERENCES `out1` (`oid`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_as_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of cus
 -- ----------------------------
+INSERT INTO `cus` VALUES (1, '4', 0, 4, 1);
+INSERT INTO `cus` VALUES (2, '孙老明1', 1, 1, 1);
+INSERT INTO `cus` VALUES (3, '3', 3, 3, 1);
+INSERT INTO `cus` VALUES (4, '1', 1, 1, 1);
+INSERT INTO `cus` VALUES (5, '2', 2, 2, 1);
+INSERT INTO `cus` VALUES (1766932486, '8', 6, 6, 1);
 
 -- ----------------------------
 -- Table structure for guide
 -- ----------------------------
 DROP TABLE IF EXISTS `guide`;
 CREATE TABLE `guide`  (
-  `gid` int NOT NULL,
+  `gid` int NOT NULL AUTO_INCREMENT,
   `gname` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `gstate` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `gtel` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `gotime` datetime NULL DEFAULT NULL,
   `willdays` int NULL DEFAULT NULL,
   PRIMARY KEY (`gid`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of guide
 -- ----------------------------
+INSERT INTO `guide` VALUES (1, '孙小明', '1', '1', '2023-06-18 20:44:13', 12);
+INSERT INTO `guide` VALUES (2, '2', '2', '2', '2023-06-18 21:24:52', 2);
+INSERT INTO `guide` VALUES (1536184322, '', '', '', '2023-06-19 18:48:00', NULL);
+INSERT INTO `guide` VALUES (1536184323, 'tyza66', '12', '12', '2023-06-19 18:48:00', 12);
 
 -- ----------------------------
 -- Table structure for massage
 -- ----------------------------
 DROP TABLE IF EXISTS `massage`;
 CREATE TABLE `massage`  (
-  `massage_id` int NOT NULL,
+  `massage_id` int UNSIGNED NOT NULL AUTO_INCREMENT,
   `massage` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `oid` int NULL DEFAULT NULL,
   PRIMARY KEY (`massage_id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of massage
@@ -100,7 +112,7 @@ CREATE TABLE `out1`  (
   `gid` int NULL DEFAULT NULL,
   `bid` int NULL DEFAULT NULL,
   PRIMARY KEY (`oid`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of out1
@@ -117,7 +129,7 @@ CREATE TABLE `user`  (
   `uid` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `upw` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   PRIMARY KEY (`uid`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of user

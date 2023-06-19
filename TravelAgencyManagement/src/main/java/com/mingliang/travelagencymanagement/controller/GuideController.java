@@ -39,6 +39,7 @@ public class GuideController {
     @ApiOperation("增加导游")
     @PostMapping("/add")
     public JSON addGuide(@RequestBody Guide guide) {
+        guide.setGid(0);
         JSONObject obj = JSONUtil.createObj();
         if (StpUtil.isLogin()) {
             boolean save = guideService.save(guide);
@@ -89,6 +90,21 @@ public class GuideController {
                 obj.set("code", "400");
                 obj.set("msg", "删除失败");
             }
+        } else {
+            obj.set("code", "201");
+            obj.set("msg", "请先登录");
+        }
+        return obj;
+    }
+
+    @ApiOperation("通过姓名获得导游列表")
+    @GetMapping("/getByName")
+    public JSON getByName(@RequestParam String name) {
+        JSONObject obj = JSONUtil.createObj();
+        if (StpUtil.isLogin()) {
+            List<Guide> guides = guideService.selectByName(name);
+                obj.set("code", "200");
+                obj.set("msg", guides);
         } else {
             obj.set("code", "201");
             obj.set("msg", "请先登录");

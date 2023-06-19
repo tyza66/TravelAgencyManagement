@@ -6,4 +6,6 @@ import java.util.List;
 
 public interface GuideService {
     public List<Guide> selectAll();
+
+    public List<Guide> selectByName(String name);
 }
