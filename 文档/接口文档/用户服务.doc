@@ -1,0 +1,6576 @@
+<!DOCTYPE HTML PUBLIC "-// W3C//DTD HTML 4.0 Transitional//EN">
+  <html>
+  <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+      <title>导出Swagger文档到Word</title>
+      <script src="https:// cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+      <style type="text/css">
+          .knife4j-word-body{
+              width: 90%;
+              margin: 20px auto;
+              font-family:"宋体";
+              font-size: 16px;
+          }
+          .knife4j-word-row{
+              position: relative;
+              height: auto;
+              margin-right: 0;
+              margin-left: 0;
+              zoom: 1;
+              display: block;
+              box-sizing: border-box;
+          }
+          .knife4j-word-line{
+              height: 35px;
+              line-height:35px;
+          }
+          .knife4j-word-divider{
+              height: 1px;
+              background: #e8e8e8;
+              border-bottom: 1px solid #e8e8e8;
+          }
+          .knife4j-word-title{
+              font-weight: 600;
+              font-size: 18px;
+              margin-top: 15px;
+              border-left: 3px solid #00ab6d;
+          }
+          .knife4j-word-api{
+              margin-top: 10px;
+          }
+          .knife4j-word-content{
+              margin-top: 10px;
+          }
+          .knife4j-word-code-editor{
+              border: #ccc 1px solid;
+              border-left-width: 4px;
+              background-color: #fefefe;
+              box-shadow: 0 0 4px #eee;
+              word-break: break-all;
+              word-wrap: break-word;
+              color: #444;
+          }
+          .knife4j-word-code-editor .string { color: green; }        /*字符串的样式*/
+          .knife4j-word-code-editor .number { color: darkorange; }    /*数字的样式*/
+          .knife4j-word-code-editor .boolean { color: blue; }        /*布尔型数据的样式*/
+          .knife4j-word-code-editor .null { color: magenta; }        /*null值的样式*/
+          .knife4j-word-code-editor .key { color: red; }            /*key值的样式*/
+          .knife4j-word-method{
+              font-size: 14px;
+              font-weight: 600;
+              margin-right: 10px;
+              text-align: center;
+              border-radius: 3px;
+              text-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
+          }
+          .knife4j-word-table{
+              width: 120%;
+              border: 1px solid #c7c4c4;
+              border-collapse: collapse;
+          }
+          .knife4j-word-table tr{
+              border: 1px solid #c7c4c4;
+              height: 40px;
+          }
+          .knife4j-word-table th{
+              border: 1px solid #c7c4c4;
+              background-color: #dfdada;
+          }
+          .knife4j-word-table td{
+              border: 1px solid #c7c4c4;
+          }
+      </style>
+  </head>
+  <body>
+  <div class="knife4j-word-body">
+<h1>1.项目说明</h1>
+<div class="knife4j-word-row">
+<div class="knife4j-word-line"><strong>标题</strong>:</div>
+<div class="knife4j-word-divider"></div>
+<div class="knife4j-word-line"><strong>简介</strong>:</div>
+<div class="knife4j-word-divider"></div>
+<div class="knife4j-word-line"><strong>作者</strong>:<code>tyza66、morsite</code></div>
+<div class="knife4j-word-divider"></div>
+<div class="knife4j-word-line"><strong>HOST</strong>:localhost:8080</div>
+<div class="knife4j-word-divider"></div>
+<div class="knife4j-word-line"><strong>basePath</strong>:/</div>
+<div class="knife4j-word-divider"></div>
+<div class="knife4j-word-line"><strong>termsOfService</strong>:https://github.com/tyza66/TravelAgencyManagement</div>
+<div class="knife4j-word-divider"></div>
+<div class="knife4j-word-line"><strong>联系人</strong>:tyza66、morsite</div>
+<div class="knife4j-word-divider"></div>
+<div class="knife4j-word-line"><strong>Version</strong>:1.0</div>
+<div class="knife4j-word-divider"></div>
+<div class="knife4j-word-line"><strong>GroupName</strong>:用户服务</div>
+<div class="knife4j-word-divider"></div>
+<div class="knife4j-word-line"><strong>分组Url</strong>:/v2/api-docs?group=用户服务</div>
+<div class="knife4j-word-divider"></div>
+<div class="knife4j-word-line"><strong>分组Location</strong>:/v2/api-docs?group=用户服务</div>
+<div class="knife4j-word-divider"></div>
+</div>
+
+
+<h1>2.接口列表</h1>
+<h2>2.1出行表管理</h2>
+
+
+
+
+<h3>2.1.1添加计划</h3>
+<div class="knife4j-word-api">
+<div class="knife4j-word-title">接口地址</div>
+<div class="knife4j-word-content"><span class="knife4j-word-method">POST</span>&nbsp;&nbsp;<code>/out/add</code></div>
+<div class="knife4j-word-title">接口描述</div>
+<div class="knife4j-word-content"></div>
+<div class="knife4j-word-title">请求数据类型</div>
+<div class="knife4j-word-content"><code>application/json</code></div>
+<div class="knife4j-word-title">响应数据类型</div>
+<div class="knife4j-word-content"><code>*/*</code></div>
+<div class="knife4j-word-title">请求示例</div>
+<div class="knife4j-word-content">
+<pre class="knife4j-word-code-editor">
+{
+  <span class="key">"back":</span> {
+    <span class="key">"date":</span> <span class="number">0</span>,
+    <span class="key">"hours":</span> <span class="number">0</span>,
+    <span class="key">"minutes":</span> <span class="number">0</span>,
+    <span class="key">"month":</span> <span class="number">0</span>,
+    <span class="key">"nanos":</span> <span class="number">0</span>,
+    <span class="key">"seconds":</span> <span class="number">0</span>,
+    <span class="key">"time":</span> <span class="number">0</span>,
+    <span class="key">"year":</span> <span class="number">0</span>
+  },
+  <span class="key">"bid":</span> <span class="string">""</span>,
+  <span class="key">"gid":</span> <span class="number">0</span>,
+  <span class="key">"oid":</span> <span class="number">0</span>,
+  <span class="key">"out1":</span> {
+    <span class="key">"date":</span> <span class="number">0</span>,
+    <span class="key">"hours":</span> <span class="number">0</span>,
+    <span class="key">"minutes":</span> <span class="number">0</span>,
+    <span class="key">"month":</span> <span class="number">0</span>,
+    <span class="key">"nanos":</span> <span class="number">0</span>,
+    <span class="key">"seconds":</span> <span class="number">0</span>,
+    <span class="key">"time":</span> <span class="number">0</span>,
+    <span class="key">"year":</span> <span class="number">0</span>
+  }
+}
+</pre>
+</div>
+
+
+<div class="knife4j-word-title">请求参数</div><br/>
+<div class="knife4j-word-content">
+<table class="knife4j-word-table">
+<thead><tr><th>参数名称</th><th>参数说明</th><th>请求类型</th><th>必须</th><th>数据类型</th><th>schema</th></tr></thead>
+<tbody>
+<tr>
+<td>out</td>
+<td>out</td>
+<td>body</td>
+<td>true</td>
+<td>Out1</td>
+<td>Out1</td>
+</tr>
+<tr>
+<td>&nbsp;back</td>
+<td></td>
+<td></td>
+<td>false</td>
+<td>Timestamp</td>
+<td>Timestamp</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;date</td>
+<td></td>
+<td></td>
+<td>false</td>
+<td>integer</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;hours</td>
+<td></td>
+<td></td>
+<td>false</td>
+<td>integer</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;minutes</td>
+<td></td>
+<td></td>
+<td>false</td>
+<td>integer</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;month</td>
+<td></td>
+<td></td>
+<td>false</td>
+<td>integer</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;nanos</td>
+<td></td>
+<td></td>
+<td>false</td>
+<td>integer</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;seconds</td>
+<td></td>
+<td></td>
+<td>false</td>
+<td>integer</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;time</td>
+<td></td>
+<td></td>
+<td>false</td>
+<td>integer</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;year</td>
+<td></td>
+<td></td>
+<td>false</td>
+<td>integer</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;bid</td>
+<td></td>
+<td></td>
+<td>false</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;gid</td>
+<td></td>
+<td></td>
+<td>false</td>
+<td>integer(int32)</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;oid</td>
+<td></td>
+<td></td>
+<td>false</td>
+<td>integer(int32)</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;out1</td>
+<td></td>
+<td></td>
+<td>false</td>
+<td>Timestamp</td>
+<td>Timestamp</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;date</td>
+<td></td>
+<td></td>
+<td>false</td>
+<td>integer</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;hours</td>
+<td></td>
+<td></td>
+<td>false</td>
+<td>integer</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;minutes</td>
+<td></td>
+<td></td>
+<td>false</td>
+<td>integer</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;month</td>
+<td></td>
+<td></td>
+<td>false</td>
+<td>integer</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;nanos</td>
+<td></td>
+<td></td>
+<td>false</td>
+<td>integer</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;seconds</td>
+<td></td>
+<td></td>
+<td>false</td>
+<td>integer</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;time</td>
+<td></td>
+<td></td>
+<td>false</td>
+<td>integer</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;year</td>
+<td></td>
+<td></td>
+<td>false</td>
+<td>integer</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+
+
+<div class="knife4j-word-title">响应状态</div><br/>
+<div class="knife4j-word-content">
+<table class="knife4j-word-table">
+<thead><tr><th>状态码</th><th>说明</th><th>schema</th></tr></thead>
+<tbody>
+
+
+<tr>
+<td>200</td>
+<td>OK</td>
+<td>JSON</td>
+</tr>
+<tr>
+<td>201</td>
+<td>Created</td>
+<td></td>
+</tr>
+<tr>
+<td>401</td>
+<td>Unauthorized</td>
+<td></td>
+</tr>
+<tr>
+<td>403</td>
+<td>Forbidden</td>
+<td></td>
+</tr>
+<tr>
+<td>404</td>
+<td>Not Found</td>
+<td></td>
+</tr>
+</tbody>
+</table><br/>
+</div>
+
+
+<div class="knife4j-word-title">响应参数</div>
+
+
+<div class="knife4j-word-content">
+<table class="knife4j-word-table">
+<thead><tr><th>参数名称</th><th>参数说明</th><th>类型</th><th>schema</th></tr></thead>
+<tbody>
+<tr>
+<td>config</td>
+<td></td>
+<td>JSONConfig</td>
+<td>JSONConfig</td>
+</tr>
+<tr>
+<td>&nbsp;checkDuplicate</td>
+<td></td>
+<td>boolean</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;dateFormat</td>
+<td></td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;ignoreCase</td>
+<td></td>
+<td>boolean</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;ignoreError</td>
+<td></td>
+<td>boolean</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;ignoreNullValue</td>
+<td></td>
+<td>boolean</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;keyComparator</td>
+<td></td>
+<td>Comparator«string»</td>
+<td>Comparator«string»</td>
+</tr>
+<tr>
+<td>&nbsp;order</td>
+<td></td>
+<td>boolean</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;stripTrailingZeros</td>
+<td></td>
+<td>boolean</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;transientSupport</td>
+<td></td>
+<td>boolean</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+
+
+<div class="knife4j-word-title">响应示例</div>
+<div class="knife4j-word-content"><pre class="knife4j-word-code-editor">
+{
+	<span class="key">"config":</span> {
+		<span class="key">"checkDuplicate":</span> <span class="boolean">true</span>,
+		<span class="key">"dateFormat":</span> <span class="string">""</span>,
+		<span class="key">"ignoreCase":</span> <span class="boolean">true</span>,
+		<span class="key">"ignoreError":</span> <span class="boolean">true</span>,
+		<span class="key">"ignoreNullValue":</span> <span class="boolean">true</span>,
+		<span class="key">"keyComparator":</span> {},
+		<span class="key">"order":</span> <span class="boolean">true</span>,
+		<span class="key">"stripTrailingZeros":</span> <span class="boolean">true</span>,
+		<span class="key">"transientSupport":</span> <span class="boolean">true</span>
+	}
+}
+</pre></div>
+</div>
+
+
+<h3>2.1.2计划列表</h3>
+<div class="knife4j-word-api">
+<div class="knife4j-word-title">接口地址</div>
+<div class="knife4j-word-content"><span class="knife4j-word-method">GET</span>&nbsp;&nbsp;<code>/out/all</code></div>
+<div class="knife4j-word-title">接口描述</div>
+<div class="knife4j-word-content"></div>
+<div class="knife4j-word-title">请求数据类型</div>
+<div class="knife4j-word-content"><code>application/x-www-form-urlencoded</code></div>
+<div class="knife4j-word-title">响应数据类型</div>
+<div class="knife4j-word-content"><code>*/*</code></div>
+
+
+<div class="knife4j-word-title">请求参数</div><br/>
+<div class="knife4j-word-content">
+<table class="knife4j-word-table">
+<thead><tr><th>参数名称</th><th>参数说明</th><th>请求类型</th><th>必须</th><th>数据类型</th><th>schema</th></tr></thead>
+<tbody>
+<tr><td colspan="6">暂无</td></tr>
+</tbody>
+</table>
+</div>
+
+
+<div class="knife4j-word-title">响应状态</div><br/>
+<div class="knife4j-word-content">
+<table class="knife4j-word-table">
+<thead><tr><th>状态码</th><th>说明</th><th>schema</th></tr></thead>
+<tbody>
+
+
+<tr>
+<td>200</td>
+<td>OK</td>
+<td>JSON</td>
+</tr>
+<tr>
+<td>401</td>
+<td>Unauthorized</td>
+<td></td>
+</tr>
+<tr>
+<td>403</td>
+<td>Forbidden</td>
+<td></td>
+</tr>
+<tr>
+<td>404</td>
+<td>Not Found</td>
+<td></td>
+</tr>
+</tbody>
+</table><br/>
+</div>
+
+
+<div class="knife4j-word-title">响应参数</div>
+
+
+<div class="knife4j-word-content">
+<table class="knife4j-word-table">
+<thead><tr><th>参数名称</th><th>参数说明</th><th>类型</th><th>schema</th></tr></thead>
+<tbody>
+<tr>
+<td>config</td>
+<td></td>
+<td>JSONConfig</td>
+<td>JSONConfig</td>
+</tr>
+<tr>
+<td>&nbsp;checkDuplicate</td>
+<td></td>
+<td>boolean</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;dateFormat</td>
+<td></td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;ignoreCase</td>
+<td></td>
+<td>boolean</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;ignoreError</td>
+<td></td>
+<td>boolean</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;ignoreNullValue</td>
+<td></td>
+<td>boolean</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;keyComparator</td>
+<td></td>
+<td>Comparator«string»</td>
+<td>Comparator«string»</td>
+</tr>
+<tr>
+<td>&nbsp;order</td>
+<td></td>
+<td>boolean</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;stripTrailingZeros</td>
+<td></td>
+<td>boolean</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;transientSupport</td>
+<td></td>
+<td>boolean</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+
+
+<div class="knife4j-word-title">响应示例</div>
+<div class="knife4j-word-content"><pre class="knife4j-word-code-editor">
+{
+	<span class="key">"config":</span> {
+		<span class="key">"checkDuplicate":</span> <span class="boolean">true</span>,
+		<span class="key">"dateFormat":</span> <span class="string">""</span>,
+		<span class="key">"ignoreCase":</span> <span class="boolean">true</span>,
+		<span class="key">"ignoreError":</span> <span class="boolean">true</span>,
+		<span class="key">"ignoreNullValue":</span> <span class="boolean">true</span>,
+		<span class="key">"keyComparator":</span> {},
+		<span class="key">"order":</span> <span class="boolean">true</span>,
+		<span class="key">"stripTrailingZeros":</span> <span class="boolean">true</span>,
+		<span class="key">"transientSupport":</span> <span class="boolean">true</span>
+	}
+}
+</pre></div>
+</div>
+
+
+<h3>2.1.3删除计划</h3>
+<div class="knife4j-word-api">
+<div class="knife4j-word-title">接口地址</div>
+<div class="knife4j-word-content"><span class="knife4j-word-method">POST</span>&nbsp;&nbsp;<code>/out/del</code></div>
+<div class="knife4j-word-title">接口描述</div>
+<div class="knife4j-word-content"></div>
+<div class="knife4j-word-title">请求数据类型</div>
+<div class="knife4j-word-content"><code>application/json</code></div>
+<div class="knife4j-word-title">响应数据类型</div>
+<div class="knife4j-word-content"><code>*/*</code></div>
+<div class="knife4j-word-title">请求示例</div>
+<div class="knife4j-word-content">
+<pre class="knife4j-word-code-editor">
+{
+  <span class="key">"back":</span> {
+    <span class="key">"date":</span> <span class="number">0</span>,
+    <span class="key">"hours":</span> <span class="number">0</span>,
+    <span class="key">"minutes":</span> <span class="number">0</span>,
+    <span class="key">"month":</span> <span class="number">0</span>,
+    <span class="key">"nanos":</span> <span class="number">0</span>,
+    <span class="key">"seconds":</span> <span class="number">0</span>,
+    <span class="key">"time":</span> <span class="number">0</span>,
+    <span class="key">"year":</span> <span class="number">0</span>
+  },
+  <span class="key">"bid":</span> <span class="string">""</span>,
+  <span class="key">"gid":</span> <span class="number">0</span>,
+  <span class="key">"oid":</span> <span class="number">0</span>,
+  <span class="key">"out1":</span> {
+    <span class="key">"date":</span> <span class="number">0</span>,
+    <span class="key">"hours":</span> <span class="number">0</span>,
+    <span class="key">"minutes":</span> <span class="number">0</span>,
+    <span class="key">"month":</span> <span class="number">0</span>,
+    <span class="key">"nanos":</span> <span class="number">0</span>,
+    <span class="key">"seconds":</span> <span class="number">0</span>,
+    <span class="key">"time":</span> <span class="number">0</span>,
+    <span class="key">"year":</span> <span class="number">0</span>
+  }
+}
+</pre>
+</div>
+
+
+<div class="knife4j-word-title">请求参数</div><br/>
+<div class="knife4j-word-content">
+<table class="knife4j-word-table">
+<thead><tr><th>参数名称</th><th>参数说明</th><th>请求类型</th><th>必须</th><th>数据类型</th><th>schema</th></tr></thead>
+<tbody>
+<tr>
+<td>out</td>
+<td>out</td>
+<td>body</td>
+<td>true</td>
+<td>Out1</td>
+<td>Out1</td>
+</tr>
+<tr>
+<td>&nbsp;back</td>
+<td></td>
+<td></td>
+<td>false</td>
+<td>Timestamp</td>
+<td>Timestamp</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;date</td>
+<td></td>
+<td></td>
+<td>false</td>
+<td>integer</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;hours</td>
+<td></td>
+<td></td>
+<td>false</td>
+<td>integer</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;minutes</td>
+<td></td>
+<td></td>
+<td>false</td>
+<td>integer</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;month</td>
+<td></td>
+<td></td>
+<td>false</td>
+<td>integer</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;nanos</td>
+<td></td>
+<td></td>
+<td>false</td>
+<td>integer</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;seconds</td>
+<td></td>
+<td></td>
+<td>false</td>
+<td>integer</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;time</td>
+<td></td>
+<td></td>
+<td>false</td>
+<td>integer</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;year</td>
+<td></td>
+<td></td>
+<td>false</td>
+<td>integer</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;bid</td>
+<td></td>
+<td></td>
+<td>false</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;gid</td>
+<td></td>
+<td></td>
+<td>false</td>
+<td>integer(int32)</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;oid</td>
+<td></td>
+<td></td>
+<td>false</td>
+<td>integer(int32)</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;out1</td>
+<td></td>
+<td></td>
+<td>false</td>
+<td>Timestamp</td>
+<td>Timestamp</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;date</td>
+<td></td>
+<td></td>
+<td>false</td>
+<td>integer</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;hours</td>
+<td></td>
+<td></td>
+<td>false</td>
+<td>integer</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;minutes</td>
+<td></td>
+<td></td>
+<td>false</td>
+<td>integer</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;month</td>
+<td></td>
+<td></td>
+<td>false</td>
+<td>integer</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;nanos</td>
+<td></td>
+<td></td>
+<td>false</td>
+<td>integer</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;seconds</td>
+<td></td>
+<td></td>
+<td>false</td>
+<td>integer</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;time</td>
+<td></td>
+<td></td>
+<td>false</td>
+<td>integer</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;year</td>
+<td></td>
+<td></td>
+<td>false</td>
+<td>integer</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+
+
+<div class="knife4j-word-title">响应状态</div><br/>
+<div class="knife4j-word-content">
+<table class="knife4j-word-table">
+<thead><tr><th>状态码</th><th>说明</th><th>schema</th></tr></thead>
+<tbody>
+
+
+<tr>
+<td>200</td>
+<td>OK</td>
+<td>JSON</td>
+</tr>
+<tr>
+<td>201</td>
+<td>Created</td>
+<td></td>
+</tr>
+<tr>
+<td>401</td>
+<td>Unauthorized</td>
+<td></td>
+</tr>
+<tr>
+<td>403</td>
+<td>Forbidden</td>
+<td></td>
+</tr>
+<tr>
+<td>404</td>
+<td>Not Found</td>
+<td></td>
+</tr>
+</tbody>
+</table><br/>
+</div>
+
+
+<div class="knife4j-word-title">响应参数</div>
+
+
+<div class="knife4j-word-content">
+<table class="knife4j-word-table">
+<thead><tr><th>参数名称</th><th>参数说明</th><th>类型</th><th>schema</th></tr></thead>
+<tbody>
+<tr>
+<td>config</td>
+<td></td>
+<td>JSONConfig</td>
+<td>JSONConfig</td>
+</tr>
+<tr>
+<td>&nbsp;checkDuplicate</td>
+<td></td>
+<td>boolean</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;dateFormat</td>
+<td></td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;ignoreCase</td>
+<td></td>
+<td>boolean</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;ignoreError</td>
+<td></td>
+<td>boolean</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;ignoreNullValue</td>
+<td></td>
+<td>boolean</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;keyComparator</td>
+<td></td>
+<td>Comparator«string»</td>
+<td>Comparator«string»</td>
+</tr>
+<tr>
+<td>&nbsp;order</td>
+<td></td>
+<td>boolean</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;stripTrailingZeros</td>
+<td></td>
+<td>boolean</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;transientSupport</td>
+<td></td>
+<td>boolean</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+
+
+<div class="knife4j-word-title">响应示例</div>
+<div class="knife4j-word-content"><pre class="knife4j-word-code-editor">
+{
+	<span class="key">"config":</span> {
+		<span class="key">"checkDuplicate":</span> <span class="boolean">true</span>,
+		<span class="key">"dateFormat":</span> <span class="string">""</span>,
+		<span class="key">"ignoreCase":</span> <span class="boolean">true</span>,
+		<span class="key">"ignoreError":</span> <span class="boolean">true</span>,
+		<span class="key">"ignoreNullValue":</span> <span class="boolean">true</span>,
+		<span class="key">"keyComparator":</span> {},
+		<span class="key">"order":</span> <span class="boolean">true</span>,
+		<span class="key">"stripTrailingZeros":</span> <span class="boolean">true</span>,
+		<span class="key">"transientSupport":</span> <span class="boolean">true</span>
+	}
+}
+</pre></div>
+</div>
+
+
+<h3>2.1.4根据id查询出游计划</h3>
+<div class="knife4j-word-api">
+<div class="knife4j-word-title">接口地址</div>
+<div class="knife4j-word-content"><span class="knife4j-word-method">GET</span>&nbsp;&nbsp;<code>/out/selectById</code></div>
+<div class="knife4j-word-title">接口描述</div>
+<div class="knife4j-word-content"></div>
+<div class="knife4j-word-title">请求数据类型</div>
+<div class="knife4j-word-content"><code>application/x-www-form-urlencoded</code></div>
+<div class="knife4j-word-title">响应数据类型</div>
+<div class="knife4j-word-content"><code>*/*</code></div>
+
+
+<div class="knife4j-word-title">请求参数</div><br/>
+<div class="knife4j-word-content">
+<table class="knife4j-word-table">
+<thead><tr><th>参数名称</th><th>参数说明</th><th>请求类型</th><th>必须</th><th>数据类型</th><th>schema</th></tr></thead>
+<tbody>
+<tr>
+<td>id</td>
+<td>id</td>
+<td>query</td>
+<td>true</td>
+<td>integer(int32)</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+
+
+<div class="knife4j-word-title">响应状态</div><br/>
+<div class="knife4j-word-content">
+<table class="knife4j-word-table">
+<thead><tr><th>状态码</th><th>说明</th><th>schema</th></tr></thead>
+<tbody>
+
+
+<tr>
+<td>200</td>
+<td>OK</td>
+<td>JSON</td>
+</tr>
+<tr>
+<td>401</td>
+<td>Unauthorized</td>
+<td></td>
+</tr>
+<tr>
+<td>403</td>
+<td>Forbidden</td>
+<td></td>
+</tr>
+<tr>
+<td>404</td>
+<td>Not Found</td>
+<td></td>
+</tr>
+</tbody>
+</table><br/>
+</div>
+
+
+<div class="knife4j-word-title">响应参数</div>
+
+
+<div class="knife4j-word-content">
+<table class="knife4j-word-table">
+<thead><tr><th>参数名称</th><th>参数说明</th><th>类型</th><th>schema</th></tr></thead>
+<tbody>
+<tr>
+<td>config</td>
+<td></td>
+<td>JSONConfig</td>
+<td>JSONConfig</td>
+</tr>
+<tr>
+<td>&nbsp;checkDuplicate</td>
+<td></td>
+<td>boolean</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;dateFormat</td>
+<td></td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;ignoreCase</td>
+<td></td>
+<td>boolean</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;ignoreError</td>
+<td></td>
+<td>boolean</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;ignoreNullValue</td>
+<td></td>
+<td>boolean</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;keyComparator</td>
+<td></td>
+<td>Comparator«string»</td>
+<td>Comparator«string»</td>
+</tr>
+<tr>
+<td>&nbsp;order</td>
+<td></td>
+<td>boolean</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;stripTrailingZeros</td>
+<td></td>
+<td>boolean</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;transientSupport</td>
+<td></td>
+<td>boolean</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+
+
+<div class="knife4j-word-title">响应示例</div>
+<div class="knife4j-word-content"><pre class="knife4j-word-code-editor">
+{
+	<span class="key">"config":</span> {
+		<span class="key">"checkDuplicate":</span> <span class="boolean">true</span>,
+		<span class="key">"dateFormat":</span> <span class="string">""</span>,
+		<span class="key">"ignoreCase":</span> <span class="boolean">true</span>,
+		<span class="key">"ignoreError":</span> <span class="boolean">true</span>,
+		<span class="key">"ignoreNullValue":</span> <span class="boolean">true</span>,
+		<span class="key">"keyComparator":</span> {},
+		<span class="key">"order":</span> <span class="boolean">true</span>,
+		<span class="key">"stripTrailingZeros":</span> <span class="boolean">true</span>,
+		<span class="key">"transientSupport":</span> <span class="boolean">true</span>
+	}
+}
+</pre></div>
+</div>
+
+
+<h3>2.1.5修改计划</h3>
+<div class="knife4j-word-api">
+<div class="knife4j-word-title">接口地址</div>
+<div class="knife4j-word-content"><span class="knife4j-word-method">POST</span>&nbsp;&nbsp;<code>/out/up</code></div>
+<div class="knife4j-word-title">接口描述</div>
+<div class="knife4j-word-content"></div>
+<div class="knife4j-word-title">请求数据类型</div>
+<div class="knife4j-word-content"><code>application/json</code></div>
+<div class="knife4j-word-title">响应数据类型</div>
+<div class="knife4j-word-content"><code>*/*</code></div>
+<div class="knife4j-word-title">请求示例</div>
+<div class="knife4j-word-content">
+<pre class="knife4j-word-code-editor">
+{
+  <span class="key">"back":</span> {
+    <span class="key">"date":</span> <span class="number">0</span>,
+    <span class="key">"hours":</span> <span class="number">0</span>,
+    <span class="key">"minutes":</span> <span class="number">0</span>,
+    <span class="key">"month":</span> <span class="number">0</span>,
+    <span class="key">"nanos":</span> <span class="number">0</span>,
+    <span class="key">"seconds":</span> <span class="number">0</span>,
+    <span class="key">"time":</span> <span class="number">0</span>,
+    <span class="key">"year":</span> <span class="number">0</span>
+  },
+  <span class="key">"bid":</span> <span class="string">""</span>,
+  <span class="key">"gid":</span> <span class="number">0</span>,
+  <span class="key">"oid":</span> <span class="number">0</span>,
+  <span class="key">"out1":</span> {
+    <span class="key">"date":</span> <span class="number">0</span>,
+    <span class="key">"hours":</span> <span class="number">0</span>,
+    <span class="key">"minutes":</span> <span class="number">0</span>,
+    <span class="key">"month":</span> <span class="number">0</span>,
+    <span class="key">"nanos":</span> <span class="number">0</span>,
+    <span class="key">"seconds":</span> <span class="number">0</span>,
+    <span class="key">"time":</span> <span class="number">0</span>,
+    <span class="key">"year":</span> <span class="number">0</span>
+  }
+}
+</pre>
+</div>
+
+
+<div class="knife4j-word-title">请求参数</div><br/>
+<div class="knife4j-word-content">
+<table class="knife4j-word-table">
+<thead><tr><th>参数名称</th><th>参数说明</th><th>请求类型</th><th>必须</th><th>数据类型</th><th>schema</th></tr></thead>
+<tbody>
+<tr>
+<td>out</td>
+<td>out</td>
+<td>body</td>
+<td>true</td>
+<td>Out1</td>
+<td>Out1</td>
+</tr>
+<tr>
+<td>&nbsp;back</td>
+<td></td>
+<td></td>
+<td>false</td>
+<td>Timestamp</td>
+<td>Timestamp</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;date</td>
+<td></td>
+<td></td>
+<td>false</td>
+<td>integer</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;hours</td>
+<td></td>
+<td></td>
+<td>false</td>
+<td>integer</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;minutes</td>
+<td></td>
+<td></td>
+<td>false</td>
+<td>integer</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;month</td>
+<td></td>
+<td></td>
+<td>false</td>
+<td>integer</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;nanos</td>
+<td></td>
+<td></td>
+<td>false</td>
+<td>integer</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;seconds</td>
+<td></td>
+<td></td>
+<td>false</td>
+<td>integer</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;time</td>
+<td></td>
+<td></td>
+<td>false</td>
+<td>integer</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;year</td>
+<td></td>
+<td></td>
+<td>false</td>
+<td>integer</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;bid</td>
+<td></td>
+<td></td>
+<td>false</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;gid</td>
+<td></td>
+<td></td>
+<td>false</td>
+<td>integer(int32)</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;oid</td>
+<td></td>
+<td></td>
+<td>false</td>
+<td>integer(int32)</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;out1</td>
+<td></td>
+<td></td>
+<td>false</td>
+<td>Timestamp</td>
+<td>Timestamp</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;date</td>
+<td></td>
+<td></td>
+<td>false</td>
+<td>integer</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;hours</td>
+<td></td>
+<td></td>
+<td>false</td>
+<td>integer</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;minutes</td>
+<td></td>
+<td></td>
+<td>false</td>
+<td>integer</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;month</td>
+<td></td>
+<td></td>
+<td>false</td>
+<td>integer</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;nanos</td>
+<td></td>
+<td></td>
+<td>false</td>
+<td>integer</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;seconds</td>
+<td></td>
+<td></td>
+<td>false</td>
+<td>integer</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;time</td>
+<td></td>
+<td></td>
+<td>false</td>
+<td>integer</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;year</td>
+<td></td>
+<td></td>
+<td>false</td>
+<td>integer</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+
+
+<div class="knife4j-word-title">响应状态</div><br/>
+<div class="knife4j-word-content">
+<table class="knife4j-word-table">
+<thead><tr><th>状态码</th><th>说明</th><th>schema</th></tr></thead>
+<tbody>
+
+
+<tr>
+<td>200</td>
+<td>OK</td>
+<td>JSON</td>
+</tr>
+<tr>
+<td>201</td>
+<td>Created</td>
+<td></td>
+</tr>
+<tr>
+<td>401</td>
+<td>Unauthorized</td>
+<td></td>
+</tr>
+<tr>
+<td>403</td>
+<td>Forbidden</td>
+<td></td>
+</tr>
+<tr>
+<td>404</td>
+<td>Not Found</td>
+<td></td>
+</tr>
+</tbody>
+</table><br/>
+</div>
+
+
+<div class="knife4j-word-title">响应参数</div>
+
+
+<div class="knife4j-word-content">
+<table class="knife4j-word-table">
+<thead><tr><th>参数名称</th><th>参数说明</th><th>类型</th><th>schema</th></tr></thead>
+<tbody>
+<tr>
+<td>config</td>
+<td></td>
+<td>JSONConfig</td>
+<td>JSONConfig</td>
+</tr>
+<tr>
+<td>&nbsp;checkDuplicate</td>
+<td></td>
+<td>boolean</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;dateFormat</td>
+<td></td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;ignoreCase</td>
+<td></td>
+<td>boolean</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;ignoreError</td>
+<td></td>
+<td>boolean</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;ignoreNullValue</td>
+<td></td>
+<td>boolean</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;keyComparator</td>
+<td></td>
+<td>Comparator«string»</td>
+<td>Comparator«string»</td>
+</tr>
+<tr>
+<td>&nbsp;order</td>
+<td></td>
+<td>boolean</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;stripTrailingZeros</td>
+<td></td>
+<td>boolean</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;transientSupport</td>
+<td></td>
+<td>boolean</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+
+
+<div class="knife4j-word-title">响应示例</div>
+<div class="knife4j-word-content"><pre class="knife4j-word-code-editor">
+{
+	<span class="key">"config":</span> {
+		<span class="key">"checkDuplicate":</span> <span class="boolean">true</span>,
+		<span class="key">"dateFormat":</span> <span class="string">""</span>,
+		<span class="key">"ignoreCase":</span> <span class="boolean">true</span>,
+		<span class="key">"ignoreError":</span> <span class="boolean">true</span>,
+		<span class="key">"ignoreNullValue":</span> <span class="boolean">true</span>,
+		<span class="key">"keyComparator":</span> {},
+		<span class="key">"order":</span> <span class="boolean">true</span>,
+		<span class="key">"stripTrailingZeros":</span> <span class="boolean">true</span>,
+		<span class="key">"transientSupport":</span> <span class="boolean">true</span>
+	}
+}
+</pre></div>
+</div>
+<h2>2.2司机管理</h2>
+
+
+
+
+<h3>2.2.1添加司机</h3>
+<div class="knife4j-word-api">
+<div class="knife4j-word-title">接口地址</div>
+<div class="knife4j-word-content"><span class="knife4j-word-method">POST</span>&nbsp;&nbsp;<code>/buser/add</code></div>
+<div class="knife4j-word-title">接口描述</div>
+<div class="knife4j-word-content"></div>
+<div class="knife4j-word-title">请求数据类型</div>
+<div class="knife4j-word-content"><code>application/json</code></div>
+<div class="knife4j-word-title">响应数据类型</div>
+<div class="knife4j-word-content"><code>*/*</code></div>
+<div class="knife4j-word-title">请求示例</div>
+<div class="knife4j-word-content">
+<pre class="knife4j-word-code-editor">
+{
+  <span class="key">"bid":</span> <span class="string">""</span>,
+  <span class="key">"bname":</span> <span class="string">""</span>,
+  <span class="key">"bnum":</span> <span class="number">0</span>,
+  <span class="key">"bstate":</span> <span class="string">""</span>,
+  <span class="key">"btel":</span> <span class="string">""</span>
+}
+</pre>
+</div>
+
+
+<div class="knife4j-word-title">请求参数</div><br/>
+<div class="knife4j-word-content">
+<table class="knife4j-word-table">
+<thead><tr><th>参数名称</th><th>参数说明</th><th>请求类型</th><th>必须</th><th>数据类型</th><th>schema</th></tr></thead>
+<tbody>
+<tr>
+<td>buser</td>
+<td>buser</td>
+<td>body</td>
+<td>true</td>
+<td>Buser</td>
+<td>Buser</td>
+</tr>
+<tr>
+<td>&nbsp;bid</td>
+<td></td>
+<td></td>
+<td>false</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;bname</td>
+<td></td>
+<td></td>
+<td>false</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;bnum</td>
+<td></td>
+<td></td>
+<td>false</td>
+<td>integer(int32)</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;bstate</td>
+<td></td>
+<td></td>
+<td>false</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;btel</td>
+<td></td>
+<td></td>
+<td>false</td>
+<td>string</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+
+
+<div class="knife4j-word-title">响应状态</div><br/>
+<div class="knife4j-word-content">
+<table class="knife4j-word-table">
+<thead><tr><th>状态码</th><th>说明</th><th>schema</th></tr></thead>
+<tbody>
+
+
+<tr>
+<td>200</td>
+<td>OK</td>
+<td>JSON</td>
+</tr>
+<tr>
+<td>201</td>
+<td>Created</td>
+<td></td>
+</tr>
+<tr>
+<td>401</td>
+<td>Unauthorized</td>
+<td></td>
+</tr>
+<tr>
+<td>403</td>
+<td>Forbidden</td>
+<td></td>
+</tr>
+<tr>
+<td>404</td>
+<td>Not Found</td>
+<td></td>
+</tr>
+</tbody>
+</table><br/>
+</div>
+
+
+<div class="knife4j-word-title">响应参数</div>
+
+
+<div class="knife4j-word-content">
+<table class="knife4j-word-table">
+<thead><tr><th>参数名称</th><th>参数说明</th><th>类型</th><th>schema</th></tr></thead>
+<tbody>
+<tr>
+<td>config</td>
+<td></td>
+<td>JSONConfig</td>
+<td>JSONConfig</td>
+</tr>
+<tr>
+<td>&nbsp;checkDuplicate</td>
+<td></td>
+<td>boolean</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;dateFormat</td>
+<td></td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;ignoreCase</td>
+<td></td>
+<td>boolean</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;ignoreError</td>
+<td></td>
+<td>boolean</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;ignoreNullValue</td>
+<td></td>
+<td>boolean</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;keyComparator</td>
+<td></td>
+<td>Comparator«string»</td>
+<td>Comparator«string»</td>
+</tr>
+<tr>
+<td>&nbsp;order</td>
+<td></td>
+<td>boolean</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;stripTrailingZeros</td>
+<td></td>
+<td>boolean</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;transientSupport</td>
+<td></td>
+<td>boolean</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+
+
+<div class="knife4j-word-title">响应示例</div>
+<div class="knife4j-word-content"><pre class="knife4j-word-code-editor">
+{
+	<span class="key">"config":</span> {
+		<span class="key">"checkDuplicate":</span> <span class="boolean">true</span>,
+		<span class="key">"dateFormat":</span> <span class="string">""</span>,
+		<span class="key">"ignoreCase":</span> <span class="boolean">true</span>,
+		<span class="key">"ignoreError":</span> <span class="boolean">true</span>,
+		<span class="key">"ignoreNullValue":</span> <span class="boolean">true</span>,
+		<span class="key">"keyComparator":</span> {},
+		<span class="key">"order":</span> <span class="boolean">true</span>,
+		<span class="key">"stripTrailingZeros":</span> <span class="boolean">true</span>,
+		<span class="key">"transientSupport":</span> <span class="boolean">true</span>
+	}
+}
+</pre></div>
+</div>
+
+
+<h3>2.2.2司机列表</h3>
+<div class="knife4j-word-api">
+<div class="knife4j-word-title">接口地址</div>
+<div class="knife4j-word-content"><span class="knife4j-word-method">GET</span>&nbsp;&nbsp;<code>/buser/all</code></div>
+<div class="knife4j-word-title">接口描述</div>
+<div class="knife4j-word-content"></div>
+<div class="knife4j-word-title">请求数据类型</div>
+<div class="knife4j-word-content"><code>application/x-www-form-urlencoded</code></div>
+<div class="knife4j-word-title">响应数据类型</div>
+<div class="knife4j-word-content"><code>*/*</code></div>
+
+
+<div class="knife4j-word-title">请求参数</div><br/>
+<div class="knife4j-word-content">
+<table class="knife4j-word-table">
+<thead><tr><th>参数名称</th><th>参数说明</th><th>请求类型</th><th>必须</th><th>数据类型</th><th>schema</th></tr></thead>
+<tbody>
+<tr><td colspan="6">暂无</td></tr>
+</tbody>
+</table>
+</div>
+
+
+<div class="knife4j-word-title">响应状态</div><br/>
+<div class="knife4j-word-content">
+<table class="knife4j-word-table">
+<thead><tr><th>状态码</th><th>说明</th><th>schema</th></tr></thead>
+<tbody>
+
+
+<tr>
+<td>200</td>
+<td>OK</td>
+<td>JSON</td>
+</tr>
+<tr>
+<td>401</td>
+<td>Unauthorized</td>
+<td></td>
+</tr>
+<tr>
+<td>403</td>
+<td>Forbidden</td>
+<td></td>
+</tr>
+<tr>
+<td>404</td>
+<td>Not Found</td>
+<td></td>
+</tr>
+</tbody>
+</table><br/>
+</div>
+
+
+<div class="knife4j-word-title">响应参数</div>
+
+
+<div class="knife4j-word-content">
+<table class="knife4j-word-table">
+<thead><tr><th>参数名称</th><th>参数说明</th><th>类型</th><th>schema</th></tr></thead>
+<tbody>
+<tr>
+<td>config</td>
+<td></td>
+<td>JSONConfig</td>
+<td>JSONConfig</td>
+</tr>
+<tr>
+<td>&nbsp;checkDuplicate</td>
+<td></td>
+<td>boolean</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;dateFormat</td>
+<td></td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;ignoreCase</td>
+<td></td>
+<td>boolean</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;ignoreError</td>
+<td></td>
+<td>boolean</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;ignoreNullValue</td>
+<td></td>
+<td>boolean</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;keyComparator</td>
+<td></td>
+<td>Comparator«string»</td>
+<td>Comparator«string»</td>
+</tr>
+<tr>
+<td>&nbsp;order</td>
+<td></td>
+<td>boolean</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;stripTrailingZeros</td>
+<td></td>
+<td>boolean</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;transientSupport</td>
+<td></td>
+<td>boolean</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+
+
+<div class="knife4j-word-title">响应示例</div>
+<div class="knife4j-word-content"><pre class="knife4j-word-code-editor">
+{
+	<span class="key">"config":</span> {
+		<span class="key">"checkDuplicate":</span> <span class="boolean">true</span>,
+		<span class="key">"dateFormat":</span> <span class="string">""</span>,
+		<span class="key">"ignoreCase":</span> <span class="boolean">true</span>,
+		<span class="key">"ignoreError":</span> <span class="boolean">true</span>,
+		<span class="key">"ignoreNullValue":</span> <span class="boolean">true</span>,
+		<span class="key">"keyComparator":</span> {},
+		<span class="key">"order":</span> <span class="boolean">true</span>,
+		<span class="key">"stripTrailingZeros":</span> <span class="boolean">true</span>,
+		<span class="key">"transientSupport":</span> <span class="boolean">true</span>
+	}
+}
+</pre></div>
+</div>
+
+
+<h3>2.2.3删除司机</h3>
+<div class="knife4j-word-api">
+<div class="knife4j-word-title">接口地址</div>
+<div class="knife4j-word-content"><span class="knife4j-word-method">POST</span>&nbsp;&nbsp;<code>/buser/del</code></div>
+<div class="knife4j-word-title">接口描述</div>
+<div class="knife4j-word-content"></div>
+<div class="knife4j-word-title">请求数据类型</div>
+<div class="knife4j-word-content"><code>application/json</code></div>
+<div class="knife4j-word-title">响应数据类型</div>
+<div class="knife4j-word-content"><code>*/*</code></div>
+<div class="knife4j-word-title">请求示例</div>
+<div class="knife4j-word-content">
+<pre class="knife4j-word-code-editor">
+{
+  <span class="key">"bid":</span> <span class="string">""</span>,
+  <span class="key">"bname":</span> <span class="string">""</span>,
+  <span class="key">"bnum":</span> <span class="number">0</span>,
+  <span class="key">"bstate":</span> <span class="string">""</span>,
+  <span class="key">"btel":</span> <span class="string">""</span>
+}
+</pre>
+</div>
+
+
+<div class="knife4j-word-title">请求参数</div><br/>
+<div class="knife4j-word-content">
+<table class="knife4j-word-table">
+<thead><tr><th>参数名称</th><th>参数说明</th><th>请求类型</th><th>必须</th><th>数据类型</th><th>schema</th></tr></thead>
+<tbody>
+<tr>
+<td>buser</td>
+<td>buser</td>
+<td>body</td>
+<td>true</td>
+<td>Buser</td>
+<td>Buser</td>
+</tr>
+<tr>
+<td>&nbsp;bid</td>
+<td></td>
+<td></td>
+<td>false</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;bname</td>
+<td></td>
+<td></td>
+<td>false</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;bnum</td>
+<td></td>
+<td></td>
+<td>false</td>
+<td>integer(int32)</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;bstate</td>
+<td></td>
+<td></td>
+<td>false</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;btel</td>
+<td></td>
+<td></td>
+<td>false</td>
+<td>string</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+
+
+<div class="knife4j-word-title">响应状态</div><br/>
+<div class="knife4j-word-content">
+<table class="knife4j-word-table">
+<thead><tr><th>状态码</th><th>说明</th><th>schema</th></tr></thead>
+<tbody>
+
+
+<tr>
+<td>200</td>
+<td>OK</td>
+<td>JSON</td>
+</tr>
+<tr>
+<td>201</td>
+<td>Created</td>
+<td></td>
+</tr>
+<tr>
+<td>401</td>
+<td>Unauthorized</td>
+<td></td>
+</tr>
+<tr>
+<td>403</td>
+<td>Forbidden</td>
+<td></td>
+</tr>
+<tr>
+<td>404</td>
+<td>Not Found</td>
+<td></td>
+</tr>
+</tbody>
+</table><br/>
+</div>
+
+
+<div class="knife4j-word-title">响应参数</div>
+
+
+<div class="knife4j-word-content">
+<table class="knife4j-word-table">
+<thead><tr><th>参数名称</th><th>参数说明</th><th>类型</th><th>schema</th></tr></thead>
+<tbody>
+<tr>
+<td>config</td>
+<td></td>
+<td>JSONConfig</td>
+<td>JSONConfig</td>
+</tr>
+<tr>
+<td>&nbsp;checkDuplicate</td>
+<td></td>
+<td>boolean</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;dateFormat</td>
+<td></td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;ignoreCase</td>
+<td></td>
+<td>boolean</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;ignoreError</td>
+<td></td>
+<td>boolean</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;ignoreNullValue</td>
+<td></td>
+<td>boolean</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;keyComparator</td>
+<td></td>
+<td>Comparator«string»</td>
+<td>Comparator«string»</td>
+</tr>
+<tr>
+<td>&nbsp;order</td>
+<td></td>
+<td>boolean</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;stripTrailingZeros</td>
+<td></td>
+<td>boolean</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;transientSupport</td>
+<td></td>
+<td>boolean</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+
+
+<div class="knife4j-word-title">响应示例</div>
+<div class="knife4j-word-content"><pre class="knife4j-word-code-editor">
+{
+	<span class="key">"config":</span> {
+		<span class="key">"checkDuplicate":</span> <span class="boolean">true</span>,
+		<span class="key">"dateFormat":</span> <span class="string">""</span>,
+		<span class="key">"ignoreCase":</span> <span class="boolean">true</span>,
+		<span class="key">"ignoreError":</span> <span class="boolean">true</span>,
+		<span class="key">"ignoreNullValue":</span> <span class="boolean">true</span>,
+		<span class="key">"keyComparator":</span> {},
+		<span class="key">"order":</span> <span class="boolean">true</span>,
+		<span class="key">"stripTrailingZeros":</span> <span class="boolean">true</span>,
+		<span class="key">"transientSupport":</span> <span class="boolean">true</span>
+	}
+}
+</pre></div>
+</div>
+
+
+<h3>2.2.4根据id条件查询司机</h3>
+<div class="knife4j-word-api">
+<div class="knife4j-word-title">接口地址</div>
+<div class="knife4j-word-content"><span class="knife4j-word-method">GET</span>&nbsp;&nbsp;<code>/buser/selectByid</code></div>
+<div class="knife4j-word-title">接口描述</div>
+<div class="knife4j-word-content"></div>
+<div class="knife4j-word-title">请求数据类型</div>
+<div class="knife4j-word-content"><code>application/x-www-form-urlencoded</code></div>
+<div class="knife4j-word-title">响应数据类型</div>
+<div class="knife4j-word-content"><code>*/*</code></div>
+
+
+<div class="knife4j-word-title">请求参数</div><br/>
+<div class="knife4j-word-content">
+<table class="knife4j-word-table">
+<thead><tr><th>参数名称</th><th>参数说明</th><th>请求类型</th><th>必须</th><th>数据类型</th><th>schema</th></tr></thead>
+<tbody>
+<tr>
+<td>id</td>
+<td>id</td>
+<td>query</td>
+<td>true</td>
+<td>string</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+
+
+<div class="knife4j-word-title">响应状态</div><br/>
+<div class="knife4j-word-content">
+<table class="knife4j-word-table">
+<thead><tr><th>状态码</th><th>说明</th><th>schema</th></tr></thead>
+<tbody>
+
+
+<tr>
+<td>200</td>
+<td>OK</td>
+<td>JSON</td>
+</tr>
+<tr>
+<td>401</td>
+<td>Unauthorized</td>
+<td></td>
+</tr>
+<tr>
+<td>403</td>
+<td>Forbidden</td>
+<td></td>
+</tr>
+<tr>
+<td>404</td>
+<td>Not Found</td>
+<td></td>
+</tr>
+</tbody>
+</table><br/>
+</div>
+
+
+<div class="knife4j-word-title">响应参数</div>
+
+
+<div class="knife4j-word-content">
+<table class="knife4j-word-table">
+<thead><tr><th>参数名称</th><th>参数说明</th><th>类型</th><th>schema</th></tr></thead>
+<tbody>
+<tr>
+<td>config</td>
+<td></td>
+<td>JSONConfig</td>
+<td>JSONConfig</td>
+</tr>
+<tr>
+<td>&nbsp;checkDuplicate</td>
+<td></td>
+<td>boolean</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;dateFormat</td>
+<td></td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;ignoreCase</td>
+<td></td>
+<td>boolean</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;ignoreError</td>
+<td></td>
+<td>boolean</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;ignoreNullValue</td>
+<td></td>
+<td>boolean</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;keyComparator</td>
+<td></td>
+<td>Comparator«string»</td>
+<td>Comparator«string»</td>
+</tr>
+<tr>
+<td>&nbsp;order</td>
+<td></td>
+<td>boolean</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;stripTrailingZeros</td>
+<td></td>
+<td>boolean</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;transientSupport</td>
+<td></td>
+<td>boolean</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+
+
+<div class="knife4j-word-title">响应示例</div>
+<div class="knife4j-word-content"><pre class="knife4j-word-code-editor">
+{
+	<span class="key">"config":</span> {
+		<span class="key">"checkDuplicate":</span> <span class="boolean">true</span>,
+		<span class="key">"dateFormat":</span> <span class="string">""</span>,
+		<span class="key">"ignoreCase":</span> <span class="boolean">true</span>,
+		<span class="key">"ignoreError":</span> <span class="boolean">true</span>,
+		<span class="key">"ignoreNullValue":</span> <span class="boolean">true</span>,
+		<span class="key">"keyComparator":</span> {},
+		<span class="key">"order":</span> <span class="boolean">true</span>,
+		<span class="key">"stripTrailingZeros":</span> <span class="boolean">true</span>,
+		<span class="key">"transientSupport":</span> <span class="boolean">true</span>
+	}
+}
+</pre></div>
+</div>
+
+
+<h3>2.2.5信息修改</h3>
+<div class="knife4j-word-api">
+<div class="knife4j-word-title">接口地址</div>
+<div class="knife4j-word-content"><span class="knife4j-word-method">POST</span>&nbsp;&nbsp;<code>/buser/up</code></div>
+<div class="knife4j-word-title">接口描述</div>
+<div class="knife4j-word-content"></div>
+<div class="knife4j-word-title">请求数据类型</div>
+<div class="knife4j-word-content"><code>application/json</code></div>
+<div class="knife4j-word-title">响应数据类型</div>
+<div class="knife4j-word-content"><code>*/*</code></div>
+<div class="knife4j-word-title">请求示例</div>
+<div class="knife4j-word-content">
+<pre class="knife4j-word-code-editor">
+{
+  <span class="key">"bid":</span> <span class="string">""</span>,
+  <span class="key">"bname":</span> <span class="string">""</span>,
+  <span class="key">"bnum":</span> <span class="number">0</span>,
+  <span class="key">"bstate":</span> <span class="string">""</span>,
+  <span class="key">"btel":</span> <span class="string">""</span>
+}
+</pre>
+</div>
+
+
+<div class="knife4j-word-title">请求参数</div><br/>
+<div class="knife4j-word-content">
+<table class="knife4j-word-table">
+<thead><tr><th>参数名称</th><th>参数说明</th><th>请求类型</th><th>必须</th><th>数据类型</th><th>schema</th></tr></thead>
+<tbody>
+<tr>
+<td>buser</td>
+<td>buser</td>
+<td>body</td>
+<td>true</td>
+<td>Buser</td>
+<td>Buser</td>
+</tr>
+<tr>
+<td>&nbsp;bid</td>
+<td></td>
+<td></td>
+<td>false</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;bname</td>
+<td></td>
+<td></td>
+<td>false</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;bnum</td>
+<td></td>
+<td></td>
+<td>false</td>
+<td>integer(int32)</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;bstate</td>
+<td></td>
+<td></td>
+<td>false</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;btel</td>
+<td></td>
+<td></td>
+<td>false</td>
+<td>string</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+
+
+<div class="knife4j-word-title">响应状态</div><br/>
+<div class="knife4j-word-content">
+<table class="knife4j-word-table">
+<thead><tr><th>状态码</th><th>说明</th><th>schema</th></tr></thead>
+<tbody>
+
+
+<tr>
+<td>200</td>
+<td>OK</td>
+<td>JSON</td>
+</tr>
+<tr>
+<td>201</td>
+<td>Created</td>
+<td></td>
+</tr>
+<tr>
+<td>401</td>
+<td>Unauthorized</td>
+<td></td>
+</tr>
+<tr>
+<td>403</td>
+<td>Forbidden</td>
+<td></td>
+</tr>
+<tr>
+<td>404</td>
+<td>Not Found</td>
+<td></td>
+</tr>
+</tbody>
+</table><br/>
+</div>
+
+
+<div class="knife4j-word-title">响应参数</div>
+
+
+<div class="knife4j-word-content">
+<table class="knife4j-word-table">
+<thead><tr><th>参数名称</th><th>参数说明</th><th>类型</th><th>schema</th></tr></thead>
+<tbody>
+<tr>
+<td>config</td>
+<td></td>
+<td>JSONConfig</td>
+<td>JSONConfig</td>
+</tr>
+<tr>
+<td>&nbsp;checkDuplicate</td>
+<td></td>
+<td>boolean</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;dateFormat</td>
+<td></td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;ignoreCase</td>
+<td></td>
+<td>boolean</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;ignoreError</td>
+<td></td>
+<td>boolean</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;ignoreNullValue</td>
+<td></td>
+<td>boolean</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;keyComparator</td>
+<td></td>
+<td>Comparator«string»</td>
+<td>Comparator«string»</td>
+</tr>
+<tr>
+<td>&nbsp;order</td>
+<td></td>
+<td>boolean</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;stripTrailingZeros</td>
+<td></td>
+<td>boolean</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;transientSupport</td>
+<td></td>
+<td>boolean</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+
+
+<div class="knife4j-word-title">响应示例</div>
+<div class="knife4j-word-content"><pre class="knife4j-word-code-editor">
+{
+	<span class="key">"config":</span> {
+		<span class="key">"checkDuplicate":</span> <span class="boolean">true</span>,
+		<span class="key">"dateFormat":</span> <span class="string">""</span>,
+		<span class="key">"ignoreCase":</span> <span class="boolean">true</span>,
+		<span class="key">"ignoreError":</span> <span class="boolean">true</span>,
+		<span class="key">"ignoreNullValue":</span> <span class="boolean">true</span>,
+		<span class="key">"keyComparator":</span> {},
+		<span class="key">"order":</span> <span class="boolean">true</span>,
+		<span class="key">"stripTrailingZeros":</span> <span class="boolean">true</span>,
+		<span class="key">"transientSupport":</span> <span class="boolean">true</span>
+	}
+}
+</pre></div>
+</div>
+<h2>2.3导游管理</h2>
+
+
+
+
+<h3>2.3.1增加导游</h3>
+<div class="knife4j-word-api">
+<div class="knife4j-word-title">接口地址</div>
+<div class="knife4j-word-content"><span class="knife4j-word-method">POST</span>&nbsp;&nbsp;<code>/guide/add</code></div>
+<div class="knife4j-word-title">接口描述</div>
+<div class="knife4j-word-content"></div>
+<div class="knife4j-word-title">请求数据类型</div>
+<div class="knife4j-word-content"><code>application/json</code></div>
+<div class="knife4j-word-title">响应数据类型</div>
+<div class="knife4j-word-content"><code>*/*</code></div>
+<div class="knife4j-word-title">请求示例</div>
+<div class="knife4j-word-content">
+<pre class="knife4j-word-code-editor">
+{
+  <span class="key">"gid":</span> <span class="number">0</span>,
+  <span class="key">"gname":</span> <span class="string">""</span>,
+  <span class="key">"gotime":</span> {
+    <span class="key">"date":</span> <span class="number">0</span>,
+    <span class="key">"hours":</span> <span class="number">0</span>,
+    <span class="key">"minutes":</span> <span class="number">0</span>,
+    <span class="key">"month":</span> <span class="number">0</span>,
+    <span class="key">"nanos":</span> <span class="number">0</span>,
+    <span class="key">"seconds":</span> <span class="number">0</span>,
+    <span class="key">"time":</span> <span class="number">0</span>,
+    <span class="key">"year":</span> <span class="number">0</span>
+  },
+  <span class="key">"gstate":</span> <span class="string">""</span>,
+  <span class="key">"gtel":</span> <span class="string">""</span>,
+  <span class="key">"willdays":</span> <span class="number">0</span>
+}
+</pre>
+</div>
+
+
+<div class="knife4j-word-title">请求参数</div><br/>
+<div class="knife4j-word-content">
+<table class="knife4j-word-table">
+<thead><tr><th>参数名称</th><th>参数说明</th><th>请求类型</th><th>必须</th><th>数据类型</th><th>schema</th></tr></thead>
+<tbody>
+<tr>
+<td>guide</td>
+<td>guide</td>
+<td>body</td>
+<td>true</td>
+<td>Guide</td>
+<td>Guide</td>
+</tr>
+<tr>
+<td>&nbsp;gid</td>
+<td></td>
+<td></td>
+<td>false</td>
+<td>integer(int32)</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;gname</td>
+<td></td>
+<td></td>
+<td>false</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;gotime</td>
+<td></td>
+<td></td>
+<td>false</td>
+<td>Timestamp</td>
+<td>Timestamp</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;date</td>
+<td></td>
+<td></td>
+<td>false</td>
+<td>integer</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;hours</td>
+<td></td>
+<td></td>
+<td>false</td>
+<td>integer</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;minutes</td>
+<td></td>
+<td></td>
+<td>false</td>
+<td>integer</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;month</td>
+<td></td>
+<td></td>
+<td>false</td>
+<td>integer</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;nanos</td>
+<td></td>
+<td></td>
+<td>false</td>
+<td>integer</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;seconds</td>
+<td></td>
+<td></td>
+<td>false</td>
+<td>integer</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;time</td>
+<td></td>
+<td></td>
+<td>false</td>
+<td>integer</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;year</td>
+<td></td>
+<td></td>
+<td>false</td>
+<td>integer</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;gstate</td>
+<td></td>
+<td></td>
+<td>false</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;gtel</td>
+<td></td>
+<td></td>
+<td>false</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;willdays</td>
+<td></td>
+<td></td>
+<td>false</td>
+<td>integer(int32)</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+
+
+<div class="knife4j-word-title">响应状态</div><br/>
+<div class="knife4j-word-content">
+<table class="knife4j-word-table">
+<thead><tr><th>状态码</th><th>说明</th><th>schema</th></tr></thead>
+<tbody>
+
+
+<tr>
+<td>200</td>
+<td>OK</td>
+<td>JSON</td>
+</tr>
+<tr>
+<td>201</td>
+<td>Created</td>
+<td></td>
+</tr>
+<tr>
+<td>401</td>
+<td>Unauthorized</td>
+<td></td>
+</tr>
+<tr>
+<td>403</td>
+<td>Forbidden</td>
+<td></td>
+</tr>
+<tr>
+<td>404</td>
+<td>Not Found</td>
+<td></td>
+</tr>
+</tbody>
+</table><br/>
+</div>
+
+
+<div class="knife4j-word-title">响应参数</div>
+
+
+<div class="knife4j-word-content">
+<table class="knife4j-word-table">
+<thead><tr><th>参数名称</th><th>参数说明</th><th>类型</th><th>schema</th></tr></thead>
+<tbody>
+<tr>
+<td>config</td>
+<td></td>
+<td>JSONConfig</td>
+<td>JSONConfig</td>
+</tr>
+<tr>
+<td>&nbsp;checkDuplicate</td>
+<td></td>
+<td>boolean</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;dateFormat</td>
+<td></td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;ignoreCase</td>
+<td></td>
+<td>boolean</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;ignoreError</td>
+<td></td>
+<td>boolean</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;ignoreNullValue</td>
+<td></td>
+<td>boolean</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;keyComparator</td>
+<td></td>
+<td>Comparator«string»</td>
+<td>Comparator«string»</td>
+</tr>
+<tr>
+<td>&nbsp;order</td>
+<td></td>
+<td>boolean</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;stripTrailingZeros</td>
+<td></td>
+<td>boolean</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;transientSupport</td>
+<td></td>
+<td>boolean</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+
+
+<div class="knife4j-word-title">响应示例</div>
+<div class="knife4j-word-content"><pre class="knife4j-word-code-editor">
+{
+	<span class="key">"config":</span> {
+		<span class="key">"checkDuplicate":</span> <span class="boolean">true</span>,
+		<span class="key">"dateFormat":</span> <span class="string">""</span>,
+		<span class="key">"ignoreCase":</span> <span class="boolean">true</span>,
+		<span class="key">"ignoreError":</span> <span class="boolean">true</span>,
+		<span class="key">"ignoreNullValue":</span> <span class="boolean">true</span>,
+		<span class="key">"keyComparator":</span> {},
+		<span class="key">"order":</span> <span class="boolean">true</span>,
+		<span class="key">"stripTrailingZeros":</span> <span class="boolean">true</span>,
+		<span class="key">"transientSupport":</span> <span class="boolean">true</span>
+	}
+}
+</pre></div>
+</div>
+
+
+<h3>2.3.2导游列表</h3>
+<div class="knife4j-word-api">
+<div class="knife4j-word-title">接口地址</div>
+<div class="knife4j-word-content"><span class="knife4j-word-method">GET</span>&nbsp;&nbsp;<code>/guide/all</code></div>
+<div class="knife4j-word-title">接口描述</div>
+<div class="knife4j-word-content"></div>
+<div class="knife4j-word-title">请求数据类型</div>
+<div class="knife4j-word-content"><code>application/x-www-form-urlencoded</code></div>
+<div class="knife4j-word-title">响应数据类型</div>
+<div class="knife4j-word-content"><code>*/*</code></div>
+
+
+<div class="knife4j-word-title">请求参数</div><br/>
+<div class="knife4j-word-content">
+<table class="knife4j-word-table">
+<thead><tr><th>参数名称</th><th>参数说明</th><th>请求类型</th><th>必须</th><th>数据类型</th><th>schema</th></tr></thead>
+<tbody>
+<tr><td colspan="6">暂无</td></tr>
+</tbody>
+</table>
+</div>
+
+
+<div class="knife4j-word-title">响应状态</div><br/>
+<div class="knife4j-word-content">
+<table class="knife4j-word-table">
+<thead><tr><th>状态码</th><th>说明</th><th>schema</th></tr></thead>
+<tbody>
+
+
+<tr>
+<td>200</td>
+<td>OK</td>
+<td>JSON</td>
+</tr>
+<tr>
+<td>401</td>
+<td>Unauthorized</td>
+<td></td>
+</tr>
+<tr>
+<td>403</td>
+<td>Forbidden</td>
+<td></td>
+</tr>
+<tr>
+<td>404</td>
+<td>Not Found</td>
+<td></td>
+</tr>
+</tbody>
+</table><br/>
+</div>
+
+
+<div class="knife4j-word-title">响应参数</div>
+
+
+<div class="knife4j-word-content">
+<table class="knife4j-word-table">
+<thead><tr><th>参数名称</th><th>参数说明</th><th>类型</th><th>schema</th></tr></thead>
+<tbody>
+<tr>
+<td>config</td>
+<td></td>
+<td>JSONConfig</td>
+<td>JSONConfig</td>
+</tr>
+<tr>
+<td>&nbsp;checkDuplicate</td>
+<td></td>
+<td>boolean</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;dateFormat</td>
+<td></td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;ignoreCase</td>
+<td></td>
+<td>boolean</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;ignoreError</td>
+<td></td>
+<td>boolean</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;ignoreNullValue</td>
+<td></td>
+<td>boolean</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;keyComparator</td>
+<td></td>
+<td>Comparator«string»</td>
+<td>Comparator«string»</td>
+</tr>
+<tr>
+<td>&nbsp;order</td>
+<td></td>
+<td>boolean</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;stripTrailingZeros</td>
+<td></td>
+<td>boolean</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;transientSupport</td>
+<td></td>
+<td>boolean</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+
+
+<div class="knife4j-word-title">响应示例</div>
+<div class="knife4j-word-content"><pre class="knife4j-word-code-editor">
+{
+	<span class="key">"config":</span> {
+		<span class="key">"checkDuplicate":</span> <span class="boolean">true</span>,
+		<span class="key">"dateFormat":</span> <span class="string">""</span>,
+		<span class="key">"ignoreCase":</span> <span class="boolean">true</span>,
+		<span class="key">"ignoreError":</span> <span class="boolean">true</span>,
+		<span class="key">"ignoreNullValue":</span> <span class="boolean">true</span>,
+		<span class="key">"keyComparator":</span> {},
+		<span class="key">"order":</span> <span class="boolean">true</span>,
+		<span class="key">"stripTrailingZeros":</span> <span class="boolean">true</span>,
+		<span class="key">"transientSupport":</span> <span class="boolean">true</span>
+	}
+}
+</pre></div>
+</div>
+
+
+<h3>2.3.3删除导游</h3>
+<div class="knife4j-word-api">
+<div class="knife4j-word-title">接口地址</div>
+<div class="knife4j-word-content"><span class="knife4j-word-method">POST</span>&nbsp;&nbsp;<code>/guide/del</code></div>
+<div class="knife4j-word-title">接口描述</div>
+<div class="knife4j-word-content"></div>
+<div class="knife4j-word-title">请求数据类型</div>
+<div class="knife4j-word-content"><code>application/json</code></div>
+<div class="knife4j-word-title">响应数据类型</div>
+<div class="knife4j-word-content"><code>*/*</code></div>
+<div class="knife4j-word-title">请求示例</div>
+<div class="knife4j-word-content">
+<pre class="knife4j-word-code-editor">
+{
+  <span class="key">"gid":</span> <span class="number">0</span>,
+  <span class="key">"gname":</span> <span class="string">""</span>,
+  <span class="key">"gotime":</span> {
+    <span class="key">"date":</span> <span class="number">0</span>,
+    <span class="key">"hours":</span> <span class="number">0</span>,
+    <span class="key">"minutes":</span> <span class="number">0</span>,
+    <span class="key">"month":</span> <span class="number">0</span>,
+    <span class="key">"nanos":</span> <span class="number">0</span>,
+    <span class="key">"seconds":</span> <span class="number">0</span>,
+    <span class="key">"time":</span> <span class="number">0</span>,
+    <span class="key">"year":</span> <span class="number">0</span>
+  },
+  <span class="key">"gstate":</span> <span class="string">""</span>,
+  <span class="key">"gtel":</span> <span class="string">""</span>,
+  <span class="key">"willdays":</span> <span class="number">0</span>
+}
+</pre>
+</div>
+
+
+<div class="knife4j-word-title">请求参数</div><br/>
+<div class="knife4j-word-content">
+<table class="knife4j-word-table">
+<thead><tr><th>参数名称</th><th>参数说明</th><th>请求类型</th><th>必须</th><th>数据类型</th><th>schema</th></tr></thead>
+<tbody>
+<tr>
+<td>guide</td>
+<td>guide</td>
+<td>body</td>
+<td>true</td>
+<td>Guide</td>
+<td>Guide</td>
+</tr>
+<tr>
+<td>&nbsp;gid</td>
+<td></td>
+<td></td>
+<td>false</td>
+<td>integer(int32)</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;gname</td>
+<td></td>
+<td></td>
+<td>false</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;gotime</td>
+<td></td>
+<td></td>
+<td>false</td>
+<td>Timestamp</td>
+<td>Timestamp</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;date</td>
+<td></td>
+<td></td>
+<td>false</td>
+<td>integer</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;hours</td>
+<td></td>
+<td></td>
+<td>false</td>
+<td>integer</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;minutes</td>
+<td></td>
+<td></td>
+<td>false</td>
+<td>integer</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;month</td>
+<td></td>
+<td></td>
+<td>false</td>
+<td>integer</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;nanos</td>
+<td></td>
+<td></td>
+<td>false</td>
+<td>integer</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;seconds</td>
+<td></td>
+<td></td>
+<td>false</td>
+<td>integer</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;time</td>
+<td></td>
+<td></td>
+<td>false</td>
+<td>integer</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;year</td>
+<td></td>
+<td></td>
+<td>false</td>
+<td>integer</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;gstate</td>
+<td></td>
+<td></td>
+<td>false</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;gtel</td>
+<td></td>
+<td></td>
+<td>false</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;willdays</td>
+<td></td>
+<td></td>
+<td>false</td>
+<td>integer(int32)</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+
+
+<div class="knife4j-word-title">响应状态</div><br/>
+<div class="knife4j-word-content">
+<table class="knife4j-word-table">
+<thead><tr><th>状态码</th><th>说明</th><th>schema</th></tr></thead>
+<tbody>
+
+
+<tr>
+<td>200</td>
+<td>OK</td>
+<td>JSON</td>
+</tr>
+<tr>
+<td>201</td>
+<td>Created</td>
+<td></td>
+</tr>
+<tr>
+<td>401</td>
+<td>Unauthorized</td>
+<td></td>
+</tr>
+<tr>
+<td>403</td>
+<td>Forbidden</td>
+<td></td>
+</tr>
+<tr>
+<td>404</td>
+<td>Not Found</td>
+<td></td>
+</tr>
+</tbody>
+</table><br/>
+</div>
+
+
+<div class="knife4j-word-title">响应参数</div>
+
+
+<div class="knife4j-word-content">
+<table class="knife4j-word-table">
+<thead><tr><th>参数名称</th><th>参数说明</th><th>类型</th><th>schema</th></tr></thead>
+<tbody>
+<tr>
+<td>config</td>
+<td></td>
+<td>JSONConfig</td>
+<td>JSONConfig</td>
+</tr>
+<tr>
+<td>&nbsp;checkDuplicate</td>
+<td></td>
+<td>boolean</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;dateFormat</td>
+<td></td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;ignoreCase</td>
+<td></td>
+<td>boolean</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;ignoreError</td>
+<td></td>
+<td>boolean</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;ignoreNullValue</td>
+<td></td>
+<td>boolean</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;keyComparator</td>
+<td></td>
+<td>Comparator«string»</td>
+<td>Comparator«string»</td>
+</tr>
+<tr>
+<td>&nbsp;order</td>
+<td></td>
+<td>boolean</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;stripTrailingZeros</td>
+<td></td>
+<td>boolean</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;transientSupport</td>
+<td></td>
+<td>boolean</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+
+
+<div class="knife4j-word-title">响应示例</div>
+<div class="knife4j-word-content"><pre class="knife4j-word-code-editor">
+{
+	<span class="key">"config":</span> {
+		<span class="key">"checkDuplicate":</span> <span class="boolean">true</span>,
+		<span class="key">"dateFormat":</span> <span class="string">""</span>,
+		<span class="key">"ignoreCase":</span> <span class="boolean">true</span>,
+		<span class="key">"ignoreError":</span> <span class="boolean">true</span>,
+		<span class="key">"ignoreNullValue":</span> <span class="boolean">true</span>,
+		<span class="key">"keyComparator":</span> {},
+		<span class="key">"order":</span> <span class="boolean">true</span>,
+		<span class="key">"stripTrailingZeros":</span> <span class="boolean">true</span>,
+		<span class="key">"transientSupport":</span> <span class="boolean">true</span>
+	}
+}
+</pre></div>
+</div>
+
+
+<h3>2.3.4通过姓名获得导游列表</h3>
+<div class="knife4j-word-api">
+<div class="knife4j-word-title">接口地址</div>
+<div class="knife4j-word-content"><span class="knife4j-word-method">GET</span>&nbsp;&nbsp;<code>/guide/getByName</code></div>
+<div class="knife4j-word-title">接口描述</div>
+<div class="knife4j-word-content"></div>
+<div class="knife4j-word-title">请求数据类型</div>
+<div class="knife4j-word-content"><code>application/x-www-form-urlencoded</code></div>
+<div class="knife4j-word-title">响应数据类型</div>
+<div class="knife4j-word-content"><code>*/*</code></div>
+
+
+<div class="knife4j-word-title">请求参数</div><br/>
+<div class="knife4j-word-content">
+<table class="knife4j-word-table">
+<thead><tr><th>参数名称</th><th>参数说明</th><th>请求类型</th><th>必须</th><th>数据类型</th><th>schema</th></tr></thead>
+<tbody>
+<tr>
+<td>name</td>
+<td>name</td>
+<td>query</td>
+<td>true</td>
+<td>string</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+
+
+<div class="knife4j-word-title">响应状态</div><br/>
+<div class="knife4j-word-content">
+<table class="knife4j-word-table">
+<thead><tr><th>状态码</th><th>说明</th><th>schema</th></tr></thead>
+<tbody>
+
+
+<tr>
+<td>200</td>
+<td>OK</td>
+<td>JSON</td>
+</tr>
+<tr>
+<td>401</td>
+<td>Unauthorized</td>
+<td></td>
+</tr>
+<tr>
+<td>403</td>
+<td>Forbidden</td>
+<td></td>
+</tr>
+<tr>
+<td>404</td>
+<td>Not Found</td>
+<td></td>
+</tr>
+</tbody>
+</table><br/>
+</div>
+
+
+<div class="knife4j-word-title">响应参数</div>
+
+
+<div class="knife4j-word-content">
+<table class="knife4j-word-table">
+<thead><tr><th>参数名称</th><th>参数说明</th><th>类型</th><th>schema</th></tr></thead>
+<tbody>
+<tr>
+<td>config</td>
+<td></td>
+<td>JSONConfig</td>
+<td>JSONConfig</td>
+</tr>
+<tr>
+<td>&nbsp;checkDuplicate</td>
+<td></td>
+<td>boolean</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;dateFormat</td>
+<td></td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;ignoreCase</td>
+<td></td>
+<td>boolean</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;ignoreError</td>
+<td></td>
+<td>boolean</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;ignoreNullValue</td>
+<td></td>
+<td>boolean</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;keyComparator</td>
+<td></td>
+<td>Comparator«string»</td>
+<td>Comparator«string»</td>
+</tr>
+<tr>
+<td>&nbsp;order</td>
+<td></td>
+<td>boolean</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;stripTrailingZeros</td>
+<td></td>
+<td>boolean</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;transientSupport</td>
+<td></td>
+<td>boolean</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+
+
+<div class="knife4j-word-title">响应示例</div>
+<div class="knife4j-word-content"><pre class="knife4j-word-code-editor">
+{
+	<span class="key">"config":</span> {
+		<span class="key">"checkDuplicate":</span> <span class="boolean">true</span>,
+		<span class="key">"dateFormat":</span> <span class="string">""</span>,
+		<span class="key">"ignoreCase":</span> <span class="boolean">true</span>,
+		<span class="key">"ignoreError":</span> <span class="boolean">true</span>,
+		<span class="key">"ignoreNullValue":</span> <span class="boolean">true</span>,
+		<span class="key">"keyComparator":</span> {},
+		<span class="key">"order":</span> <span class="boolean">true</span>,
+		<span class="key">"stripTrailingZeros":</span> <span class="boolean">true</span>,
+		<span class="key">"transientSupport":</span> <span class="boolean">true</span>
+	}
+}
+</pre></div>
+</div>
+
+
+<h3>2.3.5修改信息</h3>
+<div class="knife4j-word-api">
+<div class="knife4j-word-title">接口地址</div>
+<div class="knife4j-word-content"><span class="knife4j-word-method">POST</span>&nbsp;&nbsp;<code>/guide/up</code></div>
+<div class="knife4j-word-title">接口描述</div>
+<div class="knife4j-word-content"></div>
+<div class="knife4j-word-title">请求数据类型</div>
+<div class="knife4j-word-content"><code>application/json</code></div>
+<div class="knife4j-word-title">响应数据类型</div>
+<div class="knife4j-word-content"><code>*/*</code></div>
+<div class="knife4j-word-title">请求示例</div>
+<div class="knife4j-word-content">
+<pre class="knife4j-word-code-editor">
+{
+  <span class="key">"gid":</span> <span class="number">0</span>,
+  <span class="key">"gname":</span> <span class="string">""</span>,
+  <span class="key">"gotime":</span> {
+    <span class="key">"date":</span> <span class="number">0</span>,
+    <span class="key">"hours":</span> <span class="number">0</span>,
+    <span class="key">"minutes":</span> <span class="number">0</span>,
+    <span class="key">"month":</span> <span class="number">0</span>,
+    <span class="key">"nanos":</span> <span class="number">0</span>,
+    <span class="key">"seconds":</span> <span class="number">0</span>,
+    <span class="key">"time":</span> <span class="number">0</span>,
+    <span class="key">"year":</span> <span class="number">0</span>
+  },
+  <span class="key">"gstate":</span> <span class="string">""</span>,
+  <span class="key">"gtel":</span> <span class="string">""</span>,
+  <span class="key">"willdays":</span> <span class="number">0</span>
+}
+</pre>
+</div>
+
+
+<div class="knife4j-word-title">请求参数</div><br/>
+<div class="knife4j-word-content">
+<table class="knife4j-word-table">
+<thead><tr><th>参数名称</th><th>参数说明</th><th>请求类型</th><th>必须</th><th>数据类型</th><th>schema</th></tr></thead>
+<tbody>
+<tr>
+<td>guide</td>
+<td>guide</td>
+<td>body</td>
+<td>true</td>
+<td>Guide</td>
+<td>Guide</td>
+</tr>
+<tr>
+<td>&nbsp;gid</td>
+<td></td>
+<td></td>
+<td>false</td>
+<td>integer(int32)</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;gname</td>
+<td></td>
+<td></td>
+<td>false</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;gotime</td>
+<td></td>
+<td></td>
+<td>false</td>
+<td>Timestamp</td>
+<td>Timestamp</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;date</td>
+<td></td>
+<td></td>
+<td>false</td>
+<td>integer</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;hours</td>
+<td></td>
+<td></td>
+<td>false</td>
+<td>integer</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;minutes</td>
+<td></td>
+<td></td>
+<td>false</td>
+<td>integer</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;month</td>
+<td></td>
+<td></td>
+<td>false</td>
+<td>integer</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;nanos</td>
+<td></td>
+<td></td>
+<td>false</td>
+<td>integer</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;seconds</td>
+<td></td>
+<td></td>
+<td>false</td>
+<td>integer</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;time</td>
+<td></td>
+<td></td>
+<td>false</td>
+<td>integer</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;year</td>
+<td></td>
+<td></td>
+<td>false</td>
+<td>integer</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;gstate</td>
+<td></td>
+<td></td>
+<td>false</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;gtel</td>
+<td></td>
+<td></td>
+<td>false</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;willdays</td>
+<td></td>
+<td></td>
+<td>false</td>
+<td>integer(int32)</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+
+
+<div class="knife4j-word-title">响应状态</div><br/>
+<div class="knife4j-word-content">
+<table class="knife4j-word-table">
+<thead><tr><th>状态码</th><th>说明</th><th>schema</th></tr></thead>
+<tbody>
+
+
+<tr>
+<td>200</td>
+<td>OK</td>
+<td>JSON</td>
+</tr>
+<tr>
+<td>201</td>
+<td>Created</td>
+<td></td>
+</tr>
+<tr>
+<td>401</td>
+<td>Unauthorized</td>
+<td></td>
+</tr>
+<tr>
+<td>403</td>
+<td>Forbidden</td>
+<td></td>
+</tr>
+<tr>
+<td>404</td>
+<td>Not Found</td>
+<td></td>
+</tr>
+</tbody>
+</table><br/>
+</div>
+
+
+<div class="knife4j-word-title">响应参数</div>
+
+
+<div class="knife4j-word-content">
+<table class="knife4j-word-table">
+<thead><tr><th>参数名称</th><th>参数说明</th><th>类型</th><th>schema</th></tr></thead>
+<tbody>
+<tr>
+<td>config</td>
+<td></td>
+<td>JSONConfig</td>
+<td>JSONConfig</td>
+</tr>
+<tr>
+<td>&nbsp;checkDuplicate</td>
+<td></td>
+<td>boolean</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;dateFormat</td>
+<td></td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;ignoreCase</td>
+<td></td>
+<td>boolean</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;ignoreError</td>
+<td></td>
+<td>boolean</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;ignoreNullValue</td>
+<td></td>
+<td>boolean</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;keyComparator</td>
+<td></td>
+<td>Comparator«string»</td>
+<td>Comparator«string»</td>
+</tr>
+<tr>
+<td>&nbsp;order</td>
+<td></td>
+<td>boolean</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;stripTrailingZeros</td>
+<td></td>
+<td>boolean</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;transientSupport</td>
+<td></td>
+<td>boolean</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+
+
+<div class="knife4j-word-title">响应示例</div>
+<div class="knife4j-word-content"><pre class="knife4j-word-code-editor">
+{
+	<span class="key">"config":</span> {
+		<span class="key">"checkDuplicate":</span> <span class="boolean">true</span>,
+		<span class="key">"dateFormat":</span> <span class="string">""</span>,
+		<span class="key">"ignoreCase":</span> <span class="boolean">true</span>,
+		<span class="key">"ignoreError":</span> <span class="boolean">true</span>,
+		<span class="key">"ignoreNullValue":</span> <span class="boolean">true</span>,
+		<span class="key">"keyComparator":</span> {},
+		<span class="key">"order":</span> <span class="boolean">true</span>,
+		<span class="key">"stripTrailingZeros":</span> <span class="boolean">true</span>,
+		<span class="key">"transientSupport":</span> <span class="boolean">true</span>
+	}
+}
+</pre></div>
+</div>
+<h2>2.4文件管理</h2>
+
+
+
+
+<h3>2.4.1上传文件</h3>
+<div class="knife4j-word-api">
+<div class="knife4j-word-title">接口地址</div>
+<div class="knife4j-word-content"><span class="knife4j-word-method">POST</span>&nbsp;&nbsp;<code>/upload</code></div>
+<div class="knife4j-word-title">接口描述</div>
+<div class="knife4j-word-content"></div>
+<div class="knife4j-word-title">请求数据类型</div>
+<div class="knife4j-word-content"><code>multipart/form-data</code></div>
+<div class="knife4j-word-title">响应数据类型</div>
+<div class="knife4j-word-content"><code>*/*</code></div>
+
+
+<div class="knife4j-word-title">请求参数</div><br/>
+<div class="knife4j-word-content">
+<table class="knife4j-word-table">
+<thead><tr><th>参数名称</th><th>参数说明</th><th>请求类型</th><th>必须</th><th>数据类型</th><th>schema</th></tr></thead>
+<tbody>
+<tr>
+<td>file</td>
+<td>file</td>
+<td>formData</td>
+<td>false</td>
+<td>file</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+
+
+<div class="knife4j-word-title">响应状态</div><br/>
+<div class="knife4j-word-content">
+<table class="knife4j-word-table">
+<thead><tr><th>状态码</th><th>说明</th><th>schema</th></tr></thead>
+<tbody>
+
+
+<tr>
+<td>200</td>
+<td>OK</td>
+<td>JSON</td>
+</tr>
+<tr>
+<td>201</td>
+<td>Created</td>
+<td></td>
+</tr>
+<tr>
+<td>401</td>
+<td>Unauthorized</td>
+<td></td>
+</tr>
+<tr>
+<td>403</td>
+<td>Forbidden</td>
+<td></td>
+</tr>
+<tr>
+<td>404</td>
+<td>Not Found</td>
+<td></td>
+</tr>
+</tbody>
+</table><br/>
+</div>
+
+
+<div class="knife4j-word-title">响应参数</div>
+
+
+<div class="knife4j-word-content">
+<table class="knife4j-word-table">
+<thead><tr><th>参数名称</th><th>参数说明</th><th>类型</th><th>schema</th></tr></thead>
+<tbody>
+<tr>
+<td>config</td>
+<td></td>
+<td>JSONConfig</td>
+<td>JSONConfig</td>
+</tr>
+<tr>
+<td>&nbsp;checkDuplicate</td>
+<td></td>
+<td>boolean</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;dateFormat</td>
+<td></td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;ignoreCase</td>
+<td></td>
+<td>boolean</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;ignoreError</td>
+<td></td>
+<td>boolean</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;ignoreNullValue</td>
+<td></td>
+<td>boolean</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;keyComparator</td>
+<td></td>
+<td>Comparator«string»</td>
+<td>Comparator«string»</td>
+</tr>
+<tr>
+<td>&nbsp;order</td>
+<td></td>
+<td>boolean</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;stripTrailingZeros</td>
+<td></td>
+<td>boolean</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;transientSupport</td>
+<td></td>
+<td>boolean</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+
+
+<div class="knife4j-word-title">响应示例</div>
+<div class="knife4j-word-content"><pre class="knife4j-word-code-editor">
+{
+	<span class="key">"config":</span> {
+		<span class="key">"checkDuplicate":</span> <span class="boolean">true</span>,
+		<span class="key">"dateFormat":</span> <span class="string">""</span>,
+		<span class="key">"ignoreCase":</span> <span class="boolean">true</span>,
+		<span class="key">"ignoreError":</span> <span class="boolean">true</span>,
+		<span class="key">"ignoreNullValue":</span> <span class="boolean">true</span>,
+		<span class="key">"keyComparator":</span> {},
+		<span class="key">"order":</span> <span class="boolean">true</span>,
+		<span class="key">"stripTrailingZeros":</span> <span class="boolean">true</span>,
+		<span class="key">"transientSupport":</span> <span class="boolean">true</span>
+	}
+}
+</pre></div>
+</div>
+<h2>2.5游客管理</h2>
+
+
+
+
+<h3>2.5.1添加游客信息</h3>
+<div class="knife4j-word-api">
+<div class="knife4j-word-title">接口地址</div>
+<div class="knife4j-word-content"><span class="knife4j-word-method">POST</span>&nbsp;&nbsp;<code>/customer/add</code></div>
+<div class="knife4j-word-title">接口描述</div>
+<div class="knife4j-word-content"></div>
+<div class="knife4j-word-title">请求数据类型</div>
+<div class="knife4j-word-content"><code>application/json</code></div>
+<div class="knife4j-word-title">响应数据类型</div>
+<div class="knife4j-word-content"><code>*/*</code></div>
+<div class="knife4j-word-title">请求示例</div>
+<div class="knife4j-word-content">
+<pre class="knife4j-word-code-editor">
+{
+  <span class="key">"bid":</span> <span class="number">0</span>,
+  <span class="key">"cid":</span> <span class="number">0</span>,
+  <span class="key">"cname":</span> <span class="string">""</span>,
+  <span class="key">"gid":</span> <span class="number">0</span>,
+  <span class="key">"oid":</span> <span class="number">0</span>
+}
+</pre>
+</div>
+
+
+<div class="knife4j-word-title">请求参数</div><br/>
+<div class="knife4j-word-content">
+<table class="knife4j-word-table">
+<thead><tr><th>参数名称</th><th>参数说明</th><th>请求类型</th><th>必须</th><th>数据类型</th><th>schema</th></tr></thead>
+<tbody>
+<tr>
+<td>cus</td>
+<td>cus</td>
+<td>body</td>
+<td>true</td>
+<td>Cus</td>
+<td>Cus</td>
+</tr>
+<tr>
+<td>&nbsp;bid</td>
+<td></td>
+<td></td>
+<td>false</td>
+<td>integer(int32)</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;cid</td>
+<td></td>
+<td></td>
+<td>false</td>
+<td>integer(int32)</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;cname</td>
+<td></td>
+<td></td>
+<td>false</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;gid</td>
+<td></td>
+<td></td>
+<td>false</td>
+<td>integer(int32)</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;oid</td>
+<td></td>
+<td></td>
+<td>false</td>
+<td>integer(int32)</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+
+
+<div class="knife4j-word-title">响应状态</div><br/>
+<div class="knife4j-word-content">
+<table class="knife4j-word-table">
+<thead><tr><th>状态码</th><th>说明</th><th>schema</th></tr></thead>
+<tbody>
+
+
+<tr>
+<td>200</td>
+<td>OK</td>
+<td>JSON</td>
+</tr>
+<tr>
+<td>201</td>
+<td>Created</td>
+<td></td>
+</tr>
+<tr>
+<td>401</td>
+<td>Unauthorized</td>
+<td></td>
+</tr>
+<tr>
+<td>403</td>
+<td>Forbidden</td>
+<td></td>
+</tr>
+<tr>
+<td>404</td>
+<td>Not Found</td>
+<td></td>
+</tr>
+</tbody>
+</table><br/>
+</div>
+
+
+<div class="knife4j-word-title">响应参数</div>
+
+
+<div class="knife4j-word-content">
+<table class="knife4j-word-table">
+<thead><tr><th>参数名称</th><th>参数说明</th><th>类型</th><th>schema</th></tr></thead>
+<tbody>
+<tr>
+<td>config</td>
+<td></td>
+<td>JSONConfig</td>
+<td>JSONConfig</td>
+</tr>
+<tr>
+<td>&nbsp;checkDuplicate</td>
+<td></td>
+<td>boolean</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;dateFormat</td>
+<td></td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;ignoreCase</td>
+<td></td>
+<td>boolean</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;ignoreError</td>
+<td></td>
+<td>boolean</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;ignoreNullValue</td>
+<td></td>
+<td>boolean</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;keyComparator</td>
+<td></td>
+<td>Comparator«string»</td>
+<td>Comparator«string»</td>
+</tr>
+<tr>
+<td>&nbsp;order</td>
+<td></td>
+<td>boolean</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;stripTrailingZeros</td>
+<td></td>
+<td>boolean</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;transientSupport</td>
+<td></td>
+<td>boolean</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+
+
+<div class="knife4j-word-title">响应示例</div>
+<div class="knife4j-word-content"><pre class="knife4j-word-code-editor">
+{
+	<span class="key">"config":</span> {
+		<span class="key">"checkDuplicate":</span> <span class="boolean">true</span>,
+		<span class="key">"dateFormat":</span> <span class="string">""</span>,
+		<span class="key">"ignoreCase":</span> <span class="boolean">true</span>,
+		<span class="key">"ignoreError":</span> <span class="boolean">true</span>,
+		<span class="key">"ignoreNullValue":</span> <span class="boolean">true</span>,
+		<span class="key">"keyComparator":</span> {},
+		<span class="key">"order":</span> <span class="boolean">true</span>,
+		<span class="key">"stripTrailingZeros":</span> <span class="boolean">true</span>,
+		<span class="key">"transientSupport":</span> <span class="boolean">true</span>
+	}
+}
+</pre></div>
+</div>
+
+
+<h3>2.5.2获取所有游客信息</h3>
+<div class="knife4j-word-api">
+<div class="knife4j-word-title">接口地址</div>
+<div class="knife4j-word-content"><span class="knife4j-word-method">GET</span>&nbsp;&nbsp;<code>/customer/all</code></div>
+<div class="knife4j-word-title">接口描述</div>
+<div class="knife4j-word-content"></div>
+<div class="knife4j-word-title">请求数据类型</div>
+<div class="knife4j-word-content"><code>application/x-www-form-urlencoded</code></div>
+<div class="knife4j-word-title">响应数据类型</div>
+<div class="knife4j-word-content"><code>*/*</code></div>
+
+
+<div class="knife4j-word-title">请求参数</div><br/>
+<div class="knife4j-word-content">
+<table class="knife4j-word-table">
+<thead><tr><th>参数名称</th><th>参数说明</th><th>请求类型</th><th>必须</th><th>数据类型</th><th>schema</th></tr></thead>
+<tbody>
+<tr><td colspan="6">暂无</td></tr>
+</tbody>
+</table>
+</div>
+
+
+<div class="knife4j-word-title">响应状态</div><br/>
+<div class="knife4j-word-content">
+<table class="knife4j-word-table">
+<thead><tr><th>状态码</th><th>说明</th><th>schema</th></tr></thead>
+<tbody>
+
+
+<tr>
+<td>200</td>
+<td>OK</td>
+<td>JSON</td>
+</tr>
+<tr>
+<td>401</td>
+<td>Unauthorized</td>
+<td></td>
+</tr>
+<tr>
+<td>403</td>
+<td>Forbidden</td>
+<td></td>
+</tr>
+<tr>
+<td>404</td>
+<td>Not Found</td>
+<td></td>
+</tr>
+</tbody>
+</table><br/>
+</div>
+
+
+<div class="knife4j-word-title">响应参数</div>
+
+
+<div class="knife4j-word-content">
+<table class="knife4j-word-table">
+<thead><tr><th>参数名称</th><th>参数说明</th><th>类型</th><th>schema</th></tr></thead>
+<tbody>
+<tr>
+<td>config</td>
+<td></td>
+<td>JSONConfig</td>
+<td>JSONConfig</td>
+</tr>
+<tr>
+<td>&nbsp;checkDuplicate</td>
+<td></td>
+<td>boolean</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;dateFormat</td>
+<td></td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;ignoreCase</td>
+<td></td>
+<td>boolean</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;ignoreError</td>
+<td></td>
+<td>boolean</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;ignoreNullValue</td>
+<td></td>
+<td>boolean</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;keyComparator</td>
+<td></td>
+<td>Comparator«string»</td>
+<td>Comparator«string»</td>
+</tr>
+<tr>
+<td>&nbsp;order</td>
+<td></td>
+<td>boolean</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;stripTrailingZeros</td>
+<td></td>
+<td>boolean</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;transientSupport</td>
+<td></td>
+<td>boolean</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+
+
+<div class="knife4j-word-title">响应示例</div>
+<div class="knife4j-word-content"><pre class="knife4j-word-code-editor">
+{
+	<span class="key">"config":</span> {
+		<span class="key">"checkDuplicate":</span> <span class="boolean">true</span>,
+		<span class="key">"dateFormat":</span> <span class="string">""</span>,
+		<span class="key">"ignoreCase":</span> <span class="boolean">true</span>,
+		<span class="key">"ignoreError":</span> <span class="boolean">true</span>,
+		<span class="key">"ignoreNullValue":</span> <span class="boolean">true</span>,
+		<span class="key">"keyComparator":</span> {},
+		<span class="key">"order":</span> <span class="boolean">true</span>,
+		<span class="key">"stripTrailingZeros":</span> <span class="boolean">true</span>,
+		<span class="key">"transientSupport":</span> <span class="boolean">true</span>
+	}
+}
+</pre></div>
+</div>
+
+
+<h3>2.5.3通过id删除指定游客信息</h3>
+<div class="knife4j-word-api">
+<div class="knife4j-word-title">接口地址</div>
+<div class="knife4j-word-content"><span class="knife4j-word-method">POST</span>&nbsp;&nbsp;<code>/customer/delete</code></div>
+<div class="knife4j-word-title">接口描述</div>
+<div class="knife4j-word-content"></div>
+<div class="knife4j-word-title">请求数据类型</div>
+<div class="knife4j-word-content"><code>application/json</code></div>
+<div class="knife4j-word-title">响应数据类型</div>
+<div class="knife4j-word-content"><code>*/*</code></div>
+<div class="knife4j-word-title">请求示例</div>
+<div class="knife4j-word-content">
+<pre class="knife4j-word-code-editor">
+{
+  <span class="key">"bid":</span> <span class="number">0</span>,
+  <span class="key">"cid":</span> <span class="number">0</span>,
+  <span class="key">"cname":</span> <span class="string">""</span>,
+  <span class="key">"gid":</span> <span class="number">0</span>,
+  <span class="key">"oid":</span> <span class="number">0</span>
+}
+</pre>
+</div>
+
+
+<div class="knife4j-word-title">请求参数</div><br/>
+<div class="knife4j-word-content">
+<table class="knife4j-word-table">
+<thead><tr><th>参数名称</th><th>参数说明</th><th>请求类型</th><th>必须</th><th>数据类型</th><th>schema</th></tr></thead>
+<tbody>
+<tr>
+<td>cus</td>
+<td>cus</td>
+<td>body</td>
+<td>true</td>
+<td>Cus</td>
+<td>Cus</td>
+</tr>
+<tr>
+<td>&nbsp;bid</td>
+<td></td>
+<td></td>
+<td>false</td>
+<td>integer(int32)</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;cid</td>
+<td></td>
+<td></td>
+<td>false</td>
+<td>integer(int32)</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;cname</td>
+<td></td>
+<td></td>
+<td>false</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;gid</td>
+<td></td>
+<td></td>
+<td>false</td>
+<td>integer(int32)</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;oid</td>
+<td></td>
+<td></td>
+<td>false</td>
+<td>integer(int32)</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+
+
+<div class="knife4j-word-title">响应状态</div><br/>
+<div class="knife4j-word-content">
+<table class="knife4j-word-table">
+<thead><tr><th>状态码</th><th>说明</th><th>schema</th></tr></thead>
+<tbody>
+
+
+<tr>
+<td>200</td>
+<td>OK</td>
+<td>JSON</td>
+</tr>
+<tr>
+<td>201</td>
+<td>Created</td>
+<td></td>
+</tr>
+<tr>
+<td>401</td>
+<td>Unauthorized</td>
+<td></td>
+</tr>
+<tr>
+<td>403</td>
+<td>Forbidden</td>
+<td></td>
+</tr>
+<tr>
+<td>404</td>
+<td>Not Found</td>
+<td></td>
+</tr>
+</tbody>
+</table><br/>
+</div>
+
+
+<div class="knife4j-word-title">响应参数</div>
+
+
+<div class="knife4j-word-content">
+<table class="knife4j-word-table">
+<thead><tr><th>参数名称</th><th>参数说明</th><th>类型</th><th>schema</th></tr></thead>
+<tbody>
+<tr>
+<td>config</td>
+<td></td>
+<td>JSONConfig</td>
+<td>JSONConfig</td>
+</tr>
+<tr>
+<td>&nbsp;checkDuplicate</td>
+<td></td>
+<td>boolean</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;dateFormat</td>
+<td></td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;ignoreCase</td>
+<td></td>
+<td>boolean</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;ignoreError</td>
+<td></td>
+<td>boolean</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;ignoreNullValue</td>
+<td></td>
+<td>boolean</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;keyComparator</td>
+<td></td>
+<td>Comparator«string»</td>
+<td>Comparator«string»</td>
+</tr>
+<tr>
+<td>&nbsp;order</td>
+<td></td>
+<td>boolean</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;stripTrailingZeros</td>
+<td></td>
+<td>boolean</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;transientSupport</td>
+<td></td>
+<td>boolean</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+
+
+<div class="knife4j-word-title">响应示例</div>
+<div class="knife4j-word-content"><pre class="knife4j-word-code-editor">
+{
+	<span class="key">"config":</span> {
+		<span class="key">"checkDuplicate":</span> <span class="boolean">true</span>,
+		<span class="key">"dateFormat":</span> <span class="string">""</span>,
+		<span class="key">"ignoreCase":</span> <span class="boolean">true</span>,
+		<span class="key">"ignoreError":</span> <span class="boolean">true</span>,
+		<span class="key">"ignoreNullValue":</span> <span class="boolean">true</span>,
+		<span class="key">"keyComparator":</span> {},
+		<span class="key">"order":</span> <span class="boolean">true</span>,
+		<span class="key">"stripTrailingZeros":</span> <span class="boolean">true</span>,
+		<span class="key">"transientSupport":</span> <span class="boolean">true</span>
+	}
+}
+</pre></div>
+</div>
+
+
+<h3>2.5.4分页查询游客信息</h3>
+<div class="knife4j-word-api">
+<div class="knife4j-word-title">接口地址</div>
+<div class="knife4j-word-content"><span class="knife4j-word-method">GET</span>&nbsp;&nbsp;<code>/customer/page</code></div>
+<div class="knife4j-word-title">接口描述</div>
+<div class="knife4j-word-content"></div>
+<div class="knife4j-word-title">请求数据类型</div>
+<div class="knife4j-word-content"><code>application/x-www-form-urlencoded</code></div>
+<div class="knife4j-word-title">响应数据类型</div>
+<div class="knife4j-word-content"><code>*/*</code></div>
+
+
+<div class="knife4j-word-title">请求参数</div><br/>
+<div class="knife4j-word-content">
+<table class="knife4j-word-table">
+<thead><tr><th>参数名称</th><th>参数说明</th><th>请求类型</th><th>必须</th><th>数据类型</th><th>schema</th></tr></thead>
+<tbody>
+<tr>
+<td>limit</td>
+<td>limit</td>
+<td>query</td>
+<td>true</td>
+<td>integer(int32)</td>
+<td></td>
+</tr>
+<tr>
+<td>page</td>
+<td>page</td>
+<td>query</td>
+<td>true</td>
+<td>integer(int32)</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+
+
+<div class="knife4j-word-title">响应状态</div><br/>
+<div class="knife4j-word-content">
+<table class="knife4j-word-table">
+<thead><tr><th>状态码</th><th>说明</th><th>schema</th></tr></thead>
+<tbody>
+
+
+<tr>
+<td>200</td>
+<td>OK</td>
+<td>JSON</td>
+</tr>
+<tr>
+<td>401</td>
+<td>Unauthorized</td>
+<td></td>
+</tr>
+<tr>
+<td>403</td>
+<td>Forbidden</td>
+<td></td>
+</tr>
+<tr>
+<td>404</td>
+<td>Not Found</td>
+<td></td>
+</tr>
+</tbody>
+</table><br/>
+</div>
+
+
+<div class="knife4j-word-title">响应参数</div>
+
+
+<div class="knife4j-word-content">
+<table class="knife4j-word-table">
+<thead><tr><th>参数名称</th><th>参数说明</th><th>类型</th><th>schema</th></tr></thead>
+<tbody>
+<tr>
+<td>config</td>
+<td></td>
+<td>JSONConfig</td>
+<td>JSONConfig</td>
+</tr>
+<tr>
+<td>&nbsp;checkDuplicate</td>
+<td></td>
+<td>boolean</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;dateFormat</td>
+<td></td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;ignoreCase</td>
+<td></td>
+<td>boolean</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;ignoreError</td>
+<td></td>
+<td>boolean</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;ignoreNullValue</td>
+<td></td>
+<td>boolean</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;keyComparator</td>
+<td></td>
+<td>Comparator«string»</td>
+<td>Comparator«string»</td>
+</tr>
+<tr>
+<td>&nbsp;order</td>
+<td></td>
+<td>boolean</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;stripTrailingZeros</td>
+<td></td>
+<td>boolean</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;transientSupport</td>
+<td></td>
+<td>boolean</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+
+
+<div class="knife4j-word-title">响应示例</div>
+<div class="knife4j-word-content"><pre class="knife4j-word-code-editor">
+{
+	<span class="key">"config":</span> {
+		<span class="key">"checkDuplicate":</span> <span class="boolean">true</span>,
+		<span class="key">"dateFormat":</span> <span class="string">""</span>,
+		<span class="key">"ignoreCase":</span> <span class="boolean">true</span>,
+		<span class="key">"ignoreError":</span> <span class="boolean">true</span>,
+		<span class="key">"ignoreNullValue":</span> <span class="boolean">true</span>,
+		<span class="key">"keyComparator":</span> {},
+		<span class="key">"order":</span> <span class="boolean">true</span>,
+		<span class="key">"stripTrailingZeros":</span> <span class="boolean">true</span>,
+		<span class="key">"transientSupport":</span> <span class="boolean">true</span>
+	}
+}
+</pre></div>
+</div>
+
+
+<h3>2.5.5按游客名搜索游客信息</h3>
+<div class="knife4j-word-api">
+<div class="knife4j-word-title">接口地址</div>
+<div class="knife4j-word-content"><span class="knife4j-word-method">GET</span>&nbsp;&nbsp;<code>/customer/search</code></div>
+<div class="knife4j-word-title">接口描述</div>
+<div class="knife4j-word-content"></div>
+<div class="knife4j-word-title">请求数据类型</div>
+<div class="knife4j-word-content"><code>application/x-www-form-urlencoded</code></div>
+<div class="knife4j-word-title">响应数据类型</div>
+<div class="knife4j-word-content"><code>*/*</code></div>
+
+
+<div class="knife4j-word-title">请求参数</div><br/>
+<div class="knife4j-word-content">
+<table class="knife4j-word-table">
+<thead><tr><th>参数名称</th><th>参数说明</th><th>请求类型</th><th>必须</th><th>数据类型</th><th>schema</th></tr></thead>
+<tbody>
+<tr>
+<td>name</td>
+<td>name</td>
+<td>query</td>
+<td>true</td>
+<td>string</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+
+
+<div class="knife4j-word-title">响应状态</div><br/>
+<div class="knife4j-word-content">
+<table class="knife4j-word-table">
+<thead><tr><th>状态码</th><th>说明</th><th>schema</th></tr></thead>
+<tbody>
+
+
+<tr>
+<td>200</td>
+<td>OK</td>
+<td>JSON</td>
+</tr>
+<tr>
+<td>401</td>
+<td>Unauthorized</td>
+<td></td>
+</tr>
+<tr>
+<td>403</td>
+<td>Forbidden</td>
+<td></td>
+</tr>
+<tr>
+<td>404</td>
+<td>Not Found</td>
+<td></td>
+</tr>
+</tbody>
+</table><br/>
+</div>
+
+
+<div class="knife4j-word-title">响应参数</div>
+
+
+<div class="knife4j-word-content">
+<table class="knife4j-word-table">
+<thead><tr><th>参数名称</th><th>参数说明</th><th>类型</th><th>schema</th></tr></thead>
+<tbody>
+<tr>
+<td>config</td>
+<td></td>
+<td>JSONConfig</td>
+<td>JSONConfig</td>
+</tr>
+<tr>
+<td>&nbsp;checkDuplicate</td>
+<td></td>
+<td>boolean</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;dateFormat</td>
+<td></td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;ignoreCase</td>
+<td></td>
+<td>boolean</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;ignoreError</td>
+<td></td>
+<td>boolean</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;ignoreNullValue</td>
+<td></td>
+<td>boolean</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;keyComparator</td>
+<td></td>
+<td>Comparator«string»</td>
+<td>Comparator«string»</td>
+</tr>
+<tr>
+<td>&nbsp;order</td>
+<td></td>
+<td>boolean</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;stripTrailingZeros</td>
+<td></td>
+<td>boolean</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;transientSupport</td>
+<td></td>
+<td>boolean</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+
+
+<div class="knife4j-word-title">响应示例</div>
+<div class="knife4j-word-content"><pre class="knife4j-word-code-editor">
+{
+	<span class="key">"config":</span> {
+		<span class="key">"checkDuplicate":</span> <span class="boolean">true</span>,
+		<span class="key">"dateFormat":</span> <span class="string">""</span>,
+		<span class="key">"ignoreCase":</span> <span class="boolean">true</span>,
+		<span class="key">"ignoreError":</span> <span class="boolean">true</span>,
+		<span class="key">"ignoreNullValue":</span> <span class="boolean">true</span>,
+		<span class="key">"keyComparator":</span> {},
+		<span class="key">"order":</span> <span class="boolean">true</span>,
+		<span class="key">"stripTrailingZeros":</span> <span class="boolean">true</span>,
+		<span class="key">"transientSupport":</span> <span class="boolean">true</span>
+	}
+}
+</pre></div>
+</div>
+
+
+<h3>2.5.6修改游客信息</h3>
+<div class="knife4j-word-api">
+<div class="knife4j-word-title">接口地址</div>
+<div class="knife4j-word-content"><span class="knife4j-word-method">POST</span>&nbsp;&nbsp;<code>/customer/update</code></div>
+<div class="knife4j-word-title">接口描述</div>
+<div class="knife4j-word-content"></div>
+<div class="knife4j-word-title">请求数据类型</div>
+<div class="knife4j-word-content"><code>application/json</code></div>
+<div class="knife4j-word-title">响应数据类型</div>
+<div class="knife4j-word-content"><code>*/*</code></div>
+<div class="knife4j-word-title">请求示例</div>
+<div class="knife4j-word-content">
+<pre class="knife4j-word-code-editor">
+{
+  <span class="key">"bid":</span> <span class="number">0</span>,
+  <span class="key">"cid":</span> <span class="number">0</span>,
+  <span class="key">"cname":</span> <span class="string">""</span>,
+  <span class="key">"gid":</span> <span class="number">0</span>,
+  <span class="key">"oid":</span> <span class="number">0</span>
+}
+</pre>
+</div>
+
+
+<div class="knife4j-word-title">请求参数</div><br/>
+<div class="knife4j-word-content">
+<table class="knife4j-word-table">
+<thead><tr><th>参数名称</th><th>参数说明</th><th>请求类型</th><th>必须</th><th>数据类型</th><th>schema</th></tr></thead>
+<tbody>
+<tr>
+<td>cus</td>
+<td>cus</td>
+<td>body</td>
+<td>true</td>
+<td>Cus</td>
+<td>Cus</td>
+</tr>
+<tr>
+<td>&nbsp;bid</td>
+<td></td>
+<td></td>
+<td>false</td>
+<td>integer(int32)</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;cid</td>
+<td></td>
+<td></td>
+<td>false</td>
+<td>integer(int32)</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;cname</td>
+<td></td>
+<td></td>
+<td>false</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;gid</td>
+<td></td>
+<td></td>
+<td>false</td>
+<td>integer(int32)</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;oid</td>
+<td></td>
+<td></td>
+<td>false</td>
+<td>integer(int32)</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+
+
+<div class="knife4j-word-title">响应状态</div><br/>
+<div class="knife4j-word-content">
+<table class="knife4j-word-table">
+<thead><tr><th>状态码</th><th>说明</th><th>schema</th></tr></thead>
+<tbody>
+
+
+<tr>
+<td>200</td>
+<td>OK</td>
+<td>JSON</td>
+</tr>
+<tr>
+<td>201</td>
+<td>Created</td>
+<td></td>
+</tr>
+<tr>
+<td>401</td>
+<td>Unauthorized</td>
+<td></td>
+</tr>
+<tr>
+<td>403</td>
+<td>Forbidden</td>
+<td></td>
+</tr>
+<tr>
+<td>404</td>
+<td>Not Found</td>
+<td></td>
+</tr>
+</tbody>
+</table><br/>
+</div>
+
+
+<div class="knife4j-word-title">响应参数</div>
+
+
+<div class="knife4j-word-content">
+<table class="knife4j-word-table">
+<thead><tr><th>参数名称</th><th>参数说明</th><th>类型</th><th>schema</th></tr></thead>
+<tbody>
+<tr>
+<td>config</td>
+<td></td>
+<td>JSONConfig</td>
+<td>JSONConfig</td>
+</tr>
+<tr>
+<td>&nbsp;checkDuplicate</td>
+<td></td>
+<td>boolean</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;dateFormat</td>
+<td></td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;ignoreCase</td>
+<td></td>
+<td>boolean</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;ignoreError</td>
+<td></td>
+<td>boolean</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;ignoreNullValue</td>
+<td></td>
+<td>boolean</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;keyComparator</td>
+<td></td>
+<td>Comparator«string»</td>
+<td>Comparator«string»</td>
+</tr>
+<tr>
+<td>&nbsp;order</td>
+<td></td>
+<td>boolean</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;stripTrailingZeros</td>
+<td></td>
+<td>boolean</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;transientSupport</td>
+<td></td>
+<td>boolean</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+
+
+<div class="knife4j-word-title">响应示例</div>
+<div class="knife4j-word-content"><pre class="knife4j-word-code-editor">
+{
+	<span class="key">"config":</span> {
+		<span class="key">"checkDuplicate":</span> <span class="boolean">true</span>,
+		<span class="key">"dateFormat":</span> <span class="string">""</span>,
+		<span class="key">"ignoreCase":</span> <span class="boolean">true</span>,
+		<span class="key">"ignoreError":</span> <span class="boolean">true</span>,
+		<span class="key">"ignoreNullValue":</span> <span class="boolean">true</span>,
+		<span class="key">"keyComparator":</span> {},
+		<span class="key">"order":</span> <span class="boolean">true</span>,
+		<span class="key">"stripTrailingZeros":</span> <span class="boolean">true</span>,
+		<span class="key">"transientSupport":</span> <span class="boolean">true</span>
+	}
+}
+</pre></div>
+</div>
+<h2>2.6用户管理</h2>
+
+
+
+
+<h3>2.6.1检查登录状态</h3>
+<div class="knife4j-word-api">
+<div class="knife4j-word-title">接口地址</div>
+<div class="knife4j-word-content"><span class="knife4j-word-method">GET</span>&nbsp;&nbsp;<code>/user/check</code></div>
+<div class="knife4j-word-title">接口描述</div>
+<div class="knife4j-word-content"></div>
+<div class="knife4j-word-title">请求数据类型</div>
+<div class="knife4j-word-content"><code>application/x-www-form-urlencoded</code></div>
+<div class="knife4j-word-title">响应数据类型</div>
+<div class="knife4j-word-content"><code>*/*</code></div>
+
+
+<div class="knife4j-word-title">请求参数</div><br/>
+<div class="knife4j-word-content">
+<table class="knife4j-word-table">
+<thead><tr><th>参数名称</th><th>参数说明</th><th>请求类型</th><th>必须</th><th>数据类型</th><th>schema</th></tr></thead>
+<tbody>
+<tr>
+<td>creationTime</td>
+<td></td>
+<td>query</td>
+<td>false</td>
+<td>integer(int64)</td>
+<td></td>
+</tr>
+<tr>
+<td>id</td>
+<td></td>
+<td>query</td>
+<td>false</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>lastAccessedTime</td>
+<td></td>
+<td>query</td>
+<td>false</td>
+<td>integer(int64)</td>
+<td></td>
+</tr>
+<tr>
+<td>maxInactiveInterval</td>
+<td></td>
+<td>query</td>
+<td>false</td>
+<td>integer(int32)</td>
+<td></td>
+</tr>
+<tr>
+<td>new</td>
+<td></td>
+<td>query</td>
+<td>false</td>
+<td>boolean</td>
+<td></td>
+</tr>
+<tr>
+<td>servletContext.classLoader</td>
+<td></td>
+<td>query</td>
+<td>false</td>
+<td>ref</td>
+<td></td>
+</tr>
+<tr>
+<td>servletContext.contextPath</td>
+<td></td>
+<td>query</td>
+<td>false</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>servletContext.defaultSessionTrackingModes</td>
+<td>可用值:COOKIE,URL,SSL</td>
+<td>query</td>
+<td>false</td>
+<td>array</td>
+<td>string</td>
+</tr>
+<tr>
+<td>servletContext.effectiveMajorVersion</td>
+<td></td>
+<td>query</td>
+<td>false</td>
+<td>integer(int32)</td>
+<td></td>
+</tr>
+<tr>
+<td>servletContext.effectiveMinorVersion</td>
+<td></td>
+<td>query</td>
+<td>false</td>
+<td>integer(int32)</td>
+<td></td>
+</tr>
+<tr>
+<td>servletContext.effectiveSessionTrackingModes</td>
+<td>可用值:COOKIE,URL,SSL</td>
+<td>query</td>
+<td>false</td>
+<td>array</td>
+<td>string</td>
+</tr>
+<tr>
+<td>servletContext.jspConfigDescriptor.jspPropertyGroups[0].buffer</td>
+<td></td>
+<td>query</td>
+<td>false</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>servletContext.jspConfigDescriptor.jspPropertyGroups[0].defaultContentType</td>
+<td></td>
+<td>query</td>
+<td>false</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>servletContext.jspConfigDescriptor.jspPropertyGroups[0].deferredSyntaxAllowedAsLiteral</td>
+<td></td>
+<td>query</td>
+<td>false</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>servletContext.jspConfigDescriptor.jspPropertyGroups[0].elIgnored</td>
+<td></td>
+<td>query</td>
+<td>false</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>servletContext.jspConfigDescriptor.jspPropertyGroups[0].errorOnUndeclaredNamespace</td>
+<td></td>
+<td>query</td>
+<td>false</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>servletContext.jspConfigDescriptor.jspPropertyGroups[0].includeCodas</td>
+<td></td>
+<td>query</td>
+<td>false</td>
+<td>array</td>
+<td>string</td>
+</tr>
+<tr>
+<td>servletContext.jspConfigDescriptor.jspPropertyGroups[0].includePreludes</td>
+<td></td>
+<td>query</td>
+<td>false</td>
+<td>array</td>
+<td>string</td>
+</tr>
+<tr>
+<td>servletContext.jspConfigDescriptor.jspPropertyGroups[0].isXml</td>
+<td></td>
+<td>query</td>
+<td>false</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>servletContext.jspConfigDescriptor.jspPropertyGroups[0].pageEncoding</td>
+<td></td>
+<td>query</td>
+<td>false</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>servletContext.jspConfigDescriptor.jspPropertyGroups[0].scriptingInvalid</td>
+<td></td>
+<td>query</td>
+<td>false</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>servletContext.jspConfigDescriptor.jspPropertyGroups[0].trimDirectiveWhitespaces</td>
+<td></td>
+<td>query</td>
+<td>false</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>servletContext.jspConfigDescriptor.jspPropertyGroups[0].urlPatterns</td>
+<td></td>
+<td>query</td>
+<td>false</td>
+<td>array</td>
+<td>string</td>
+</tr>
+<tr>
+<td>servletContext.jspConfigDescriptor.taglibs[0].taglibLocation</td>
+<td></td>
+<td>query</td>
+<td>false</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>servletContext.jspConfigDescriptor.taglibs[0].taglibURI</td>
+<td></td>
+<td>query</td>
+<td>false</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>servletContext.majorVersion</td>
+<td></td>
+<td>query</td>
+<td>false</td>
+<td>integer(int32)</td>
+<td></td>
+</tr>
+<tr>
+<td>servletContext.minorVersion</td>
+<td></td>
+<td>query</td>
+<td>false</td>
+<td>integer(int32)</td>
+<td></td>
+</tr>
+<tr>
+<td>servletContext.requestCharacterEncoding</td>
+<td></td>
+<td>query</td>
+<td>false</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>servletContext.responseCharacterEncoding</td>
+<td></td>
+<td>query</td>
+<td>false</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>servletContext.serverInfo</td>
+<td></td>
+<td>query</td>
+<td>false</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>servletContext.servletContextName</td>
+<td></td>
+<td>query</td>
+<td>false</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>servletContext.sessionCookieConfig.comment</td>
+<td></td>
+<td>query</td>
+<td>false</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>servletContext.sessionCookieConfig.domain</td>
+<td></td>
+<td>query</td>
+<td>false</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>servletContext.sessionCookieConfig.httpOnly</td>
+<td></td>
+<td>query</td>
+<td>false</td>
+<td>boolean</td>
+<td></td>
+</tr>
+<tr>
+<td>servletContext.sessionCookieConfig.maxAge</td>
+<td></td>
+<td>query</td>
+<td>false</td>
+<td>integer(int32)</td>
+<td></td>
+</tr>
+<tr>
+<td>servletContext.sessionCookieConfig.name</td>
+<td></td>
+<td>query</td>
+<td>false</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>servletContext.sessionCookieConfig.path</td>
+<td></td>
+<td>query</td>
+<td>false</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>servletContext.sessionCookieConfig.secure</td>
+<td></td>
+<td>query</td>
+<td>false</td>
+<td>boolean</td>
+<td></td>
+</tr>
+<tr>
+<td>servletContext.sessionTimeout</td>
+<td></td>
+<td>query</td>
+<td>false</td>
+<td>integer(int32)</td>
+<td></td>
+</tr>
+<tr>
+<td>servletContext.virtualServerName</td>
+<td></td>
+<td>query</td>
+<td>false</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>valueNames</td>
+<td></td>
+<td>query</td>
+<td>false</td>
+<td>array</td>
+<td>string</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+
+<div class="knife4j-word-title">响应状态</div><br/>
+<div class="knife4j-word-content">
+<table class="knife4j-word-table">
+<thead><tr><th>状态码</th><th>说明</th><th>schema</th></tr></thead>
+<tbody>
+
+
+<tr>
+<td>200</td>
+<td>OK</td>
+<td>JSON</td>
+</tr>
+<tr>
+<td>401</td>
+<td>Unauthorized</td>
+<td></td>
+</tr>
+<tr>
+<td>403</td>
+<td>Forbidden</td>
+<td></td>
+</tr>
+<tr>
+<td>404</td>
+<td>Not Found</td>
+<td></td>
+</tr>
+</tbody>
+</table><br/>
+</div>
+
+
+<div class="knife4j-word-title">响应参数</div>
+
+
+<div class="knife4j-word-content">
+<table class="knife4j-word-table">
+<thead><tr><th>参数名称</th><th>参数说明</th><th>类型</th><th>schema</th></tr></thead>
+<tbody>
+<tr>
+<td>config</td>
+<td></td>
+<td>JSONConfig</td>
+<td>JSONConfig</td>
+</tr>
+<tr>
+<td>&nbsp;checkDuplicate</td>
+<td></td>
+<td>boolean</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;dateFormat</td>
+<td></td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;ignoreCase</td>
+<td></td>
+<td>boolean</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;ignoreError</td>
+<td></td>
+<td>boolean</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;ignoreNullValue</td>
+<td></td>
+<td>boolean</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;keyComparator</td>
+<td></td>
+<td>Comparator«string»</td>
+<td>Comparator«string»</td>
+</tr>
+<tr>
+<td>&nbsp;order</td>
+<td></td>
+<td>boolean</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;stripTrailingZeros</td>
+<td></td>
+<td>boolean</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;transientSupport</td>
+<td></td>
+<td>boolean</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+
+
+<div class="knife4j-word-title">响应示例</div>
+<div class="knife4j-word-content"><pre class="knife4j-word-code-editor">
+{
+	<span class="key">"config":</span> {
+		<span class="key">"checkDuplicate":</span> <span class="boolean">true</span>,
+		<span class="key">"dateFormat":</span> <span class="string">""</span>,
+		<span class="key">"ignoreCase":</span> <span class="boolean">true</span>,
+		<span class="key">"ignoreError":</span> <span class="boolean">true</span>,
+		<span class="key">"ignoreNullValue":</span> <span class="boolean">true</span>,
+		<span class="key">"keyComparator":</span> {},
+		<span class="key">"order":</span> <span class="boolean">true</span>,
+		<span class="key">"stripTrailingZeros":</span> <span class="boolean">true</span>,
+		<span class="key">"transientSupport":</span> <span class="boolean">true</span>
+	}
+}
+</pre></div>
+</div>
+
+
+<h3>2.6.2用户登录</h3>
+<div class="knife4j-word-api">
+<div class="knife4j-word-title">接口地址</div>
+<div class="knife4j-word-content"><span class="knife4j-word-method">POST</span>&nbsp;&nbsp;<code>/user/login</code></div>
+<div class="knife4j-word-title">接口描述</div>
+<div class="knife4j-word-content"></div>
+<div class="knife4j-word-title">请求数据类型</div>
+<div class="knife4j-word-content"><code>application/json</code></div>
+<div class="knife4j-word-title">响应数据类型</div>
+<div class="knife4j-word-content"><code>*/*</code></div>
+<div class="knife4j-word-title">请求示例</div>
+<div class="knife4j-word-content">
+<pre class="knife4j-word-code-editor">
+{
+  <span class="key">"uid":</span> <span class="string">""</span>,
+  <span class="key">"upw":</span> <span class="string">""</span>
+}
+</pre>
+</div>
+
+
+<div class="knife4j-word-title">请求参数</div><br/>
+<div class="knife4j-word-content">
+<table class="knife4j-word-table">
+<thead><tr><th>参数名称</th><th>参数说明</th><th>请求类型</th><th>必须</th><th>数据类型</th><th>schema</th></tr></thead>
+<tbody>
+<tr>
+<td>user</td>
+<td>user</td>
+<td>body</td>
+<td>true</td>
+<td>User</td>
+<td>User</td>
+</tr>
+<tr>
+<td>&nbsp;uid</td>
+<td></td>
+<td></td>
+<td>false</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;upw</td>
+<td></td>
+<td></td>
+<td>false</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>creationTime</td>
+<td></td>
+<td>query</td>
+<td>false</td>
+<td>integer(int64)</td>
+<td></td>
+</tr>
+<tr>
+<td>id</td>
+<td></td>
+<td>query</td>
+<td>false</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>lastAccessedTime</td>
+<td></td>
+<td>query</td>
+<td>false</td>
+<td>integer(int64)</td>
+<td></td>
+</tr>
+<tr>
+<td>maxInactiveInterval</td>
+<td></td>
+<td>query</td>
+<td>false</td>
+<td>integer(int32)</td>
+<td></td>
+</tr>
+<tr>
+<td>new</td>
+<td></td>
+<td>query</td>
+<td>false</td>
+<td>boolean</td>
+<td></td>
+</tr>
+<tr>
+<td>servletContext.classLoader</td>
+<td></td>
+<td>query</td>
+<td>false</td>
+<td>ref</td>
+<td></td>
+</tr>
+<tr>
+<td>servletContext.contextPath</td>
+<td></td>
+<td>query</td>
+<td>false</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>servletContext.defaultSessionTrackingModes</td>
+<td>可用值:COOKIE,URL,SSL</td>
+<td>query</td>
+<td>false</td>
+<td>array</td>
+<td>string</td>
+</tr>
+<tr>
+<td>servletContext.effectiveMajorVersion</td>
+<td></td>
+<td>query</td>
+<td>false</td>
+<td>integer(int32)</td>
+<td></td>
+</tr>
+<tr>
+<td>servletContext.effectiveMinorVersion</td>
+<td></td>
+<td>query</td>
+<td>false</td>
+<td>integer(int32)</td>
+<td></td>
+</tr>
+<tr>
+<td>servletContext.effectiveSessionTrackingModes</td>
+<td>可用值:COOKIE,URL,SSL</td>
+<td>query</td>
+<td>false</td>
+<td>array</td>
+<td>string</td>
+</tr>
+<tr>
+<td>servletContext.jspConfigDescriptor.jspPropertyGroups[0].buffer</td>
+<td></td>
+<td>query</td>
+<td>false</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>servletContext.jspConfigDescriptor.jspPropertyGroups[0].defaultContentType</td>
+<td></td>
+<td>query</td>
+<td>false</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>servletContext.jspConfigDescriptor.jspPropertyGroups[0].deferredSyntaxAllowedAsLiteral</td>
+<td></td>
+<td>query</td>
+<td>false</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>servletContext.jspConfigDescriptor.jspPropertyGroups[0].elIgnored</td>
+<td></td>
+<td>query</td>
+<td>false</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>servletContext.jspConfigDescriptor.jspPropertyGroups[0].errorOnUndeclaredNamespace</td>
+<td></td>
+<td>query</td>
+<td>false</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>servletContext.jspConfigDescriptor.jspPropertyGroups[0].includeCodas</td>
+<td></td>
+<td>query</td>
+<td>false</td>
+<td>array</td>
+<td>string</td>
+</tr>
+<tr>
+<td>servletContext.jspConfigDescriptor.jspPropertyGroups[0].includePreludes</td>
+<td></td>
+<td>query</td>
+<td>false</td>
+<td>array</td>
+<td>string</td>
+</tr>
+<tr>
+<td>servletContext.jspConfigDescriptor.jspPropertyGroups[0].isXml</td>
+<td></td>
+<td>query</td>
+<td>false</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>servletContext.jspConfigDescriptor.jspPropertyGroups[0].pageEncoding</td>
+<td></td>
+<td>query</td>
+<td>false</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>servletContext.jspConfigDescriptor.jspPropertyGroups[0].scriptingInvalid</td>
+<td></td>
+<td>query</td>
+<td>false</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>servletContext.jspConfigDescriptor.jspPropertyGroups[0].trimDirectiveWhitespaces</td>
+<td></td>
+<td>query</td>
+<td>false</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>servletContext.jspConfigDescriptor.jspPropertyGroups[0].urlPatterns</td>
+<td></td>
+<td>query</td>
+<td>false</td>
+<td>array</td>
+<td>string</td>
+</tr>
+<tr>
+<td>servletContext.jspConfigDescriptor.taglibs[0].taglibLocation</td>
+<td></td>
+<td>query</td>
+<td>false</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>servletContext.jspConfigDescriptor.taglibs[0].taglibURI</td>
+<td></td>
+<td>query</td>
+<td>false</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>servletContext.majorVersion</td>
+<td></td>
+<td>query</td>
+<td>false</td>
+<td>integer(int32)</td>
+<td></td>
+</tr>
+<tr>
+<td>servletContext.minorVersion</td>
+<td></td>
+<td>query</td>
+<td>false</td>
+<td>integer(int32)</td>
+<td></td>
+</tr>
+<tr>
+<td>servletContext.requestCharacterEncoding</td>
+<td></td>
+<td>query</td>
+<td>false</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>servletContext.responseCharacterEncoding</td>
+<td></td>
+<td>query</td>
+<td>false</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>servletContext.serverInfo</td>
+<td></td>
+<td>query</td>
+<td>false</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>servletContext.servletContextName</td>
+<td></td>
+<td>query</td>
+<td>false</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>servletContext.sessionCookieConfig.comment</td>
+<td></td>
+<td>query</td>
+<td>false</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>servletContext.sessionCookieConfig.domain</td>
+<td></td>
+<td>query</td>
+<td>false</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>servletContext.sessionCookieConfig.httpOnly</td>
+<td></td>
+<td>query</td>
+<td>false</td>
+<td>boolean</td>
+<td></td>
+</tr>
+<tr>
+<td>servletContext.sessionCookieConfig.maxAge</td>
+<td></td>
+<td>query</td>
+<td>false</td>
+<td>integer(int32)</td>
+<td></td>
+</tr>
+<tr>
+<td>servletContext.sessionCookieConfig.name</td>
+<td></td>
+<td>query</td>
+<td>false</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>servletContext.sessionCookieConfig.path</td>
+<td></td>
+<td>query</td>
+<td>false</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>servletContext.sessionCookieConfig.secure</td>
+<td></td>
+<td>query</td>
+<td>false</td>
+<td>boolean</td>
+<td></td>
+</tr>
+<tr>
+<td>servletContext.sessionTimeout</td>
+<td></td>
+<td>query</td>
+<td>false</td>
+<td>integer(int32)</td>
+<td></td>
+</tr>
+<tr>
+<td>servletContext.virtualServerName</td>
+<td></td>
+<td>query</td>
+<td>false</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>valueNames</td>
+<td></td>
+<td>query</td>
+<td>false</td>
+<td>array</td>
+<td>string</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+
+<div class="knife4j-word-title">响应状态</div><br/>
+<div class="knife4j-word-content">
+<table class="knife4j-word-table">
+<thead><tr><th>状态码</th><th>说明</th><th>schema</th></tr></thead>
+<tbody>
+
+
+<tr>
+<td>200</td>
+<td>OK</td>
+<td>JSON</td>
+</tr>
+<tr>
+<td>201</td>
+<td>Created</td>
+<td></td>
+</tr>
+<tr>
+<td>401</td>
+<td>Unauthorized</td>
+<td></td>
+</tr>
+<tr>
+<td>403</td>
+<td>Forbidden</td>
+<td></td>
+</tr>
+<tr>
+<td>404</td>
+<td>Not Found</td>
+<td></td>
+</tr>
+</tbody>
+</table><br/>
+</div>
+
+
+<div class="knife4j-word-title">响应参数</div>
+
+
+<div class="knife4j-word-content">
+<table class="knife4j-word-table">
+<thead><tr><th>参数名称</th><th>参数说明</th><th>类型</th><th>schema</th></tr></thead>
+<tbody>
+<tr>
+<td>config</td>
+<td></td>
+<td>JSONConfig</td>
+<td>JSONConfig</td>
+</tr>
+<tr>
+<td>&nbsp;checkDuplicate</td>
+<td></td>
+<td>boolean</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;dateFormat</td>
+<td></td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;ignoreCase</td>
+<td></td>
+<td>boolean</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;ignoreError</td>
+<td></td>
+<td>boolean</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;ignoreNullValue</td>
+<td></td>
+<td>boolean</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;keyComparator</td>
+<td></td>
+<td>Comparator«string»</td>
+<td>Comparator«string»</td>
+</tr>
+<tr>
+<td>&nbsp;order</td>
+<td></td>
+<td>boolean</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;stripTrailingZeros</td>
+<td></td>
+<td>boolean</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;transientSupport</td>
+<td></td>
+<td>boolean</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+
+
+<div class="knife4j-word-title">响应示例</div>
+<div class="knife4j-word-content"><pre class="knife4j-word-code-editor">
+{
+	<span class="key">"config":</span> {
+		<span class="key">"checkDuplicate":</span> <span class="boolean">true</span>,
+		<span class="key">"dateFormat":</span> <span class="string">""</span>,
+		<span class="key">"ignoreCase":</span> <span class="boolean">true</span>,
+		<span class="key">"ignoreError":</span> <span class="boolean">true</span>,
+		<span class="key">"ignoreNullValue":</span> <span class="boolean">true</span>,
+		<span class="key">"keyComparator":</span> {},
+		<span class="key">"order":</span> <span class="boolean">true</span>,
+		<span class="key">"stripTrailingZeros":</span> <span class="boolean">true</span>,
+		<span class="key">"transientSupport":</span> <span class="boolean">true</span>
+	}
+}
+</pre></div>
+</div>
+
+
+<h3>2.6.3用户注销</h3>
+<div class="knife4j-word-api">
+<div class="knife4j-word-title">接口地址</div>
+<div class="knife4j-word-content"><span class="knife4j-word-method">GET</span>&nbsp;&nbsp;<code>/user/logoff</code></div>
+<div class="knife4j-word-title">接口描述</div>
+<div class="knife4j-word-content"></div>
+<div class="knife4j-word-title">请求数据类型</div>
+<div class="knife4j-word-content"><code>application/x-www-form-urlencoded</code></div>
+<div class="knife4j-word-title">响应数据类型</div>
+<div class="knife4j-word-content"><code>*/*</code></div>
+
+
+<div class="knife4j-word-title">请求参数</div><br/>
+<div class="knife4j-word-content">
+<table class="knife4j-word-table">
+<thead><tr><th>参数名称</th><th>参数说明</th><th>请求类型</th><th>必须</th><th>数据类型</th><th>schema</th></tr></thead>
+<tbody>
+<tr><td colspan="6">暂无</td></tr>
+</tbody>
+</table>
+</div>
+
+
+<div class="knife4j-word-title">响应状态</div><br/>
+<div class="knife4j-word-content">
+<table class="knife4j-word-table">
+<thead><tr><th>状态码</th><th>说明</th><th>schema</th></tr></thead>
+<tbody>
+
+
+<tr>
+<td>200</td>
+<td>OK</td>
+<td>JSON</td>
+</tr>
+<tr>
+<td>401</td>
+<td>Unauthorized</td>
+<td></td>
+</tr>
+<tr>
+<td>403</td>
+<td>Forbidden</td>
+<td></td>
+</tr>
+<tr>
+<td>404</td>
+<td>Not Found</td>
+<td></td>
+</tr>
+</tbody>
+</table><br/>
+</div>
+
+
+<div class="knife4j-word-title">响应参数</div>
+
+
+<div class="knife4j-word-content">
+<table class="knife4j-word-table">
+<thead><tr><th>参数名称</th><th>参数说明</th><th>类型</th><th>schema</th></tr></thead>
+<tbody>
+<tr>
+<td>config</td>
+<td></td>
+<td>JSONConfig</td>
+<td>JSONConfig</td>
+</tr>
+<tr>
+<td>&nbsp;checkDuplicate</td>
+<td></td>
+<td>boolean</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;dateFormat</td>
+<td></td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;ignoreCase</td>
+<td></td>
+<td>boolean</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;ignoreError</td>
+<td></td>
+<td>boolean</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;ignoreNullValue</td>
+<td></td>
+<td>boolean</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;keyComparator</td>
+<td></td>
+<td>Comparator«string»</td>
+<td>Comparator«string»</td>
+</tr>
+<tr>
+<td>&nbsp;order</td>
+<td></td>
+<td>boolean</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;stripTrailingZeros</td>
+<td></td>
+<td>boolean</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;transientSupport</td>
+<td></td>
+<td>boolean</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+
+
+<div class="knife4j-word-title">响应示例</div>
+<div class="knife4j-word-content"><pre class="knife4j-word-code-editor">
+{
+	<span class="key">"config":</span> {
+		<span class="key">"checkDuplicate":</span> <span class="boolean">true</span>,
+		<span class="key">"dateFormat":</span> <span class="string">""</span>,
+		<span class="key">"ignoreCase":</span> <span class="boolean">true</span>,
+		<span class="key">"ignoreError":</span> <span class="boolean">true</span>,
+		<span class="key">"ignoreNullValue":</span> <span class="boolean">true</span>,
+		<span class="key">"keyComparator":</span> {},
+		<span class="key">"order":</span> <span class="boolean">true</span>,
+		<span class="key">"stripTrailingZeros":</span> <span class="boolean">true</span>,
+		<span class="key">"transientSupport":</span> <span class="boolean">true</span>
+	}
+}
+</pre></div>
+</div>
+
+
+<h3>2.6.4获取验证码</h3>
+<div class="knife4j-word-api">
+<div class="knife4j-word-title">接口地址</div>
+<div class="knife4j-word-content"><span class="knife4j-word-method">GET</span>&nbsp;&nbsp;<code>/user/qr</code></div>
+<div class="knife4j-word-title">接口描述</div>
+<div class="knife4j-word-content"></div>
+<div class="knife4j-word-title">请求数据类型</div>
+<div class="knife4j-word-content"><code>application/x-www-form-urlencoded</code></div>
+<div class="knife4j-word-title">响应数据类型</div>
+<div class="knife4j-word-content"><code>*/*</code></div>
+
+
+<div class="knife4j-word-title">请求参数</div><br/>
+<div class="knife4j-word-content">
+<table class="knife4j-word-table">
+<thead><tr><th>参数名称</th><th>参数说明</th><th>请求类型</th><th>必须</th><th>数据类型</th><th>schema</th></tr></thead>
+<tbody>
+<tr><td colspan="6">暂无</td></tr>
+</tbody>
+</table>
+</div>
+
+
+<div class="knife4j-word-title">响应状态</div><br/>
+<div class="knife4j-word-content">
+<table class="knife4j-word-table">
+<thead><tr><th>状态码</th><th>说明</th><th>schema</th></tr></thead>
+<tbody>
+
+
+<tr>
+<td>200</td>
+<td>OK</td>
+<td></td>
+</tr>
+<tr>
+<td>401</td>
+<td>Unauthorized</td>
+<td></td>
+</tr>
+<tr>
+<td>403</td>
+<td>Forbidden</td>
+<td></td>
+</tr>
+<tr>
+<td>404</td>
+<td>Not Found</td>
+<td></td>
+</tr>
+</tbody>
+</table><br/>
+</div>
+
+
+<div class="knife4j-word-title">响应参数</div>
+
+
+<div class="knife4j-word-content">
+<table class="knife4j-word-table">
+<thead><tr><th>参数名称</th><th>参数说明</th><th>类型</th><th>schema</th></tr></thead>
+<tbody>
+<tr><td colspan="4">暂无</td></tr>
+</tbody>
+</table>
+</div>
+
+
+<div class="knife4j-word-title">响应示例</div>
+<div class="knife4j-word-content"><pre class="knife4j-word-code-editor">
+
+</pre></div>
+</div>
+
+
+<h3>2.6.5用户注册</h3>
+<div class="knife4j-word-api">
+<div class="knife4j-word-title">接口地址</div>
+<div class="knife4j-word-content"><span class="knife4j-word-method">POST</span>&nbsp;&nbsp;<code>/user/register</code></div>
+<div class="knife4j-word-title">接口描述</div>
+<div class="knife4j-word-content"></div>
+<div class="knife4j-word-title">请求数据类型</div>
+<div class="knife4j-word-content"><code>application/json</code></div>
+<div class="knife4j-word-title">响应数据类型</div>
+<div class="knife4j-word-content"><code>*/*</code></div>
+<div class="knife4j-word-title">请求示例</div>
+<div class="knife4j-word-content">
+<pre class="knife4j-word-code-editor">
+{
+  <span class="key">"uid":</span> <span class="string">""</span>,
+  <span class="key">"upw":</span> <span class="string">""</span>
+}
+</pre>
+</div>
+
+
+<div class="knife4j-word-title">请求参数</div><br/>
+<div class="knife4j-word-content">
+<table class="knife4j-word-table">
+<thead><tr><th>参数名称</th><th>参数说明</th><th>请求类型</th><th>必须</th><th>数据类型</th><th>schema</th></tr></thead>
+<tbody>
+<tr>
+<td>qr</td>
+<td>qr</td>
+<td>query</td>
+<td>true</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>user</td>
+<td>user</td>
+<td>body</td>
+<td>true</td>
+<td>User</td>
+<td>User</td>
+</tr>
+<tr>
+<td>&nbsp;uid</td>
+<td></td>
+<td></td>
+<td>false</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;upw</td>
+<td></td>
+<td></td>
+<td>false</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>creationTime</td>
+<td></td>
+<td>query</td>
+<td>false</td>
+<td>integer(int64)</td>
+<td></td>
+</tr>
+<tr>
+<td>id</td>
+<td></td>
+<td>query</td>
+<td>false</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>lastAccessedTime</td>
+<td></td>
+<td>query</td>
+<td>false</td>
+<td>integer(int64)</td>
+<td></td>
+</tr>
+<tr>
+<td>maxInactiveInterval</td>
+<td></td>
+<td>query</td>
+<td>false</td>
+<td>integer(int32)</td>
+<td></td>
+</tr>
+<tr>
+<td>new</td>
+<td></td>
+<td>query</td>
+<td>false</td>
+<td>boolean</td>
+<td></td>
+</tr>
+<tr>
+<td>servletContext.classLoader</td>
+<td></td>
+<td>query</td>
+<td>false</td>
+<td>ref</td>
+<td></td>
+</tr>
+<tr>
+<td>servletContext.contextPath</td>
+<td></td>
+<td>query</td>
+<td>false</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>servletContext.defaultSessionTrackingModes</td>
+<td>可用值:COOKIE,URL,SSL</td>
+<td>query</td>
+<td>false</td>
+<td>array</td>
+<td>string</td>
+</tr>
+<tr>
+<td>servletContext.effectiveMajorVersion</td>
+<td></td>
+<td>query</td>
+<td>false</td>
+<td>integer(int32)</td>
+<td></td>
+</tr>
+<tr>
+<td>servletContext.effectiveMinorVersion</td>
+<td></td>
+<td>query</td>
+<td>false</td>
+<td>integer(int32)</td>
+<td></td>
+</tr>
+<tr>
+<td>servletContext.effectiveSessionTrackingModes</td>
+<td>可用值:COOKIE,URL,SSL</td>
+<td>query</td>
+<td>false</td>
+<td>array</td>
+<td>string</td>
+</tr>
+<tr>
+<td>servletContext.jspConfigDescriptor.jspPropertyGroups[0].buffer</td>
+<td></td>
+<td>query</td>
+<td>false</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>servletContext.jspConfigDescriptor.jspPropertyGroups[0].defaultContentType</td>
+<td></td>
+<td>query</td>
+<td>false</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>servletContext.jspConfigDescriptor.jspPropertyGroups[0].deferredSyntaxAllowedAsLiteral</td>
+<td></td>
+<td>query</td>
+<td>false</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>servletContext.jspConfigDescriptor.jspPropertyGroups[0].elIgnored</td>
+<td></td>
+<td>query</td>
+<td>false</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>servletContext.jspConfigDescriptor.jspPropertyGroups[0].errorOnUndeclaredNamespace</td>
+<td></td>
+<td>query</td>
+<td>false</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>servletContext.jspConfigDescriptor.jspPropertyGroups[0].includeCodas</td>
+<td></td>
+<td>query</td>
+<td>false</td>
+<td>array</td>
+<td>string</td>
+</tr>
+<tr>
+<td>servletContext.jspConfigDescriptor.jspPropertyGroups[0].includePreludes</td>
+<td></td>
+<td>query</td>
+<td>false</td>
+<td>array</td>
+<td>string</td>
+</tr>
+<tr>
+<td>servletContext.jspConfigDescriptor.jspPropertyGroups[0].isXml</td>
+<td></td>
+<td>query</td>
+<td>false</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>servletContext.jspConfigDescriptor.jspPropertyGroups[0].pageEncoding</td>
+<td></td>
+<td>query</td>
+<td>false</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>servletContext.jspConfigDescriptor.jspPropertyGroups[0].scriptingInvalid</td>
+<td></td>
+<td>query</td>
+<td>false</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>servletContext.jspConfigDescriptor.jspPropertyGroups[0].trimDirectiveWhitespaces</td>
+<td></td>
+<td>query</td>
+<td>false</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>servletContext.jspConfigDescriptor.jspPropertyGroups[0].urlPatterns</td>
+<td></td>
+<td>query</td>
+<td>false</td>
+<td>array</td>
+<td>string</td>
+</tr>
+<tr>
+<td>servletContext.jspConfigDescriptor.taglibs[0].taglibLocation</td>
+<td></td>
+<td>query</td>
+<td>false</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>servletContext.jspConfigDescriptor.taglibs[0].taglibURI</td>
+<td></td>
+<td>query</td>
+<td>false</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>servletContext.majorVersion</td>
+<td></td>
+<td>query</td>
+<td>false</td>
+<td>integer(int32)</td>
+<td></td>
+</tr>
+<tr>
+<td>servletContext.minorVersion</td>
+<td></td>
+<td>query</td>
+<td>false</td>
+<td>integer(int32)</td>
+<td></td>
+</tr>
+<tr>
+<td>servletContext.requestCharacterEncoding</td>
+<td></td>
+<td>query</td>
+<td>false</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>servletContext.responseCharacterEncoding</td>
+<td></td>
+<td>query</td>
+<td>false</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>servletContext.serverInfo</td>
+<td></td>
+<td>query</td>
+<td>false</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>servletContext.servletContextName</td>
+<td></td>
+<td>query</td>
+<td>false</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>servletContext.sessionCookieConfig.comment</td>
+<td></td>
+<td>query</td>
+<td>false</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>servletContext.sessionCookieConfig.domain</td>
+<td></td>
+<td>query</td>
+<td>false</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>servletContext.sessionCookieConfig.httpOnly</td>
+<td></td>
+<td>query</td>
+<td>false</td>
+<td>boolean</td>
+<td></td>
+</tr>
+<tr>
+<td>servletContext.sessionCookieConfig.maxAge</td>
+<td></td>
+<td>query</td>
+<td>false</td>
+<td>integer(int32)</td>
+<td></td>
+</tr>
+<tr>
+<td>servletContext.sessionCookieConfig.name</td>
+<td></td>
+<td>query</td>
+<td>false</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>servletContext.sessionCookieConfig.path</td>
+<td></td>
+<td>query</td>
+<td>false</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>servletContext.sessionCookieConfig.secure</td>
+<td></td>
+<td>query</td>
+<td>false</td>
+<td>boolean</td>
+<td></td>
+</tr>
+<tr>
+<td>servletContext.sessionTimeout</td>
+<td></td>
+<td>query</td>
+<td>false</td>
+<td>integer(int32)</td>
+<td></td>
+</tr>
+<tr>
+<td>servletContext.virtualServerName</td>
+<td></td>
+<td>query</td>
+<td>false</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>valueNames</td>
+<td></td>
+<td>query</td>
+<td>false</td>
+<td>array</td>
+<td>string</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+
+<div class="knife4j-word-title">响应状态</div><br/>
+<div class="knife4j-word-content">
+<table class="knife4j-word-table">
+<thead><tr><th>状态码</th><th>说明</th><th>schema</th></tr></thead>
+<tbody>
+
+
+<tr>
+<td>200</td>
+<td>OK</td>
+<td>JSON</td>
+</tr>
+<tr>
+<td>201</td>
+<td>Created</td>
+<td></td>
+</tr>
+<tr>
+<td>401</td>
+<td>Unauthorized</td>
+<td></td>
+</tr>
+<tr>
+<td>403</td>
+<td>Forbidden</td>
+<td></td>
+</tr>
+<tr>
+<td>404</td>
+<td>Not Found</td>
+<td></td>
+</tr>
+</tbody>
+</table><br/>
+</div>
+
+
+<div class="knife4j-word-title">响应参数</div>
+
+
+<div class="knife4j-word-content">
+<table class="knife4j-word-table">
+<thead><tr><th>参数名称</th><th>参数说明</th><th>类型</th><th>schema</th></tr></thead>
+<tbody>
+<tr>
+<td>config</td>
+<td></td>
+<td>JSONConfig</td>
+<td>JSONConfig</td>
+</tr>
+<tr>
+<td>&nbsp;checkDuplicate</td>
+<td></td>
+<td>boolean</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;dateFormat</td>
+<td></td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;ignoreCase</td>
+<td></td>
+<td>boolean</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;ignoreError</td>
+<td></td>
+<td>boolean</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;ignoreNullValue</td>
+<td></td>
+<td>boolean</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;keyComparator</td>
+<td></td>
+<td>Comparator«string»</td>
+<td>Comparator«string»</td>
+</tr>
+<tr>
+<td>&nbsp;order</td>
+<td></td>
+<td>boolean</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;stripTrailingZeros</td>
+<td></td>
+<td>boolean</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;transientSupport</td>
+<td></td>
+<td>boolean</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+
+
+<div class="knife4j-word-title">响应示例</div>
+<div class="knife4j-word-content"><pre class="knife4j-word-code-editor">
+{
+	<span class="key">"config":</span> {
+		<span class="key">"checkDuplicate":</span> <span class="boolean">true</span>,
+		<span class="key">"dateFormat":</span> <span class="string">""</span>,
+		<span class="key">"ignoreCase":</span> <span class="boolean">true</span>,
+		<span class="key">"ignoreError":</span> <span class="boolean">true</span>,
+		<span class="key">"ignoreNullValue":</span> <span class="boolean">true</span>,
+		<span class="key">"keyComparator":</span> {},
+		<span class="key">"order":</span> <span class="boolean">true</span>,
+		<span class="key">"stripTrailingZeros":</span> <span class="boolean">true</span>,
+		<span class="key">"transientSupport":</span> <span class="boolean">true</span>
+	}
+}
+</pre></div>
+</div>
+</div></body></html>

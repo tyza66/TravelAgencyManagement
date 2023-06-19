@@ -11,7 +11,7 @@
  Target Server Version : 80033
  File Encoding         : 65001
 
- Date: 19/06/2023 08:15:04
+ Date: 19/06/2023 11:19:23
 */
 
 SET NAMES utf8mb4;
@@ -56,12 +56,7 @@ CREATE TABLE `cus`  (
 -- ----------------------------
 -- Records of cus
 -- ----------------------------
-INSERT INTO `cus` VALUES (1, '4', 0, 4, 1);
-INSERT INTO `cus` VALUES (2, '孙老明1', 1, 1, 1);
-INSERT INTO `cus` VALUES (3, '3', 3, 3, 1);
-INSERT INTO `cus` VALUES (4, '1', 1, 1, 1);
-INSERT INTO `cus` VALUES (5, '2', 2, 2, 1);
-INSERT INTO `cus` VALUES (1766932486, '8', 6, 6, 1);
+INSERT INTO `cus` VALUES (1, '1', 1, 1, 2);
 
 -- ----------------------------
 -- Table structure for guide
@@ -80,7 +75,6 @@ CREATE TABLE `guide`  (
 -- ----------------------------
 -- Records of guide
 -- ----------------------------
-INSERT INTO `guide` VALUES (1, '孙小明', '1', '1', '2023-06-18 20:44:13', 12);
 INSERT INTO `guide` VALUES (2, '2', '2', '2', '2023-06-18 21:24:52', 2);
 INSERT INTO `guide` VALUES (1536184322, '', '', '', '2023-06-19 18:48:00', NULL);
 INSERT INTO `guide` VALUES (1536184323, 'tyza66', '12', '12', '2023-06-19 18:48:00', 12);
@@ -117,7 +111,8 @@ CREATE TABLE `out1`  (
 -- ----------------------------
 -- Records of out1
 -- ----------------------------
-INSERT INTO `out1` VALUES (1, '2023-06-15 10:11:43', '2023-06-30 10:11:49', 1, 1);
+INSERT INTO `out1` VALUES (-781741184, '2023-06-24 23:06:00', '2023-06-19 21:10:00', 432, 44);
+INSERT INTO `out1` VALUES (-781382974, '2023-06-24 23:06:00', '2023-06-19 21:10:00', 432, 46);
 INSERT INTO `out1` VALUES (2, '2023-07-05 09:12:11', '2023-07-13 10:12:19', 1, 1);
 INSERT INTO `out1` VALUES (3, '2023-06-16 10:12:39', '2023-06-22 10:12:42', 2, 2);
 
