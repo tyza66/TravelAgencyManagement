@@ -17,15 +17,302 @@
             <h3 style="text-align: center;">出游管理</h3>
         </el-row>
         <el-row>
-            
+            <el-input v-model="search" placeholder="导游姓名" style="display: inline-block;width: 150px;"></el-input>
+            <el-button @click="search1()">搜索</el-button>
+            <el-button style="margin-left: 1%;" @click="addDialogVisible=true">添加导游</el-button>
         </el-row>
+        <el-row style="margin-top: 5px;">
+            <el-table :data="tableData" border style="width: 100%">
+                <el-table-column fixed prop="gid" label="导游ID" width="120">
+                </el-table-column>
+                <el-table-column prop="gname" label="导游姓名" width="120">
+                </el-table-column>
+                <el-table-column prop="gstate" label="导游状态" width="150">
+                </el-table-column>
+                <el-table-column prop="gtel" label="导游电话" width="150">
+                </el-table-column>
+                <el-table-column prop="gotime" label="出发时间" width="150">
+                </el-table-column>
+                <el-table-column prop="willdays" label="出去时长" width="150">
+                </el-table-column>
+                <el-table-column fixed="right" label="操作" width="150">
+                    <template slot-scope="scope">
+                        <el-button size="small" @click="up(scope.row)">编辑</el-button>
+                        <el-button size="small" @click="del(scope.row)">删除</el-button>
+                    </template>
+                </el-table-column>
+            </el-table>
+        </el-row>
+        <el-dialog title="添加导游" :visible.sync="addDialogVisible" width="45%" :before-close="handleClose">
+            <el-form label-position="top" label-width="80px">
+                <el-form-item label="导游姓名">
+                    <el-input v-model="subForm.gname"></el-input>
+                </el-form-item>
+                <el-form-item label="导游状态">
+                    <el-input v-model="subForm.gstate"></el-input>
+                </el-form-item>
+                <el-form-item label="导游电话">
+                    <el-input v-model="subForm.gtel"></el-input>
+                </el-form-item>
+                <el-form-item label="出发时间">
+                    <el-input type="datetime-local" v-model="subForm.gotime"></el-input>
+                </el-form-item>
+                <el-form-item label="出去时长">
+                    <el-input v-model="subForm.willdays"></el-input>
+                </el-form-item>
+            </el-form>
+            <span slot="footer" class="dialog-footer">
+                <el-button @click="closeAdd()">取 消</el-button>
+                <el-button type="primary" @click="add()">确 定</el-button>
+            </span>
+        </el-dialog>
+
+        <el-dialog title="编辑大巴" :visible.sync="editDialogVisible" width="45%" :before-close="handleClose">
+            <el-form label-position="top" label-width="80px">
+                <el-form-item label="导游姓名">
+                    <el-input v-model="editForm.gname"></el-input>
+                </el-form-item>
+                <el-form-item label="导游状态">
+                    <el-input v-model="editForm.gstate"></el-input>
+                </el-form-item>
+                <el-form-item label="导游电话">
+                    <el-input v-model="editForm.gtel"></el-input>
+                </el-form-item>
+                <el-form-item label="出发时间">
+                    <el-input type="datetime-local" v-model="editForm.gotime"></el-input>
+                </el-form-item>
+                <el-form-item label="出去时长">
+                    <el-input v-model="editForm.willdays"></el-input>
+                </el-form-item>
+            </el-form>
+            <span slot="footer" class="dialog-footer">
+                <el-button @click="closeEdit()">取 消</el-button>
+                <el-button type="primary" @click="update()">确 定</el-button>
+            </span>
+        </el-dialog>
     </div>
     <script>
         new Vue({
             el: '#app',
             data: function () {
                 return {
+                    tableData: [{
+                        gid: "",
+                        gname: "",
+                        gstate: "",
+                        gtel: "",
+                        gotime: "",
+                        willdays: ""
+                    }],
+                    search: "",
+                    subForm: {
+                        gname: "",
+                        gstate: "",
+                        gtel: "",
+                        gotime: "",
+                        willdays: ""
+                    }, editForm: {
+                        gid: "",
+                        gname: "",
+                        gstate: "",
+                        gtel: "",
+                        gotime: "",
+                        willdays: ""
+                    },
+                    addDialogVisible: false,
+                    editDialogVisible: false
+                }
+            }, created() {
+                var that = this
+                axios.get("../user/check").then(function (response) {
+                    if (response.data.code != 200) {
+                        window.location.href = "./login.html";
+                    }
+                }).catch(function (error) {
+                    console.log(error);
+                })
 
+                axios.get("../guide/all").then(function (res) {
+                    console.log(res)
+                    if (res.data.code == 200) {
+                        that.tableData = res.data.msg
+                    }
+                }).catch(function (error) {
+                    console.log(error);
+                })
+
+            }, methods: {
+                del(row) {
+                    var that = this
+                    this.$confirm('此操作将永久删除本条记录?', '提示', {
+                        confirmButtonText: '确定',
+                        cancelButtonText: '取消',
+                        type: 'warning'
+                    }).then(() => {
+                        axios.post("../guide/del", {
+                            "gid": row.gid
+                        }).then(function (res) {
+                            if (res.data.code == 200) {
+                                that.$message({
+                                    type: 'success',
+                                    message: '删除成功!'
+                                });
+                            }
+                            axios.get("../guide/all").then(function (res) {
+                                if (res.data.code == 200) {
+                                    that.tableData = res.data.msg
+                                }
+                            }).catch(function (error) {
+                                console.log(error);
+                            })
+                        }).catch(function (error) {
+                            console.log(error);
+                        })
+                    }).catch(() => {
+                        this.$message({
+                            type: 'info',
+                            message: '已取消删除'
+                        });
+                    });
+                },
+                add() {
+                    console.log(this.subForm.gotime)
+                    var that = this
+                    axios.post("../guide/add", {
+                        "gname": this.subForm.gname,
+                        "gotime": this.subForm.gotime,
+                        "gstate": this.subForm.gstate,
+                        "gtel": this.subForm.gtel,
+                        "willdays": this.subForm.willdays
+                    }).then(function (res) {
+                        if (res.data.code == 200) {
+                            that.$message({
+                                type: 'success',
+                                message: '添加成功!'
+                            });
+                        } else if (res.data.code == 201) {
+                            that.$message({
+                                type: 'error',
+                                message: '请先登录'
+                            });
+                        } else if (res.data.code == 400) {
+                            that.$message({
+                                type: 'error',
+                                message: '添加失败!'
+                            });
+                        }
+                        axios.get("../guide/all").then(function (res) {
+                            if (res.data.code == 200) {
+                                that.tableData = res.data.msg
+                            }
+                        }).catch(function (error) {
+                            console.log(error);
+                        })
+                        that.subForm.gname = ""
+                        that.subForm.title = ""
+                        that.subForm.gstate = ""
+                        that.subForm.gtel = ""
+                        that.subForm.gotime = ""
+                        that.subForm.willdays = ""
+                    }).catch(function (err) {
+                        console.log(err)
+                    })
+                    this.addDialogVisible = false
+                },
+                up(now) {
+                    var that = this
+                    this.editDialogVisible = true
+                    this.editForm.gid = now.gid
+                    this.editForm.gname = now.gname
+                    this.editForm.gstate = now.gstate
+                    this.editForm.gtel = now.gtel
+                    this.editForm.gotime = now.gotime
+                    this.editForm.willdays = now.willdays
+                }, search1() {
+                    var that = this
+                    axios.get("../guide/getByName?name=" + this.search).then(function (res) {
+                        if (res.data.code == 200) {
+                            that.tableData = res.data.msg
+                        }
+                    }).catch(function (err) {
+                        console.log(err)
+                    })
+                }, handleClose(done) {
+                    var that = this
+                    this.$confirm('确认关闭？')
+                        .then(_ => {
+                            that.subForm.gname = ""
+                            that.subForm.gstate = ""
+                            that.subForm.gtel = ""
+                            that.subForm.gotime = ""
+                            that.subForm.willdays = ""
+                            that.editForm.gid = ""
+                            that.editForm.gname = ""
+                            that.editForm.gstate = ""
+                            that.editForm.gtel = ""
+                            that.editForm.gotime = ""
+                            that.editForm.willdays = ""
+                            done();
+                        })
+                        .catch(_ => { });
+                }, closeAdd() {
+                    this.addDialogVisible = false
+                    that.subForm.gname = ""
+                    that.subForm.gstate = ""
+                    that.subForm.gtel = ""
+                    that.subForm.gotime = ""
+                    that.subForm.willdays = ""
+                }, closeEdit() {
+                    this.editDialogVisible = false
+                    that.editForm.gid = ""
+                    that.editForm.gname = ""
+                    that.editForm.gstate = ""
+                    that.editForm.gtel = ""
+                    that.editForm.gotime = ""
+                    that.editForm.willdays = ""
+                }, update() {
+                    var that = this
+                    axios.post("../guide/up", {
+                        "gid": that.editForm.gid,
+                        "gname": this.editForm.gname,
+                        "gotime": this.editForm.gotime,
+                        "gstate": this.editForm.gstate,
+                        "gtel": this.editForm.gtel,
+                        "willdays": this.editForm.willdays
+                    }).then(function (res) {
+                        if (res.data.code == 200) {
+                            that.$message({
+                                type: 'success',
+                                message: '修改成功!'
+                            });
+                        } else if (res.data.code == 201) {
+                            that.$message({
+                                type: 'error',
+                                message: '请先登录'
+                            });
+                        } else if (res.data.code == 400) {
+                            that.$message({
+                                type: 'error',
+                                message: '修改失败!'
+                            });
+                        }
+                        axios.get("../guide/all").then(function (res) {
+                            if (res.data.code == 200) {
+                                that.tableData = res.data.msg
+                            }
+                        }).catch(function (error) {
+                            console.log(error);
+                        })
+                        that.editForm.gid = ""
+                        that.editForm.gname = ""
+                        that.editForm.gstate = ""
+                        that.editForm.gtel = ""
+                        that.editForm.gotime = ""
+                        that.editForm.willdays = ""
+                    }).catch(function (err) {
+                        console.log(err)
+                    })
+                    this.editDialogVisible = false
                 }
             }
         })
