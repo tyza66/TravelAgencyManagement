@@ -18,6 +18,9 @@
 <details><summary>编辑游客</summary>
 <img src="./文档/图片/游客管理.png"/>
 </details>
+<details><summary>大巴管理</summary>
+<img src="./文档/图片/大巴管理.png"/>
+</details>
 
 ##### 说明
 - 课堂小练习
